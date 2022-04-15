@@ -1,0 +1,25 @@
+.absolution {
+    position: fixed !important;
+    width: 100vw;
+}
+
+.landing {
+    background-image: url('menara165.png');
+    min-height: 60vh;
+    max-height: 90vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 50px;
+    padding-top: 5%;
+}
+
+#navbar:hover {
+    opacity: 100%;
+}
+
+#navbar {
+    opacity: 50%;
+}
