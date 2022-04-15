@@ -1,0 +1,14 @@
+* {
+    font-family: Poppins;
+}
+
+.price {
+    color: red;
+    font-weight: 300;
+}
+
+input,
+button {
+    background-color: black;
+    color: white;
+}
