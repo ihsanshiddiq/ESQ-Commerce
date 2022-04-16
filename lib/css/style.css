@@ -7,6 +7,13 @@ h1 {
     font-size: 36px;
 }
 
+a:link,
+a:hover,
+a:visited {
+    color: black !important;
+    text-decoration: none;
+}
+
 .price {
     color: red;
     font-weight: 300;
