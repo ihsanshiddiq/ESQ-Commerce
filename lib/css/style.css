@@ -2,6 +2,11 @@
     font-family: Poppins;
 }
 
+h1 {
+    font-weight: 500;
+    font-size: 36px;
+}
+
 .price {
     color: red;
     font-weight: 300;
@@ -11,4 +16,8 @@ input,
 button {
     background-color: black;
     color: white;
+}
+
+.grid-container-inline {
+    display: inline-grid;
 }
