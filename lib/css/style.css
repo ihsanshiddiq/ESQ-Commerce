@@ -2,6 +2,18 @@
     font-family: Poppins;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+
+    font-family: "Lato", sans-serif;
+    width: 100vw;
+}
+
 h1 {
     font-weight: 500;
     font-size: 36px;
@@ -27,4 +39,9 @@ button {
 
 .grid-container-inline {
     display: inline-grid;
+}
+
+.list-toko {
+    background-color: #292C87;
+    color: white;
 }

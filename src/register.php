@@ -1,5 +1,18 @@
 <?php
- //include 'config.php';
+ include 'config.php';
+
+ if (isset($_POST['submit'])) {
+    $username = stripslashes($_POST['username']);
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = stripslashes($_POST['password']);
+    $password = mysqli_real_escape_string($conn, $password);
+    $email = stripslashes($_POST['email']);
+    $email = mysqli_real_escape_string($conn, $email);
+    $phone = stripslashes($_POST['no_hp']);
+    $phone = mysqli_real_escape_string($conn, $phone);
+    $username = stripslashes($_POST['username']);
+    $username = mysqli_real_escape_string($conn, $username);
+ }
 
 
 
@@ -26,24 +39,24 @@
 </head>
 
 <body>
-  <nav>
-    <!-- INSERT NAVBAR FILE HERE (AFTER PHP CONVERSION)-->
+  <navbar>
+
     <?php 
     require 'navbar.php'; 
     ?>
-  </nav>
+  </navbar>
 
   <section class="container">
     <h4><b>Enter your personal information so we can sell it (pls we actually need money)</b></h4>
     <br>
-    <form action="">
+    <form action="register.php" method="post">
       <div class="row">
 
         <div class="col-6">
 
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control textinput" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="email" name="email" class="form-control textinput" id="exampleInputEmail1" aria-describedby="emailHelp"
               placeholder="">
             <small id="emailHelp" class="form-text text-muted">We'll share your email with everyone
               else.</small>
@@ -59,17 +72,17 @@
 
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control textinput" id="exampleInputPassword1 textinput" placeholder="">
+            <input type="password" name="password" class="form-control textinput" id="password" placeholder="">
           </div>
 
           <div class="form-group">
 
-            <input type="text" class="form-control gender textinput" id="gender" placeholder="Gender">
+            <input type="text" name="gender" class="form-control gender textinput" id="gender" placeholder="Gender">
           </div>
 
           <div class="form-group">
 
-            <input type="number" class="form-control nohp textinput" id="nohp" placeholder="Nomor Handphone">
+            <input type="number" name="no_hp" class="form-control nohp textinput" id="nohp" placeholder="Nomor Handphone">
           </div>
           <br>
 
@@ -78,15 +91,15 @@
           <br>
           <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="exampleInputPassword1" placeholder="Username">
+            <input type="text" name="username" class="form-control textinput" id="username" placeholder="Username">
           </div>
           <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="namadepan" placeholder="Nama depan">
+            <input type="text" name ="f_name" class="form-control textinput" id="namadepan" placeholder="Nama depan">
           </div>
           <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="namabelakang" placeholder="Nama belakang">
+            <input type="text" name ="l_name" class="form-control textinput" id="namabelakang" placeholder="Nama belakang">
           </div>
 
 
@@ -98,7 +111,7 @@
         <div class="col-md-12">
           <div class="form-group">
 
-            <textarea class="form-control alamat textinput" id="alamat" placeholder="Alamat" rows="1"></textarea>
+            <textarea name="alamat" class="form-control alamat textinput" id="alamat" placeholder="Alamat" rows="1"></textarea>
           </div>
         </div>
       </div>
@@ -108,12 +121,12 @@
         <div class="col-md-6">
           <div class="form-group">
 
-            <input type="text" class="form-control provinsi textinput" id="provinsi" placeholder="Provinsi">
+            <input type="text" name="provinsi" class="form-control provinsi textinput" id="provinsi" placeholder="Provinsi">
           </div>
 
           <div class="form-group">
 
-            <input type="text" class="form-control kota textinput" id="kota" placeholder="Kota">
+            <input type="text" name ="kota" class="form-control kota textinput" id="kota" placeholder="Kota">
           </div>
 
         </div>
@@ -122,12 +135,12 @@
 
           <div class="form-group">
 
-            <input type="text" class="form-control kecamatan textinput" id="kecamatan" placeholder="Kecamatan">
+            <input type="text" name="kecamatan" class="form-control kecamatan textinput" id="kecamatan" placeholder="Kecamatan">
           </div>
 
           <div class="form-group">
 
-            <input type="number" class="form-control kodepos textinput" id="kodepos" placeholder="Kode Pos">
+            <input type="number" name="kode_pos" class="form-control kodepos textinput" id="kodepos" placeholder="Kode Pos">
           </div>
 
         </div>
