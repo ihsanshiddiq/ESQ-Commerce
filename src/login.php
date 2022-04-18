@@ -60,12 +60,13 @@ if($cek > 0){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <!--CDN-->
+  <?php
+  require 'head-conf.html';
+  ?>
 
+ 
+    <link rel="stylesheet" href="../lib/css/style.css">
   <link rel="stylesheet" href="../lib/customskin.css">
 
 
@@ -120,15 +121,15 @@ if($cek > 0){
               <br> <br>
               When you provide us with details, you will have a fast and pleasant shopping experience at ESQ COMMERCE</p>
 
-        <form action="register.php">
+            <form action="register.php">
           <button type="" class="btn btnblack" style="width: 100%;"><b>Register</b></button>
           </form
-        </div>
+            </div>
       
       </div>
 
 
-      </div>
+    </div>
 
       
 
