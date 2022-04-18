@@ -28,3 +28,8 @@ button {
 .grid-container-inline {
     display: inline-grid;
 }
+
+.list-toko {
+    background-color: #292C87;
+    color: white;
+}
