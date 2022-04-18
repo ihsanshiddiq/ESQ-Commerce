@@ -29,7 +29,7 @@
   <nav>
     <!-- INSERT NAVBAR FILE HERE (AFTER PHP CONVERSION)-->
     <?php 
-    require 'navbar.html'; 
+    require 'navbar.php'; 
     ?>
   </nav>
 
