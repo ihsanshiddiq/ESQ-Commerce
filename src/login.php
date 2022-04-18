@@ -83,7 +83,7 @@ if($cek > 0){
   <section class="container">
 
     <br>
-    <form action="register.php" method="post">
+    <form action="" method="post">
       <div class="row">
 
         <div class="col-md-6">
@@ -105,13 +105,13 @@ if($cek > 0){
             <a href="">Forget your password?</a>
             <br><br>
 
-            <button type="submit" class="btn btnblack" style="width: 100%;"><b>Login</b></button>
+            <button type="submit" href="" class="btn btnblack" style="width: 100%;"><b>Login</b></button>
 
 
           
 
         </div>
-
+        </form>
 
 
         <div class="col-md-6">
@@ -120,9 +120,9 @@ if($cek > 0){
               <br> <br>
               When you provide us with details, you will have a fast and pleasant shopping experience at ESQ COMMERCE</p>
 
-
-          <button type="" href="register.php" class="btn btnblack" style="width: 100%;"><b>Register</b></button>
-
+        <form action="register.php">
+          <button type="" class="btn btnblack" style="width: 100%;"><b>Register</b></button>
+          </form
         </div>
       
       </div>
@@ -132,7 +132,7 @@ if($cek > 0){
 
       
 
-    </form>
+    
 
   </section>
 </body>
