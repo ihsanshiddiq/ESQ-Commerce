@@ -47,7 +47,7 @@
   </navbar>
 
   <section class="container">
-    <h4><b>Enter your personal information so we can sell it (pls we actually need money)</b></h4>
+    <h4><b>Enter your personal information.</b></h4>
     <br>
     <form action="register.php" method="post">
       <div class="row">
@@ -150,7 +150,7 @@
 
       <div class="row">
         <div class="col">
-
+          <a href="login.php">Already have an account? Click here to login</a><br><br>
           <button type="submit" class="btn btnblack" style="width: 100%;"><b>REGISTER</b></button>
 
         </div>

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-light absolution" id="navbar">
         <div class="container-fluid">
           <span style="font-size:30px;cursor:pointer; padding-right: 1%;" onclick="openNav()">&#9776;</span>
-          <a class="navbar-brand" href="#"><b>ESQ Commerce</b></a>
+          <a class="navbar-brand" href="index.php"><b>ESQ Commerce</b></a>
           <button class="navbar-toggler" type="button" onclick="expandNav()" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -19,7 +19,7 @@
             <a class="nav-link" href="cart.html">
               <img src="../assets/cart.png" alt="cart">
             </a>
-            <a class="nav-link active blacken" aria-current="page" href="#">LOGIN</a>
+            <a class="nav-link active blacken" aria-current="page" href="login.php">LOGIN</a>
             
           </div>
           
