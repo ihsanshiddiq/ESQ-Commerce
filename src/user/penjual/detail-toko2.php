@@ -54,13 +54,13 @@
     <div class="container overflow-hidden py-3">
         <div class="row py-5 px-5" style="background-color: #292C87; color: white;">
             <div class="col-md-4" style="border-right: white solid 1px;">
-                <h1>Teh Hijau</h1>
-                <i class="bi bi-instagram"> @pips</i>
+                <h1>Teh Mawar</h1>
+                <i class="bi bi-instagram"> @glico</i>
                 <br>
-                <i class="bi bi-facebook"> akupipul</i>
+                <i class="bi bi-facebook"> ihsan_s</i>
             </div>
             <div class="col-md-6">
-                <h2>Afifah Khairiyah</h2>
+                <h2>Ihsan Shiddiq</h2>
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora sit temporibus nostrum reiciendis,
                     ab quia velit architecto vel veritatis soluta!</p>
