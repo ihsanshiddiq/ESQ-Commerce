@@ -27,6 +27,10 @@
 
     <nav>
         <!--Tempat nav-->
+        <?php
+        require 'navbar.php';
+        ?>
+        
     </nav>
 
     <div class="container py-5">
@@ -92,6 +96,11 @@
             </div>
         </div>
     </div>
+
+    <!--FOOTER-->
+    <?php
+    require 'footer.html';
+    ?>
 
 </body>
 
