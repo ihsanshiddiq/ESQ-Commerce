@@ -1,3 +1,10 @@
+<?php
+ //include 'config.php';
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,10 +28,12 @@
 <body>
   <nav>
     <!-- INSERT NAVBAR FILE HERE (AFTER PHP CONVERSION)-->
-    
+    <?php 
+    require 'navbar.html'; 
+    ?>
   </nav>
 
-  <section class="container mx-5 my-5">
+  <section class="container">
     <h4><b>Enter your personal information so we can sell it (pls we actually need money)</b></h4>
     <br>
     <form action="">
@@ -65,24 +74,40 @@
           <br>
 
         </div>
-        <div class="col-md-6">
-          <br>
-          <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="exampleInputPassword1" placeholder="Username">
+        <div class="col-md-2">
+          
+          <div class="form-group">
+            <label for="username">Username</label>
+            
+          </div>
+          <div class="form-group">
+            <label for="namadepan">Nama Depan</label>
+            
+          </div>
+          <div class="form-group">
+            <label for="namabelakang">Nama Belakang</label>
+            
+          </div>
+
+          
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control textinput zeropad" id="username" placeholder="Username">
           </div>
           <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="namadepan" placeholder="Nama depan">
+            <input type="text" class="form-control textinput zeropad" id="namadepan" placeholder="Nama depan">
           </div>
           <div class="form-group">
 
-            <input type="text" class="form-control textinput" id="namabelakang" placeholder="Nama belakang">
+            <input type="text" class="form-control textinput zeropad" id="namabelakang" placeholder="Nama belakang">
           </div>
-
-
 
         </div>
+
       </div>
 
       <div class="row">
