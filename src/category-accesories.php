@@ -31,7 +31,7 @@
     <!--NAVBAR-->
     <nav>
         <?php
-        require 'navbar.html';
+        require 'navbar.php';
         ?>
     </nav>
 
