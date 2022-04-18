@@ -9,6 +9,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../lib/css/style.css">
+    <link rel="stylesheet" href="../lib/customskin.css">
 
     <!--CDN-->
     <?php
