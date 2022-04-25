@@ -87,21 +87,21 @@
               <div class="carousel-item active">
                 <img src="../assets/menara165.png" class="d-block w-100 carouselimg" alt="...">
                 <div class="carousel-caption d-block carouselnostretch">
-                  <h5>Room Type</h5>
+                  <h4>『Welcome to EBS Commerce』</h4>
           
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="../assets/produk/tomahawk.jpg" class="d-block w-100 carouselimg" alt="...">
                 <div class="carousel-caption d-block carouselnostretch">
-                  <h5>Room Type Again</h5>
+                  <h4>Featured: Tomahawk Steak</h4>
           
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="../assets/transitem.png" class="d-block w-100 carouselimg" alt="...">
+                <a href="category-accesories.php"><img src="../assets/transitem.png" class="d-block w-100 carouselimg" alt="..."></a>
                 <div class="carousel-caption d-block carouselnostretch">
-                  <h5>Another Room Type</h5>
+                  <h5>Check out our Accessories</h5>
           
                 </div>
               </div>
@@ -122,7 +122,7 @@
             <img src="../assets/produk/tomahawk.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Tomahawk Steak</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text">Menu terbatas kita, Steak Tomahawk hanya 65k per porsi.</p>
               <a href="#" class="btn btn-secondary">Pesan</a>
             </div>
             <div class="card-footer text-muted">
@@ -137,8 +137,8 @@
               <div class="card h-100">
                 <img src="../assets/produk/chimkin.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title">Ayam Panggang</h5>
+                  <p class="card-text">Ayam panggang spesial kami dengan saus sambal yang juga spesial.</p>
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@
               <div class="card h-100">
                 <img src="../assets/produk/borgir.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Borgir Longboi</h5>
                   <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 </div>
               </div>
@@ -155,8 +155,8 @@
               <div class="card h-100">
                 <img src="../assets/produk/nasgor.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                  <h5 class="card-title">Nasi Goreng</h5>
+                  <p class="card-text">Menu klasik. Nasi goreng komplit dengan opsi pedas.</p>
                 </div>
               </div>
             </div>
