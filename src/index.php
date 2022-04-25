@@ -233,7 +233,7 @@
             </div>
             
             <div class="row d-flex justify-content-center my-3">
-              <a href="accessories.php" class="btn btn-dark viewmore">View more</a>
+              <a href="category-accesories.php" class="btn btn-dark viewmore">View more</a>
             </div>
   
             </section>
@@ -256,12 +256,15 @@
                 </div>
 
                 <div class="col justify-content-center">
-                  <div class="card bg-light text-white">
-                    <img src="../assets/produk/categories/accessories.png" class="card-img-top" alt="...">
-                    <div class="card-img-overlay">
-                      <h5 class="card-title popular"><b>Accessories</b></h5>
+                  <a href="category-accesories.php">
+
+                    <div class="card bg-light text-white">
+                      <img src="../assets/produk/categories/accessories.png" class="card-img-top" alt="...">
+                      <div class="card-img-overlay">
+                        <h5 class="card-title popular"><b>Accessories</b></h5>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
 
                 <div class="col justify-content-center">
