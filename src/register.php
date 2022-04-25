@@ -31,7 +31,7 @@
   ?>
 
     <link rel="stylesheet" href="../lib/css/style.css">
-  <link rel="stylesheet" href="../lib/customskin.css">
+
 
 
   <title>Document</title>

@@ -13,7 +13,7 @@
 
     <!--CSS REFERENCE-->
     <link rel="stylesheet" href="../lib/css/style.css">
-    <link rel="stylesheet" href="../lib/customskin.css">
+ 
 
   <title>Landing Page | Index</title>
 </head>
@@ -123,7 +123,7 @@
             <div class="card-body">
               <h5 class="card-title">Tomahawk Steak</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-dark">Pesan</a>
+              <a href="#" class="btn btn-secondary">Pesan</a>
             </div>
             <div class="card-footer text-muted">
               2 days ago
@@ -233,7 +233,7 @@
             </div>
             
             <div class="row d-flex justify-content-center my-3">
-              <a href="category-accesories.php" class="btn btn-dark viewmore">View more</a>
+              <a href="category-accesories.php" class="btn btn-secondary viewmore">View more</a>
             </div>
   
             </section>

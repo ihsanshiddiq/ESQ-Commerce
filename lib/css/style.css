@@ -9,8 +9,10 @@ body {
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
-
+    font-family: Poppins;
+    /*
     font-family: "Lato", sans-serif;
+    */
     width: 100vw;
 }
 
@@ -46,6 +48,8 @@ button {
     color: white;
 }
 
+/* =============BELOW IS HARBORED FROM customskin.css============= */
+
 .absolution {
     position: fixed !important;
     width: 100vw;
@@ -54,15 +58,15 @@ button {
 
 .landing {
     background-image: url('../assets/menara165.png');
-
+    
     width: 100vw;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
     margin-top: 0;
     margin-bottom: 50px;
-
-
+    
+    
     /* 
     padding-top: 5%;
     min-height: 60vh;
@@ -81,6 +85,18 @@ button {
     background: rgba(255, 255, 255, 0.5);
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    /*
+    font-family: "Lato", sans-serif;
+    */
+    width: 100vw;
+}
 
 .sidenav {
     height: 100%;
@@ -99,7 +115,7 @@ button {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #818181 !important   ;
     display: block;
     transition: 0.3s;
 }
@@ -120,7 +136,6 @@ button {
     .sidenav {
         padding-top: 15px;
     }
-
     .sidenav a {
         font-size: 18px;
     }
@@ -141,13 +156,13 @@ button {
 }
 
 .textinput {
-    border-radius: 0;
-    border: 0px;
-    border-bottom: 1px solid gray !important;
-    margin-bottom: 4%;
-    display: flex;
-
-
+  border-radius: 0;
+  border: 0px;
+  border-bottom: 1px solid gray !important;
+  margin-bottom: 4%;
+  display: flex;
+  
+  
 }
 
 label {
@@ -168,29 +183,29 @@ label {
 }
 
 .container {
-    margin-top: 10vw;
-    padding-left: 20px;
-    padding-right: 20px;
+  margin-top: 10vw;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .zeropad {
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .carouselimg {
-    max-height: 99vh;
-    width: auto;
+  max-height: 100vh;
+  width: auto;
 }
 
 .card-img-top {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit:contain;
 }
 
 .blacken {
-    color: black;
+  color: black;
 }
 
 /**
@@ -202,26 +217,25 @@ label {
 **/
 
 .img-thumbnail {
-    width: 33%;
-    height: auto;
+  width: 33%;
+  height: auto;
 }
 
-.transition {
-    /*THIS IS PARALLAX FOR ITEMS IN INDEX*/
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 50px;
-    height: auto;
+.transition {   /*THIS IS PARALLAX FOR ITEMS IN INDEX*/
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 50px;
+  height: auto;
 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    /* 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+  /* 
   padding-top: 5%;
   min-height: 60vh;
   max-height: 90vh;
@@ -229,39 +243,39 @@ label {
 }
 
 .transitionitem {
-    background-image: url('../assets/transitem.png');
+  background-image: url('../../assets/transitem.png');
 }
 
-.transitiontext {
-    padding-top: 20%;
-    padding-bottom: 20%;
-    color: black;
-    text-align: center;
-    font-size: 85px;
+.transitiontext{
+  padding-top: 20%;
+  padding-bottom: 20%;
+   color: black;
+   text-align: center;
+   font-size: 85px;
 }
 
 .viewmore {
-    width: 120px;
+  width: 120px;
 }
 
 .popularcategories {
-    color: black;
-    text-align: center;
-    font-size: 55px;
+  color: black;
+   text-align: center;
+   font-size: 55px;
 }
 
 .popular {
-    color: white;
-    text-align: center;
-    font-size: 30px;
-    padding-top: 40%;
-    text-shadow: 2px 2px black;
+  color: white;
+   text-align: center;
+   font-size: 30px;
+   padding-top: 40%;
+   text-shadow: 2px 2px black;
 }
 
 .popularb {
-    color: black;
-    text-align: center;
-    font-size: 30px;
-    padding-top: 40%;
-    text-shadow: 2px 2px white;
+  color: black;
+   text-align: center;
+   font-size: 30px;
+   padding-top: 40%;
+   text-shadow: 2px 2px white;
 }
