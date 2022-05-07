@@ -1,17 +1,77 @@
 <?php
- include 'config.php';
+ //include 'config.php';
 
  if (isset($_POST['submit'])) {
-    $username = stripslashes($_POST['username']);
-    $username = mysqli_real_escape_string($conn, $username);
-    $password = stripslashes($_POST['password']);
-    $password = mysqli_real_escape_string($conn, $password);
-    $email = stripslashes($_POST['email']);
-    $email = mysqli_real_escape_string($conn, $email);
-    $phone = stripslashes($_POST['no_hp']);
-    $phone = mysqli_real_escape_string($conn, $phone);
-    $username = stripslashes($_POST['username']);
-    $username = mysqli_real_escape_string($conn, $username);
+
+  require_once('./class/class.akun.php');
+  $objAkun = new akun();
+
+
+    $objAkun->username = stripslashes($_POST['username']);
+    $objAkun->username = mysqli_real_escape_string($conn, $objAkun->username);
+    $objAkun->password = stripslashes($_POST['password']);
+    $objAkun->password = mysqli_real_escape_string($conn, $objAkun->password);
+    $objAkun->namaDepan = stripslashes($_POST['f_name']);
+    $objAkun->namaDepan = mysqli_real_escape_string($conn, $objAkun->namaDepan);
+    $objAkun->namaBelakang = stripslashes($_POST['l_name']);
+    $objAkun->namaBelakang = mysqli_real_escape_string($conn, $objAkun->namaBelakang);
+    $objAkun->email = stripslashes($_POST['email']);
+    $objAkun->email = mysqli_real_escape_string($conn, $objAkun->email);
+    $objAkun->noHp = stripslashes($_POST['no_hp']);
+    $objAkun->noHp = mysqli_real_escape_string($conn, $objAkun->noHp);
+    $objAkun->kodePos = stripslashes($_POST['kode_pos']);
+    $objAkun->kodePos = mysqli_real_escape_string($conn, $objAkun->kodePos);
+    $objAkun->jalan = stripslashes($_POST['alamat']);
+    $objAkun->jalan = mysqli_real_escape_string($conn, $objAkun->jalan);
+    $objAkun->id_role = 2;
+    //$objAkun->id_role = stripslashes($_POST['role']);
+    //$objAkun->id_role = mysqli_real_escape_string($conn, $objAkun->id_role);
+
+    if (!empty($objAkun->username) || !empty($objAkun->password)) {
+
+                    
+                    
+        
+        
+     $cek_user = $objAkun->cek_nama($objAkun->username);
+      
+      
+      if ($result) {
+
+          //$salt = getConfigVariable("pepper");
+          //$pwd_salted = hash_hmac("sha256", $pass, $salt);            
+          $objAkun->pwd_hashed = password_hash($objAkun->password, PASSWORD_ARGON2I, array('cost' => 8));            
+          
+          $objAkun->addAkun();
+          
+             
+              
+              if ($objAkun->hasil) {
+                  echo "New record created successfully";
+
+                } else {
+                  
+                  echo "Error: " . $objAkun->addAkun() . "<br>" . $conn->error;
+              }
+              
+             
+              
+      } else {
+              echo "<script> alert('username anda sudah terdaftar sebelumnya'); </script>";
+              //echo "sdh terdaftar";
+              //echo "<script>window.location = 'register.php';</script>";
+      }
+      $conn->close();
+          
+     
+      
+  
+      
+    } else {
+        echo "All field are required";
+        die();
+    }
+
  }
 
 
