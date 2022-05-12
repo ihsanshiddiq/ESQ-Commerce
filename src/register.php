@@ -3,31 +3,41 @@
 
  if (isset($_POST['submit'])) {
 
-  require_once('./class/class.akun.php');
-  $objAkun = new akun();
+  require_once('./init.class.php');
+  $objAkun = new Akun();
 
 
     $objAkun->username = stripslashes($_POST['username']);
-    $objAkun->username = mysqli_real_escape_string($conn, $objAkun->username);
-    $objAkun->password = stripslashes($_POST['password']);
-    $objAkun->password = mysqli_real_escape_string($conn, $objAkun->password);
+    //$objAkun->username = mysqli_real_escape_string($conn, $objAkun->username);
+    $pass = stripslashes($_POST['password']);
+    //$objAkun->password = mysqli_real_escape_string($conn, $objAkun->password);
     $objAkun->namaDepan = stripslashes($_POST['f_name']);
-    $objAkun->namaDepan = mysqli_real_escape_string($conn, $objAkun->namaDepan);
+    //$objAkun->namaDepan = mysqli_real_escape_string($conn, $objAkun->namaDepan);
     $objAkun->namaBelakang = stripslashes($_POST['l_name']);
-    $objAkun->namaBelakang = mysqli_real_escape_string($conn, $objAkun->namaBelakang);
+    //$objAkun->namaBelakang = mysqli_real_escape_string($conn, $objAkun->namaBelakang);
     $objAkun->email = stripslashes($_POST['email']);
-    $objAkun->email = mysqli_real_escape_string($conn, $objAkun->email);
+    //$objAkun->email = mysqli_real_escape_string($conn, $objAkun->email);
     $objAkun->noHp = stripslashes($_POST['no_hp']);
-    $objAkun->noHp = mysqli_real_escape_string($conn, $objAkun->noHp);
+    //$objAkun->noHp = mysqli_real_escape_string($conn, $objAkun->noHp);
     $objAkun->kodePos = stripslashes($_POST['kode_pos']);
-    $objAkun->kodePos = mysqli_real_escape_string($conn, $objAkun->kodePos);
+    //$objAkun->kodePos = mysqli_real_escape_string($conn, $objAkun->kodePos);
     $objAkun->jalan = stripslashes($_POST['alamat']);
-    $objAkun->jalan = mysqli_real_escape_string($conn, $objAkun->jalan);
+    //$objAkun->jalan = mysqli_real_escape_string($conn, $objAkun->jalan);
     $objAkun->id_role = 2;
-    //$objAkun->id_role = stripslashes($_POST['role']);
-    //$objAkun->id_role = mysqli_real_escape_string($conn, $objAkun->id_role);
 
-    if (!empty($objAkun->username) || !empty($objAkun->password)) {
+
+  /*
+    $objAkun->username =$_POST['username'];
+    $pass = $_POST['password'];
+    $objAkun->namaDepan = $_POST['f_name'];
+    $objAkun->namaBelakang = $_POST['l_name'];
+    $objAkun->email = $_POST['email'];
+    $objAkun->noHp = $_POST['no_hp'];
+    $objAkun->kodePos = $_POST['kode_pos'];
+    $objAkun->jalan = $_POST['alamat'];
+    $objAkun->id_role = 2;
+*/
+    if (!empty($objAkun->username) || !empty($pass) || !empty($objAkun->namaDepan) || !empty($objAkun->namaBelakang) || !empty($objAkun->email) || !empty($objAkun->NoHp) || !empty($objAkun->kodePos) || !empty($objAkun->jalan)) {
 
                     
                     
@@ -36,12 +46,8 @@
      $cek_user = $objAkun->cek_nama($objAkun->username);
       
       
-      if ($result) {
-
-          //$salt = getConfigVariable("pepper");
-          //$pwd_salted = hash_hmac("sha256", $pass, $salt);            
-          $objAkun->pwd_hashed = password_hash($objAkun->password, PASSWORD_ARGON2I, array('cost' => 8));            
-          
+      if ($result) {        
+          $objAkun->password = password_hash($pass, PASSWORD_ARGON2I, array('cost' => 8));            
           $objAkun->addAkun();
           
              
@@ -210,7 +216,7 @@
       <div class="row">
         <div class="col">
           <a href="login.php">Already have an account? Click here to login</a><br><br>
-          <button type="submit" class="btn btnblack" style="width: 100%;"><b>REGISTER</b></button>
+          <button type="submit" class="btn btnblack" style="width: 100%;" name="submit"><b>REGISTER</b></button>
 
         </div>
       </div>

@@ -1,6 +1,8 @@
 <?php
 
-    class akun extends Connection{
+    //include '../inc.koneksi.php';
+
+    class Akun extends Connection{
         //private $id = 0;
         private $id_admin = 0;
         private $id_penjual = 0;
@@ -9,7 +11,7 @@
         private $namaBelakang = " ";
         private $username = " ";
         private $password = " ";
-        private $pwd_hashed = " ";
+        //private $pwd_hashed = " ";
         private $role = " ";
         private $id_role = 0;
         private $noHp = 0;
@@ -33,8 +35,8 @@
         public function addAkun(){
                 
             $query = "INSERT INTO akun(username, password, namaDepan, namaBelakang, email, noHp, kodePos, jalan, id_role) 
-                    values ('$this->username', '$this->pwd_hashed', '$this->namaDepan', '$this->namaBelakang', '$this->email', '$this->noHp', '$this->kodePos', '$this->jalan', '$this->id_role')";
-            $this->hasil = mysqli_query($this->conn, $query);
+                    VALUES ('$this->username', '$this->password', '$this->namaDepan', '$this->namaBelakang', '$this->email', '$this->noHp', '$this->kodePos', '$this->jalan', '$this->id_role')";
+            $this->hasil = mysqli_query($this->connnection, $query);
             //$this->id = $this->connection->insert_id; //tak paham nay ini gunanya buat apa :v	
             
             if($this->hasil)
