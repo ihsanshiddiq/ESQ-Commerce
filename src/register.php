@@ -1,82 +1,93 @@
 <?php
- //include 'config.php';
 
- if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
+   include 'inc.koneksi.php';
 
   require_once('./init.class.php');
   $objAkun = new Akun();
 
 
     $objAkun->username = stripslashes($_POST['username']);
-    //$objAkun->username = mysqli_real_escape_string($conn, $objAkun->username);
-    $pass = stripslashes($_POST['password']);
-    //$objAkun->password = mysqli_real_escape_string($conn, $objAkun->password);
+    //$objAkun->username = mysqli_real_escape_string($objAkun->connection, $objAkun->username);
+    $objAkun->password = stripslashes($_POST['password']);
+    //$objAkun->password = mysqli_real_escape_string($objAkun->connection, $objAkun->password);
     $objAkun->namaDepan = stripslashes($_POST['f_name']);
-    //$objAkun->namaDepan = mysqli_real_escape_string($conn, $objAkun->namaDepan);
+    //$objAkun->namaDepan = mysqli_real_escape_string($objAkun->connection, $objAkun->namaDepan);
     $objAkun->namaBelakang = stripslashes($_POST['l_name']);
-    //$objAkun->namaBelakang = mysqli_real_escape_string($conn, $objAkun->namaBelakang);
+    //$objAkun->namaBelakang = mysqli_real_escape_string($objAkun->connection, $objAkun->namaBelakang);
     $objAkun->email = stripslashes($_POST['email']);
-    //$objAkun->email = mysqli_real_escape_string($conn, $objAkun->email);
+    //$objAkun->email = mysqli_real_escape_string($objAkun->connection, $objAkun->email);
     $objAkun->noHp = stripslashes($_POST['no_hp']);
-    //$objAkun->noHp = mysqli_real_escape_string($conn, $objAkun->noHp);
+    //$objAkun->noHp = mysqli_real_escape_string($objAkun->connection, $objAkun->noHp);
     $objAkun->kodePos = stripslashes($_POST['kode_pos']);
-    //$objAkun->kodePos = mysqli_real_escape_string($conn, $objAkun->kodePos);
+    //$objAkun->kodePos = mysqli_real_escape_string($objAkun->connection, $objAkun->kodePos);
     $objAkun->jalan = stripslashes($_POST['alamat']);
-    //$objAkun->jalan = mysqli_real_escape_string($conn, $objAkun->jalan);
+    //$objAkun->jalan = mysqli_real_escape_string($objAkun->connection, $objAkun->jalan);
     $objAkun->id_role = 2;
 
 
-  /*
-    $objAkun->username =$_POST['username'];
-    $pass = $_POST['password'];
-    $objAkun->namaDepan = $_POST['f_name'];
-    $objAkun->namaBelakang = $_POST['l_name'];
-    $objAkun->email = $_POST['email'];
-    $objAkun->noHp = $_POST['no_hp'];
-    $objAkun->kodePos = $_POST['kode_pos'];
-    $objAkun->jalan = $_POST['alamat'];
-    $objAkun->id_role = 2;
-*/
-    if (!empty($objAkun->username) || !empty($pass) || !empty($objAkun->namaDepan) || !empty($objAkun->namaBelakang) || !empty($objAkun->email) || !empty($objAkun->NoHp) || !empty($objAkun->kodePos) || !empty($objAkun->jalan)) {
+  
+   // if (!empty($objAkun->username) || !empty($objAkun->password) || !empty($objAkun->namaDepan) || !empty($objAkun->namaBelakang) || !empty($objAkun->email)|| !empty($objAkun->noHp)|| !empty($objAkun->jalan)|| !empty($objAkun->kodePos)|| !empty($objAkun->password) ) {
 
                     
-                    
-        
-        
-     $cek_user = $objAkun->cek_nama($objAkun->username);
-      
-      
-      if ($result) {        
-          $objAkun->password = password_hash($pass, PASSWORD_ARGON2I, array('cost' => 8));            
+      $objAkun->cek_akun($objAkun->username);
+      if ($objAkun->hasil === FALSE) {        
+          $objAkun->password = password_hash($objAkun->password, PASSWORD_ARGON2I, array('cost' => 8));            
+
           $objAkun->addAkun();
+          
           
              
               
-              if ($objAkun->hasil) {
+              if ($objAkun->hasil === TRUE) {
                   echo "New record created successfully";
 
                 } else {
                   
-                  echo "Error: " . $objAkun->addAkun() . "<br>" . $conn->error;
+                  echo "Data Gagal ditambahkan";
+                  echo "<br>";
+                  echo $objAkun->username;
+                  echo $objAkun->password;
+                  echo $objAkun->namaDepan;
+                  echo $objAkun->namaBelakang;
+                  echo $objAkun->jalan;
+                  echo $objAkun->email;
+                  echo $objAkun->kodePos;
+                  echo $objAkun->noHp;
+                  echo $objAkun->id_role;
+                  
               }
               
              
               
       } else {
-              echo "<script> alert('username anda sudah terdaftar sebelumnya'); </script>";
-              //echo "sdh terdaftar";
+              //echo "<script> alert('username anda sudah terdaftar sebelumnya'); </script>";
+              echo "sdh terdaftar";
+              echo $objAkun->username;
+              
               //echo "<script>window.location = 'register.php';</script>";
       }
-      $conn->close();
+      //$conn->close();
           
      
       
   
-      
+    /*  
     } else {
         echo "All field are required";
+        echo $objAkun->username;
+                  echo $objAkun->password;
+                  echo $objAkun->namaDepan;
+                  echo $objAkun->namaBelakang;
+                  echo $objAkun->jalan;
+                  echo $objAkun->email;
+                  echo $objAkun->kodePos;
+                  echo $objAkun->noHp;
+                  echo $objAkun->id_role;
         die();
     }
+    */
+   
 
  }
 
@@ -114,17 +125,16 @@
   <section class="container">
     <h4><b>Enter your personal information.</b></h4>
     <br>
-    <form action="register.php" method="post">
+    <form action="register.php" method="POST">
       <div class="row">
 
         <div class="col-6">
 
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" class="form-control textinput" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control textinput" id="email"aria-describedby="emailHelp"
               placeholder="">
-            <small id="emailHelp" class="form-text text-muted">We'll share your email with everyone
-              else.</small>
+            
           </div>
 
         </div>

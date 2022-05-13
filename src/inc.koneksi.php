@@ -13,7 +13,7 @@ class Connection{
 class Connection{
     private $host = "localhost";
     private $struser = "root";
-    private $strpassword = " ";
+    private $strpassword = "";
     private $strdbname = "ebs-commerce";
     
     public $connection;

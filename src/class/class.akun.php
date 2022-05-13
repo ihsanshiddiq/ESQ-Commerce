@@ -11,8 +11,9 @@
         private $namaBelakang = " ";
         private $username = " ";
         private $password = " ";
+        private $email = " ";
         //private $pwd_hashed = " ";
-        private $role = " ";
+        //private $role = " ";
         private $id_role = 0;
         private $noHp = 0;
         private $kodePos = " ";
@@ -34,9 +35,9 @@
 
         public function addAkun(){
                 
-            $query = "INSERT INTO akun(username, password, namaDepan, namaBelakang, email, noHp, kodePos, jalan, id_role) 
+            $query = "INSERT INTO `akun`(`username`, `password`, `namaDepan`, `namaBelakang`, `email`, `noHp`, `kodePos`, `jalan`, `id_role`) 
                     VALUES ('$this->username', '$this->password', '$this->namaDepan', '$this->namaBelakang', '$this->email', '$this->noHp', '$this->kodePos', '$this->jalan', '$this->id_role')";
-            $this->hasil = mysqli_query($this->connnection, $query);
+            $this->hasil = mysqli_query($this->connection, $query);
             //$this->id = $this->connection->insert_id; //tak paham nay ini gunanya buat apa :v	
             
             if($this->hasil)
@@ -57,7 +58,7 @@
                     jalan = '$this->jalan',
                     id_role = '$this->id_role'					
                     WHERE id = $this->id";
-            $this->hasil = mysqli_query($this->conn, $query);
+            $this->hasil = mysqli_query($this->connection, $query);
             
             if($this->hasil)
             $this->message ='Data berhasil diubah!';					
@@ -67,7 +68,7 @@
 
         public function DeleteAccount(){
             $query = "DELETE FROM akun WHERE username=$this->username";
-            $this->hasil = mysqli_query($this->conn, $query);
+            $this->hasil = mysqli_query($this->connection, $query);
             
             if($this->hasil)
             $this->message ='Data berhasil dihapus!';					
@@ -78,9 +79,28 @@
         public function cek_akun($uname){
             //$nama = mysqli_real_escape_string($con, $username);
             $query = "SELECT * FROM user.data WHERE username = '$uname'";
-            $res = mysqli_query($this->conn, $query);
-            if($res) 
-            return mysqli_num_rows($res);
+            
+            $res = mysqli_query($this->connection, $query);
+           
+            if($res) {
+                $this->hasil = true;
+                return mysqli_num_rows($res);
+            }
+           /*
+            if($res){
+				$this->hasil = true;
+                
+				$data = mysqli_fetch_assoc($resultOne);
+				$this->id=$data['id'];
+				$this->idpembeli=$data['idpembeli'];
+				$this->nama = $data['nama'];				
+				$this->email=$data['email'];
+				$this->password=$data['password'];			
+				$this->role=$data['role'];							
+				$this->idrole=$data['idrole'];							
+				return true;		
+			}
+            */
         }
 
 
