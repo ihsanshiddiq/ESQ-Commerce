@@ -1,4 +1,5 @@
 <?php
+/* 
  require 'config.php';
 
  if (isset($_POST['submit'])) {
@@ -28,7 +29,7 @@ if($cek > 0){
 
  }
 
-
+*/
 
 ?>
 
@@ -46,6 +47,8 @@ if($cek > 0){
     $phone = mysqli_real_escape_string($conn, $phone);
     $username = stripslashes($_POST['username']);
     $username = mysqli_real_escape_string($conn, $username);
+
+    $hash = hash("sha256", $password);
  }
 
 
