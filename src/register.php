@@ -8,21 +8,21 @@ if (isset($_POST['submit'])) {
 
 
     $objAkun->username = stripslashes($_POST['username']);
-    //$objAkun->username = mysqli_real_escape_string($objAkun->connection, $objAkun->username);
+    $objAkun->username = mysqli_real_escape_string($objAkun->connection, $objAkun->username);
     $objAkun->password = stripslashes($_POST['password']);
-    //$objAkun->password = mysqli_real_escape_string($objAkun->connection, $objAkun->password);
+    $objAkun->password = mysqli_real_escape_string($objAkun->connection, $objAkun->password);
     $objAkun->namaDepan = stripslashes($_POST['f_name']);
-    //$objAkun->namaDepan = mysqli_real_escape_string($objAkun->connection, $objAkun->namaDepan);
+    $objAkun->namaDepan = mysqli_real_escape_string($objAkun->connection, $objAkun->namaDepan);
     $objAkun->namaBelakang = stripslashes($_POST['l_name']);
-    //$objAkun->namaBelakang = mysqli_real_escape_string($objAkun->connection, $objAkun->namaBelakang);
+    $objAkun->namaBelakang = mysqli_real_escape_string($objAkun->connection, $objAkun->namaBelakang);
     $objAkun->email = stripslashes($_POST['email']);
-    //$objAkun->email = mysqli_real_escape_string($objAkun->connection, $objAkun->email);
+    $objAkun->email = mysqli_real_escape_string($objAkun->connection, $objAkun->email);
     $objAkun->noHp = stripslashes($_POST['no_hp']);
-    //$objAkun->noHp = mysqli_real_escape_string($objAkun->connection, $objAkun->noHp);
+    $objAkun->noHp = mysqli_real_escape_string($objAkun->connection, $objAkun->noHp);
     $objAkun->kodePos = stripslashes($_POST['kode_pos']);
-    //$objAkun->kodePos = mysqli_real_escape_string($objAkun->connection, $objAkun->kodePos);
+    $objAkun->kodePos = mysqli_real_escape_string($objAkun->connection, $objAkun->kodePos);
     $objAkun->jalan = stripslashes($_POST['alamat']);
-    //$objAkun->jalan = mysqli_real_escape_string($objAkun->connection, $objAkun->jalan);
+    $objAkun->jalan = mysqli_real_escape_string($objAkun->connection, $objAkun->jalan);
     $objAkun->id_role = 2;
 
 
@@ -41,52 +41,27 @@ if (isset($_POST['submit'])) {
               
               if ($objAkun->hasil === TRUE) {
                   echo "New record created successfully";
-
+                  echo "<script> alert('Anda berhasil mendaftar, silahkan login untuk melanjutkan'); </script>";
+                  echo "<script>window.location = 'login.php';</script>";
+                  
                 } else {
-                  
-                  echo "Data Gagal ditambahkan";
-                  echo "<br>";
-                  echo $objAkun->username;
-                  echo $objAkun->password;
-                  echo $objAkun->namaDepan;
-                  echo $objAkun->namaBelakang;
-                  echo $objAkun->jalan;
-                  echo $objAkun->email;
-                  echo $objAkun->kodePos;
-                  echo $objAkun->noHp;
-                  echo $objAkun->id_role;
-                  
+                  echo "<script> alert('Anda gagal ditambahkan, silahkan coba lagi'); </script>";
+                  echo "<script>window.location = 'register.php';</script>";
+
               }
               
              
               
       } else {
-              //echo "<script> alert('username anda sudah terdaftar sebelumnya'); </script>";
-              echo "sdh terdaftar";
-              echo $objAkun->username;
-              
-              //echo "<script>window.location = 'register.php';</script>";
+              echo "<script> alert('username anda sudah terdaftar sebelumnya'); </script>";
+              echo "<script>window.location = 'register.php';</script>";
       }
-      //$conn->close();
+
           
      
       
   
-    /*  
-    } else {
-        echo "All field are required";
-        echo $objAkun->username;
-                  echo $objAkun->password;
-                  echo $objAkun->namaDepan;
-                  echo $objAkun->namaBelakang;
-                  echo $objAkun->jalan;
-                  echo $objAkun->email;
-                  echo $objAkun->kodePos;
-                  echo $objAkun->noHp;
-                  echo $objAkun->id_role;
-        die();
-    }
-    */
+
    
 
  }
