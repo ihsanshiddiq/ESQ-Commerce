@@ -1,4 +1,5 @@
 <?php
+session_start();
 /* 
  require 'config.php';
 
@@ -31,10 +32,29 @@ if($cek > 0){
 
 */
 
-?>
+/*
+ include 'inc.koneksi.php';
 
-<?php
- include 'config.php';
+if (isset($_POST['submit'])) {
+  include 'inc.koneksi.php';
+
+ require_once('./init.class.php');
+ //$objAkun = new Akun();
+
+ $username = $_POST['email'];
+ $password = $_POST['password'];
+
+ //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
+ //include "inc.koneksi.php";
+ include "login-obj.class.php";
+ include "login-contr.php";
+ $login = new loginContr($username, $password);
+
+ $login->loginUser();
+
+ //Balik ke Index
+ header("location: index.php?error=none");
+
 
  if (isset($_POST['submit'])) {
     $username = stripslashes($_POST['username']);
@@ -50,7 +70,7 @@ if($cek > 0){
 
     $hash = hash("sha256", $password);
  }
-
+*/
 
 
 ?>
@@ -87,15 +107,15 @@ if($cek > 0){
   <section class="container">
 
     <br>
-    <form action="" method="post">
+    <form action="includes/login.inc.php" method="post">
       <div class="row">
 
         <div class="col-md-6">
           <h4 class="my-3"><b>LOGIN</b></h4>
           
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" class="form-control textinput" id="exampleInputEmail1"
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" name="email" class="form-control textinput" id="exampleInputEmail1"
               aria-describedby="emailHelp" placeholder="">
           </div>
 
@@ -109,7 +129,7 @@ if($cek > 0){
             <a href="">Forget your password?</a>
             <br><br>
 
-            <button type="submit" href="" class="btn btnblack" style="width: 100%;"><b>Login</b></button>
+            <button type="submit" name="submit" href="" class="btn btnblack" style="width: 100%;"><b>Login</b></button>
 
 
           

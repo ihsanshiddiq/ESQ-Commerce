@@ -19,8 +19,49 @@
             <a class="nav-link" href="cart.html">
               <img src="../assets/cart.png" alt="cart">
             </a>
-            <a class="nav-link active blacken" aria-current="page" href="login.php">LOGIN</a>
+            <!--START OF LOGGED IN-->
+            <?php
+              if(isset($_SESSION["username"])) {
+
+              ?>
+              <a class="nav-link active blacken" aria-current="page" href=""><?php echo $_SESSION["username"];?></a>
+
+              <a class="nav-link active blacken" aria-current="page" href="includes/logout.inc.php">Logout</a>
+              <?php
+                } 
+                else 
+                {
+              ?>
+              <a class="nav-link active blacken" aria-current="page" href="login.php">LOGIN</a>
+              <?php
+                }
+                ?>
+            <!--END OF LOGGED IN-->  
+<!--START OF LOGGED IN-->
+<?php
+            if(isset($_SESSION["id_role"])){
+              if(($_SESSION["id_role"]) == "B") {
+
+              ?>
+              <a class="nav-link active blacken" aria-current="page" href="">See Profile</a>
+              <?php
+                } 
+                else if(($_SESSION["id_role"]) == "A")
+                {
+              ?>
+              <a class="nav-link active blacken" aria-current="page" href="login.php">See All Users</a>
+              <a class="nav-link active blacken" aria-current="page" href="login.php">See All Items</a>
+              <?php
+                }
+              }
+                ?>
+            <!--END OF LOGGED IN-->  
             
+            
+            <!-- ORIGINAL NAVBAR CONTENT HERE
+              <a class="nav-link active blacken" aria-current="page" href="login.php">LOGIN</a>
+            -->
+
           </div>
           
           
@@ -34,7 +75,10 @@
         <a href="#">Available Items</a>
         <a href="#">Category</a>
         <a href="#">Info+</a>
-        <a href="#">Contact</a>
+        <a href="#" style="border-bottom: 4px white solid">Contact</a>
+        
+        
+        
 
         <!-- TESTING AREA: DROPDOWN-->
         

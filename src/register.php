@@ -1,5 +1,5 @@
 <?php
-
+/*
 if (isset($_POST['submit'])) {
    include 'inc.koneksi.php';
 
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
 
  }
 
-
+*/
 
 ?>
 
@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
   <section class="container">
     <h4><b>Enter your personal information.</b></h4>
     <br>
-    <form action="register.php" method="POST">
+    <form action="includes/register.inc.php" method="POST">
       <div class="row">
 
         <div class="col-6">
