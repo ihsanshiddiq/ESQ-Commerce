@@ -49,8 +49,8 @@
                 else if(($_SESSION["id_role"]) == "A")
                 {
               ?>
-              <a class="nav-link active blacken" aria-current="page" href="login.php">See All Users</a>
-              <a class="nav-link active blacken" aria-current="page" href="login.php">See All Items</a>
+              <a class="nav-link active blacken" aria-current="page" href="userlist.php">See All Users</a>
+              <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
               <?php
                 }
               }
