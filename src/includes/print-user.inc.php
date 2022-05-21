@@ -77,36 +77,9 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
     #fungsi untuk ngeprint bang
     $mpdf->WriteHTML($print_user);
-    $mpdf->Output();
-
-//}
-
-	
+    $mpdf->Output('daftar-user.pdf', \Mpdf\Output\Destination::INLINE);
+    #u can also use Output('daftar-user.pdf', 'I'); 
+    #note : read the documentation for more
 
 
-            if(count($arrayResult) == 0){
-                echo '<tr><td colspan="5">Tidak ada data!</td></tr>';
-            } else{	
-                $no = 1;	
-                foreach ($arrayResult as $dataAkun) {
-                    echo '<tr>';
-                    echo '<td>'.$no.'</td>';	
-                    echo '<td>'.$dataAkun->username.'</td>';	
-                    echo '<td>'.$dataAkun->namaDepan.'</td>';
-                    echo '<td>'.$dataAkun->namaBelakang.'</td>';
-                    echo '<td>'.$dataAkun->email.'</td>';
-                    echo '<td>'.$dataAkun->id_role.'</td>';
-                    echo '<td>'.$dataAkun->noHp.'</td>';
-                    echo '<td>'.$dataAkun->jalan.'</td>';
-                    echo '<td>'.$dataAkun->kodePos.'</td>';
-                    //echo '<td>'. <a class="btn btn-warning"  href="index.php?p=employee&ssn='. $dataEmployee->ssn.'"> Edit </a> | <a class="btn btn-danger" href="index.php?p=deleteemployee&ssn='. $dataEmployee->ssn.'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> '</td>';	
-                    
-                    echo '<td>';
-                    /*echo '<td>
-                <a class="btn btn-warning"  href="index.php?p=employee&ssn='.$dataAkun->username.'"> Edit </a> |
-                <a class="btn btn-danger" href="employeelist.php?p=deleteemployee&ssn='.$dataEmployee->DeleteEmployee().'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';	
-                    echo '</tr>';	*/				
-                    $no++;	
-                }
-            }
 
