@@ -253,6 +253,7 @@
             "install-path": "../php-http/message-factory"
         },
         {
+
             "name": "phpmailer/phpmailer",
             "version": "v6.6.0",
             "version_normalized": "6.6.0.0",
@@ -334,6 +335,7 @@
             "install-path": "../phpmailer/phpmailer"
         },
         {
+
             "name": "psr/http-message",
             "version": "1.0.1",
             "version_normalized": "1.0.1.0",

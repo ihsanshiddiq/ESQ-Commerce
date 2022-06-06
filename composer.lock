@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "096686940c6b64c8951e7267c0448401",
+
     "packages": [
         {
             "name": "mpdf/mpdf",
@@ -247,6 +249,7 @@
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
+
             "name": "phpmailer/phpmailer",
             "version": "v6.6.0",
             "source": {
@@ -325,6 +328,7 @@
             "time": "2022-02-28T15:31:21+00:00"
         },
         {
+
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
