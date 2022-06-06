@@ -90,7 +90,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
 
           <div class="col">
           <a>*Note: Jl.nama, No.rumah RT.00 RW.00 NamaKelurahan NamaKecamatan Provinsi KodePos</a>
@@ -101,6 +101,14 @@
           </div>
 
         </div>
+
+        <div class="col-md-3">
+          <div><br></div>
+          <div class="form-group">
+            <input type="number" name="kode_pos" class="form-control kodepos textinput" id="kodepos" placeholder="Kode Pos">
+          </div>
+        </div>
+
       </div>
 
       <div class="row">
