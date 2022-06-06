@@ -114,14 +114,13 @@ if (isset($_POST['submit'])) {
           <h4 class="my-3"><b>LOGIN</b></h4>
           
           <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input type="text" name="email" class="form-control textinput" id="exampleInputEmail1"
-              aria-describedby="emailHelp" placeholder="">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control textinput" id="username" placeholder="" require>
           </div>
 
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control textinput" id="password" placeholder="">
+            <input type="password" name="password" class="form-control textinput" id="password" placeholder="" require>
           </div>
 
             

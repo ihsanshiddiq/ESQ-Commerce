@@ -5,16 +5,16 @@ if (isset($_POST['submit'])) {
   require_once('../init.class.php');
   //$objAkun = new Akun();
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $passwordRepeat = $_POST['password'];
-  $namaDepan = $_POST['f_name'];
-  $namaBelakang = $_POST['l_name'];
-  $email = $_POST['email'];
-  $noHp = $_POST['no_hp'];
-  $kodePos = $_POST['kode_pos'];
-  $jalan = $_POST['alamat'];
-  $id_role = 'B';
+  $username = stripslashes($_POST['username']);
+  $password = stripslashes($_POST['password']);
+  $passwordRepeat = stripslashes($_POST['password']);
+  $namaDepan = stripslashes($_POST['f_name']);
+  $namaBelakang = stripslashes($_POST['l_name']);
+  $email = stripslashes($_POST['email']);
+  $noHp = stripslashes($_POST['no_hp']);
+  $kodePos = stripslashes($_POST['kode_pos']);
+  $jalan = stripslashes($_POST['alamat']);
+  $id_role = 'A'; // nanti ganti ke int biar sesuai dengan database
 
   //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
   //include "inc.koneksi.php";

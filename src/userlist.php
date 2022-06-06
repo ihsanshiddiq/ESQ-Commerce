@@ -3,7 +3,7 @@ session_start();
 if (!(isset($_SESSION["username"]))) {
     header("location: index.php?error=unauthorizeduser");
 } else {
-    if (!($_SESSION["id_role"] == "A")) {
+    if (!($_SESSION["id_role"] == "0")) {
         header("location: index.php?error=unauthorizeduser");
     }
 }
@@ -34,7 +34,7 @@ if (!(isset($_SESSION["username"]))) {
         <?php
             require 'navbar.php';
         ?>
-      </nav>
+    </nav>
 
       <!---->
       <div id="mySidenav" class="sidenav" style="z-index: 10000;">
@@ -242,6 +242,7 @@ if (!(isset($_SESSION["username"]))) {
                 <a class="btn btn-primary" href="index.php?p=employee.php">Add</a>
             -->
             <a class="btn btn-primary" href="#">Add</a>
+            <a class="btn btn-primary" href="./includes/print-user.inc.php" target= "_Blank">cetak user</a>
             <table class="table table-bordered">
                 <tr>
                 <th>No.</th>

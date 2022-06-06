@@ -6,7 +6,7 @@ class register extends Connection {
         
         $stmt = $this->connect()->prepare('INSERT INTO akun (username, password, namaDepan, namaBelakang, email, id_role, noHp, kodePos, jalan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
 
-        $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPwd = password_hash($password, PASSWORD_ARGON2I, array('cost' => 8));
 
         if(!$stmt->execute(array($username, $hashedPwd, $namaDepan, $namaBelakang, $email, $role, $noTelp, $kodePos, $jalan))) {
             $stmt = null;

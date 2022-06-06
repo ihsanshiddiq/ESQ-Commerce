@@ -46,7 +46,7 @@
               <a class="nav-link active blacken" aria-current="page" href="">See Profile</a>
               <?php
                 } 
-                else if(($_SESSION["id_role"]) == "A")
+                else if(($_SESSION["id_role"]) == "0")
                 {
               ?>
               <a class="nav-link active blacken" aria-current="page" href="userlist.php">See All Users</a>
