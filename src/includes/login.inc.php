@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
  require_once('../init.class.php');
  //$objAkun = new Akun();
 
- $username = $_POST['email'];
+ $username = $_POST['username'];
  $password = $_POST['password'];
 
  //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
  $login->loginUser();
 
  //Balik ke Index
- if ($_SESSION["id_role"] == "A"){
+ if ($_SESSION["id_role"] == 0){
     header("location: ../index.php?error=none-login=admin");
  }
 
