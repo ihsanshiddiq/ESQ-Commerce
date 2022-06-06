@@ -18,6 +18,8 @@ class loginContr extends Login {
         if($this->emptyInput() == false) {
             //empty input moment
             header("location: ../login.php?error=emptyinput");
+            echo $this->username;
+            echo $this->password;
             exit();
         }
 
