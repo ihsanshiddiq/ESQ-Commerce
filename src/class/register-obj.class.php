@@ -23,22 +23,12 @@ class register extends Connection {
         */
 
         switch ($id_role) {     //the alternative would be to have these different cases inside different files, because register pages are different for every roles
-
-            case 'S': 
-                $stmt = $this->connect()->prepare('INSERT INTO penjual (namaToko, instagram, facebook, username) VALUES (?, ?, ?, ?);');
-
-                if(!$stmt->execute(array($namaToko, $instagram, $facebook, $username))) {
-                    $stmt = null;
-                    header("location: ../index.php?error=stmtfailaddingseller");
-                    exit();
-                }   
-            break;
             case 'B':   
                 $stmt = $this->connect()->prepare('INSERT INTO pembeli (username) VALUES (?);');
 
                 if(!$stmt->execute(array($username))) {
                     $stmt = null;
-                    header("location: ../index.php?error=stmtfailaddingseller");
+                    header("location: ../index.php?error=stmtfailaddinguserid");
                     exit();
                 }   
             break;
@@ -47,12 +37,26 @@ class register extends Connection {
 
                 if(!$stmt->execute(array($username))) {
                     $stmt = null;
-                    header("location: ../index.php?error=stmtfailaddingseller");
+                    header("location: ../index.php?error=stmtfailaddingadminid");
                     exit();
                 }   
             break;
+            default:
+                break;
         }
         
+    }
+
+    protected function addPenjual($namaToko, $instagram, $facebook, $username) {
+        $stmt = $this->connect()->prepare('INSERT INTO penjual (namaToko, instagram, facebook, username) VALUES (?, ?, ?, ?);');
+        echo "<script>alert('u got into here');</script";
+        if(!$stmt->execute(array($namaToko, $instagram, $facebook, $username))) {
+            $stmt = null;
+            header("location: ../index.php?error=stmtfailedaddseller");
+            exit();
+        }
+
+        $stmt = null;
     }
 
 
