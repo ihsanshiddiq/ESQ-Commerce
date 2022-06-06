@@ -126,9 +126,13 @@ if (isset($_POST['submit'])) {
           </div>
 
           <div class="form-group">
-
-            <input type="text" name="gender" class="form-control gender textinput" id="gender" placeholder="Gender">
+            <select type="select" name="gender" class="form-control gender selectinput" id="gender" placeholder="Gender"> 
+                <option value="none">-Select your gender-</option>
+                <option value="men">Men</option>
+                <option value="women">women</option>
+            </select>
           </div>
+          <br>
 
           <div class="form-group">
 
@@ -200,7 +204,7 @@ if (isset($_POST['submit'])) {
 
       <div class="row">
         <div class="col">
-          <a href="login.php">Already have an account? Click here to login</a><br><br>
+          <a>Already have an account?</a> <a href="login.php">Click here to login</a><br><br>
           <button type="submit" class="btn btnblack" style="width: 100%;" name="submit"><b>REGISTER</b></button>
 
         </div>
