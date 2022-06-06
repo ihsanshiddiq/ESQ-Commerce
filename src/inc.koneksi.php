@@ -10,7 +10,7 @@ class Connection{
 
 }
 */
-/*
+
 class Connection{
     private $host = "localhost";
     private $struser = "root";
@@ -31,9 +31,9 @@ class Connection{
      }
  
  }
- */
 
- class Connection {
+
+ /*class Connection {
 
     protected function connect() {
         try {
@@ -49,5 +49,5 @@ class Connection{
         }
     }
 
-}
+}*/
 ?>

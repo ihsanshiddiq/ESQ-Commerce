@@ -9,50 +9,60 @@
   </head>
 
   <body>
-  <div class="container" style="margin-top: 80px">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              LIST BARANG 
-            </div>
-            <div class="card-body">
-              <a href="barang.php" class="btn btn-md btn-success" style="margin-bottom: 10px">TAMBAH DATA</a>
-              <table class="table table-bordered" id="myTable">
-                <thead>
-                  <tr>
-                    <th scope="col">Kode Barang</th>
-                    <th scope="col">Foto Barang</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Jumlah Stok</th>
-                    <th scope="col">Harga</th>
-                    <th scope="col">Foto Barang</th>
-                    <th scope="col">id_kategori</th>
-                    <th scope="col">id_penjual</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php
-                    // require_once('./class/class.Barang.php'); 		
-                    // $objBarang = new Employee(); 
-                    // $arrayResult = $objBarang->SelectAllBarang();
+  <h4 class="title">
+    <span class="text">
+    <strong>List Barang</strong>
+    </span></h4>
+
+      <a class="btn btn-primary" href="barang.php">Add</a>
+      <table class="table table-bordered">
+        <tr>
+        <th>No.</th>
+        <th>Kode</th>
+        <th>Nama Barang</th>
+        <th>Deskripsi</th>
+        <th>Jumlah stok</th>
+        <th>Harga</th>
+        <th>Foto Barang</th>
+        <th>Action</th>
+        <!-- <th>Kategori</th>
+        <th>Action</th> -->
+        </tr>	
+        <?php
+            include 'inc.koneksi.php';
+            require_once('class/class.barang.php');		
+            $objBarang = new Barang(); 
+            $arrayResult = $objBarang->selectAllBarang();
+
+            if(count($arrayResult) == 0){
+                echo '<tr><td colspan="7">Tidak ada data!</td></tr>';
+            } else{	
+                $no = 1;	
+                foreach ($arrayResult as $dataBarang) {
+                    echo '<tr>';
+                    echo '<td>'.$no.'</td>';	
+                    echo '<td>'.$dataBarang->kodeBarang.'</td>';	
+                    echo '<td>'.$dataBarang->namaBarang.'</td>';
+                    echo '<td>'.$dataBarang->deskripsi.'</td>';
+                    echo '<td>'.$dataBarang->jumlahStok.'</td>';
+                    echo '<td>'.$dataBarang->harga.'</td>';
+                    echo "<td><img src='../assets/produk/".$dataBarang->fotoBarang."' width='100px' height='100px'/></td>";
+                    echo '<td>
+                          <a href="" class="btn btn-warning" role="button">Update</a>
+                          <a href="" class="btn btn-danger" role="button">Delete</a></td>';	
+                    echo '</tr>';	
                     
-                    // if(count($arrayResult) == 0){
-                    //     echo '<tr><td colspan="4">Tidak ada data!</td></tr>';			
-                    // }else{	
-                    //     $no = 1;	
-                    //     foreach ($arrayResult as $dataBarang) {
-                    //             // Disini proses nampilin barang
-                    //         echo '</tr>';				
-                    //         $no++;	
-                    //     }
-                    // }
-                    ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-      </div>
-    </div>
+                        // <a class="btn btn-warning"  href="">Update</a> |
+                        // <a class="btn btn-danger" href="listbarang.php?p=deletebarang&kodeBarang='.$dataBarang->deleteBarang().'" 
+                        // onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';	
+                    //$no++;	
+                    $no++;
+                    
+                }
+            }
+        ?>
+
+      </table>
+
   </body>
 </html>
