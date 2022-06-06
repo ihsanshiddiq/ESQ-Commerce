@@ -14,7 +14,10 @@ if (isset($_POST['submit'])) {
   $noHp = $_POST['no_hp'];
   $kodePos = $_POST['kode_pos'];
   $jalan = $_POST['alamat'];
-  $id_role = 'B';
+  $id_role = 'S';
+
+  //unique trait/variable for seller
+  $namaToko = $_POST['namaToko'];;
 
   //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
   //include "inc.koneksi.php";

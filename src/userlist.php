@@ -124,6 +124,7 @@ if (!(isset($_SESSION["username"]))) {
                 </div>
               </div>
             </div>
+            
             <div class="col">
               <div class="card h-100">
                 <img src="../assets/produk/nasgor.jpg" class="card-img-top" alt="...">
@@ -133,6 +134,35 @@ if (!(isset($_SESSION["username"]))) {
                 </div>
               </div>
             </div>
+            
+
+            <?php
+            require_once('inc.koneksi.php'); 		
+            require_once('class/akun-obj.class.php'); 		
+            $objakun = new Akun(); 
+            $arrayResult = $objakun->SelectAllEmployee();
+
+            if(count($arrayResult) == 0){
+                echo 'Tidak ada data!';
+            } else{	
+                $no = 1;	
+                foreach ($arrayResult as $dataAkun) {
+                    echo '<div class="col">';
+                    echo '<div class="card h-100">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">' . $dataAkun->username . '</h5>';
+                    echo '<p class="card-text">' . $dataAkun->namaDepan . ' ' . $dataAkun->namaBelakang . '</p>';
+                    echo '<p class="card-text">' . $dataAkun->email . '</p>';
+                    echo '<p class="card-text">' . $dataAkun->id_role . '</p>';
+                    echo '<p class="card-text">' . $dataAkun->noHp . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+					
+                    $no++;	
+                }
+            }
+            ?>
             
           </div>
 
@@ -201,6 +231,7 @@ if (!(isset($_SESSION["username"]))) {
                   </div>
                 </div>
               </div>
+              
 
               
             <h4 class="title">

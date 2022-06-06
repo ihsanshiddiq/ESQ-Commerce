@@ -144,9 +144,21 @@ if (isset($_POST['submit'])) {
               <br> <br>
               When you provide us with details, you will have a fast and pleasant shopping experience at ESQ COMMERCE</p>
 
-            <form action="register.php">
-          <button type="" class="btn btnblack" style="width: 100%;"><b>Register</b></button>
-          </form
+           
+          <div class="row">
+            <div class="col-md-6">
+              <form action="register.php">
+                <button type="" class="btn btnblack my-1" style="width: 100%;" href="register.php"><b>As Buyer</b></button>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <form action="registerseller.php">
+                <button type="" class="btn btnblack my-1" style="width: 100%;" href="registerseller.php"><b>As Seller</b></button>
+              </form>
+            </div>
+            
+          </div>
+
             </div>
       
       </div>
