@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
  $login->loginUser();
 
  //Balik ke Index
- if ($_SESSION["id_role"] == "A"){
+ if ($_SESSION["id_role"] == "0"){
     header("location: ../index.php?error=none-login=admin");
  }
 

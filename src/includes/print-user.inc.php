@@ -24,16 +24,26 @@ require_once __DIR__ . '/../../vendor/autoload.php';
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-            <link rel="stylesheet" href="/../../lib/css/style.css">
+            <title>print-user</title>
+
+            <style>
+                table, th, td{
+                    border : 1px solid black;
+                    border-collapse: collapse;
+                    text-align: center;
+                }
+                tr:nth-child(even) {
+                    background-color: #d4d4d4;
+                  }
+
+            </style>
+            
             
         </head>
         <body>
         <H1>Daftar User</H1>
         <br>
-        <table class="table table-bordered">
+        <table>
                 <tr>
                 <th>No.</th>
                 <th>Username</th>
