@@ -12,8 +12,8 @@ if (isset($_POST['submit'])) {
   $namaBelakang = $_POST['l_name'];
   $email = $_POST['email'];
   $noHp = $_POST['no_hp'];
-  //$kodePos = $_POST['kode_pos'];
-  $kodePos = "1212";
+  $kodePos = $_POST['kode_pos'];
+
   $jalan = $_POST['alamat'];
   $id_role = 'S';
 

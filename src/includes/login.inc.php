@@ -28,8 +28,9 @@ if (isset($_POST['submit'])) {
 
  if ($_SESSION["id_role"] == "B"){
     header("location: ../index.php?error=none");
+ } else {
+    header("location: ../index.php?error=none");
  }
-
  echo "lol";
 }
 
