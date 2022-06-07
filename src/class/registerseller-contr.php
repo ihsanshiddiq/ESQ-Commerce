@@ -111,7 +111,7 @@ class registerSellerContr extends register {
 
     public function validToko(){
         $result;
-        if($this->validateToko($this->namaToko)){
+        if($this->validateTokoN($this->namaToko)){
             $result = false;
         } else{
             $result = true;

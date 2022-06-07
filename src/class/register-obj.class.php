@@ -89,21 +89,21 @@ class register extends Connection {
         }
     }
 
-    public function validateToko($namaToko) {
+    public function validateTokoN($namaToko) {
         $stmt = $this->connect()->prepare('SELECT namaToko FROM penjual WHERE namaToko = ?;');
 
-        $resultCheck;
         if(!$stmt->execute(array($namaToko))) {
-        $stmt = null;
-        echo "<script>alert('statement error');</script>";
-        exit();
+            $stmt = null;
+            echo "<script>alert('statement error');</script>";
+            exit();
         }
 
+        $resultCheck;
         if($stmt->rowCount() > 0) {
-        $resultCheck = true;     //happens if there's already username registered/taken
+            $resultCheck = true;     //happens if there's already username registered/taken
         }
         else {
-        $resultCheck = false;     //happens if username is available for register(not taken)
+            $resultCheck = false;     //happens if username is available for register(not taken)
         }
         return $resultCheck;
     }
