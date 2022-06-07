@@ -23,13 +23,14 @@
         <th>Deskripsi</th>
         <th>Jumlah stok</th>
         <th>Harga</th>
+        <th>Kategori</th>
         <th>Foto Barang</th>
         <th>Action</th>
         <!-- <th>Kategori</th>
         <th>Action</th> -->
         </tr>	
         <?php
-            include 'inc.koneksi.php';
+            include 'inc.koneksi2.php';
             require_once('class/class.barang.php');		
             $objBarang = new Barang(); 
             $arrayResult = $objBarang->selectAllBarang();
@@ -46,6 +47,7 @@
                     echo '<td>'.$dataBarang->deskripsi.'</td>';
                     echo '<td>'.$dataBarang->jumlahStok.'</td>';
                     echo '<td>'.$dataBarang->harga.'</td>';
+                    echo '<td>'.$dataBarang->nama_kategori.'</td>';
                     echo "<td><img src='../assets/produk/".$dataBarang->fotoBarang."' width='100px' height='100px'/></td>";
                     echo '<td>
                           <a href="" class="btn btn-warning" role="button">Update</a>

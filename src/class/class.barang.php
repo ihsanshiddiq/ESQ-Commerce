@@ -1,6 +1,6 @@
 <?php
 
-class Barang extends Connection{
+class Barang extends Connection2{
     private $kodeBarang = 0;
     private $namaBarang = '';
     private $deskripsi = '';
@@ -9,7 +9,7 @@ class Barang extends Connection{
     private $fotoBarang ='';
     //private $currentfoto = '';
     private $jumlahTerjual = 0;
-    private $nama_kategori = 0;
+    private $nama_kategori = '';
     private $id_penjual = 0;
     private $result = false;
     private $message ='';
@@ -27,9 +27,9 @@ class Barang extends Connection{
     }
 
     public function addBarang(){
-        $sql = "INSERT INTO tblbarang(kodeBarang, namaBarang, deskripsi, jumlahStok, harga, fotoBarang/*, 'nama_kategori', 'id_penjual'*/) 
-                values ('$this->kodeBarang', '$this->namaBarang', '$this->deskripsi', '$this->jumlahStok', '$this->harga', '$this->fotoBarang'
-                        /*'$this->nama_kategori', '$this->id_penjual'*/)";
+        $sql = "INSERT INTO tblbarang(kodeBarang, namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
+                values ('$this->kodeBarang', '$this->namaBarang', '$this->deskripsi', '$this->jumlahStok', '$this->harga', '$this->fotoBarang',
+                        '$this->nama_kategori'/*, '$this->id_penjual'*/)";
         $this->result = mysqli_query($this->connection, $sql);
         
         //$this->kodeBarang = $this->connection->insert_kodeBarang;
@@ -60,7 +60,7 @@ class Barang extends Connection{
                 jumlahStok = '$this->jumlahStok',
                 harga = '$this->harga',
                 fotoBarang = '$this->fotoBarang',
-                -- nama_kategori = '$this->nama_kategori',
+                nama_kategori = $this->nama_kategori',
                 -- id_penjual = '$this->id_penjual'
                 WHERE kodeBarang = $this->kodeBarang";
 
@@ -133,6 +133,7 @@ class Barang extends Connection{
                 $objBarang->jumlahStok=$data['jumlahStok'];
                 $objBarang->harga=$data['harga'];
                 $objBarang->fotoBarang=$data['fotoBarang'];
+                $objBarang->nama_kategori=$data['nama_kategori'];
                 $arrResult[$i] = $objBarang;
                 $i++;
             }

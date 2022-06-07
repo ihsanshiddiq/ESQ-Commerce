@@ -3,7 +3,7 @@
 // include '../init.class.php';
 //     $objBarang = new Barang();
     if(isset($_POST['submit'])){
-        require_once( 'inc.koneksi.php');
+        require_once( 'inc.koneksi2.php');
         require_once('./init.class.php');
         $objBarang = new Barang();
         $objBarang->kodeBarang = $_POST['kodeBarang'];
@@ -11,10 +11,9 @@
         $objBarang->deskripsi = $_POST['deskripsi'];
         $objBarang->jumlahStok = $_POST['jumlahStok'];
         $objBarang->harga = $_POST['harga'];
-        //$objBarang->nama_kategori = $_POST['nama_kategori'];
+        $objBarang->nama_kategori = $_POST['nama_kategori'];
 
         if(isset($_GET['kodeBarang'])){
-            $objBarang->kodeBarang = $_GET['kodeBarang'];
             $objBarang->updateBarang();
             
         }else{
@@ -68,6 +67,7 @@
                 echo "<script> alert('$objBarang->message'); </script>";
                 echo "$objBarang->fotoBarang";
                 echo "$objBarang->kodeBarang";
+                echo "$objBarang->nama_kategori";
                 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=listbarang.php">'; 	
         
             }
@@ -152,7 +152,7 @@
   <div class="form">
   <div class="form-group">
         <label for="formGroupExampleInput">Kode Barang</label>
-        <input type="text" class="form-control" id="kodeBarang" name="kodeBarang" value="" placeholder="Nama Barang" >
+        <input type="text" class="form-control" id="kodeBarang" name="kodeBarang" value="" readonly >
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Nama Barang</label>
