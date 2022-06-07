@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 class registerSellerContr extends register {
 
     private $id_admin;
@@ -51,6 +53,11 @@ class registerSellerContr extends register {
             header("location: ../registerseller.php?error=emptyinput");
             exit();
         }
+        if($this->validToko() == false){
+            header("location: ../registerseller.php?error=nametaken");
+            exit();
+        }
+        
 
         $this->setUser($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->id_role, $this->noHp, $this->kodePos, $this->jalan); 
         $this->addPenjual($this->namaToko, $this->instagram, $this->facebook, $this->username); 
@@ -97,11 +104,41 @@ class registerSellerContr extends register {
         return $result;
     }
 
+    public function validateToko($namaToko)
+    {
+        $this->validateNamaToko($namaToko);
+    }
+
+    public function validToko(){
+        $result;
+        if($this->validateToko($this->namaToko)){
+            $result = false;
+        } else{
+            $result = true;
+        }
+        return $result;
+    }
+
     /**   ---TIDAK PERLU JIKA SUDAH ADA [REQUIRED] DI HTML FORM--- (no actually dont listen to this comment)
     private function emptyInput() {
         $result;
         if(empty($this->$)
     }
     */
+
+}
+
+class valider extends register {
+    private $namaToko;
+
+    public function __construct($namaToko)
+    {
+        $this->namaToko = $namaToko;
+    }
+
+    public function validateToko($namaToko)
+    {
+        $this->validateNamaToko($namaToko);
+    }
 
 }

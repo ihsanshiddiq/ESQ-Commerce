@@ -32,6 +32,21 @@ if (isset($_POST['submit'])) {
   $register->registerSeller();
 
   //Balik ke Index
-  header("location: ../index.php?error=none");
+  header("location: ../index.php?error=nonel");
 }
+
+if (isset($_POST['validate'])) {
+
+  $namaToko = $_POST['namaToko'];;
+
+  include "../inc.koneksi.php";
+  require_once "../class/register-obj.class.php";
+  require_once "../class/registerseller-contr.php";
+  
+  $valid = new valider($namaToko);
+  $valid -> validateToko($namaToko);
+
+  //header("location: ../registerseller.php");
+}   
+
 ?>

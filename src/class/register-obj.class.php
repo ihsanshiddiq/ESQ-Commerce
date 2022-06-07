@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 class register extends Connection {
     
     protected function setUser($username, $password, $namaDepan, $namaBelakang, $email, $role, $noTelp, $kodePos, $jalan) {
@@ -47,17 +49,6 @@ class register extends Connection {
         
     }
 
-    protected function addPenjual($namaToko, $instagram, $facebook, $username) {
-        $stmt = $this->connect()->prepare('INSERT INTO penjual (namaToko, instagram, facebook, username) VALUES (?, ?, ?, ?);');
-        echo "<script>alert('u got into here');</script";
-        if(!$stmt->execute(array($namaToko, $instagram, $facebook, $username))) {
-            $stmt = null;
-            header("location: ../index.php?error=stmtfailedaddseller");
-            exit();
-        }
-
-        $stmt = null;
-    }
 
 
     protected function checkUser($username) {
@@ -79,6 +70,57 @@ class register extends Connection {
         return $resultCheck;    
     }
 
+    public function validateNamaToko($namaToko) {
+        $stmt = $this->connect()->prepare('SELECT namaToko FROM penjual WHERE namaToko = ?;');
+
+        if(!$stmt->execute(array($namaToko))) {
+        $stmt = null;
+        echo "<script>alert('statement error');</script>";
+        exit();
+        }
+
+        if($stmt->rowCount() > 0) {
+            header("location: ../registerseller.php?error=nametaken");
+            echo "<script>alert('Nama Toko sudah terdaftar');</script>";     //happens if there's already username registered/taken
+        }
+        else {
+            header("location: ../registerseller.php?");
+            echo "<script>alert('valid');</script>";     //happens if username is available for register(not taken)
+        }
+    }
+
+    public function validateToko($namaToko) {
+        $stmt = $this->connect()->prepare('SELECT namaToko FROM penjual WHERE namaToko = ?;');
+
+        $resultCheck;
+        if(!$stmt->execute(array($namaToko))) {
+        $stmt = null;
+        echo "<script>alert('statement error');</script>";
+        exit();
+        }
+
+        if($stmt->rowCount() > 0) {
+        $resultCheck = true;     //happens if there's already username registered/taken
+        }
+        else {
+        $resultCheck = false;     //happens if username is available for register(not taken)
+        }
+        return $resultCheck;
+    }
+
+    protected function addPenjual($namaToko, $instagram, $facebook, $username) {
+        //if (validateToko($namaToko == true));
+        $stmt = $this->connect()->prepare('INSERT INTO penjual (namaToko, instagram, facebook, username) VALUES (?, ?, ?, ?);');
+        echo "<script>alert('u got into here');</script";
+        if(!$stmt->execute(array($namaToko, $instagram, $facebook, $username))) {
+
+            $stmt = null;
+            header("location: ../index.php?error=stmtfailedaddseller");
+            exit();
+        }
+
+        $stmt = null;
+    }
 }
 
 ?>

@@ -1,3 +1,18 @@
+<?php
+  if (isset($_POST['validate'])) {
+
+    //require_once('../init.class.php');
+
+    $namaToko = $_POST['namaToko'];;
+
+    include "../inc.koneksi.php";
+    require_once "../class/register-obj.class.php";
+    require_once "../class/registerseller-contr.php";
+    
+    $valid = new valider($namaToko);
+    $valid -> validateToko($namaToko);
+  }   
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,12 +134,16 @@
           </div>
         </div>
 
+      
         <div class="col-md-3">
           <div class="col">
 
-            <button type="submit" class="btn btnblack" style="width: 100%;" name="submit"><b>Validate Name</b></button>
+            <button type="submit" class="btn btnblack" style="width: 100%;" name="validate"><b>Validate Name</b></button>
           </div>
         </div>
+      
+        
+        
       </div>
 
       <div class="row">
