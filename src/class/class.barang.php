@@ -1,7 +1,7 @@
 <?php
 
 class Barang extends Connection2{
-    private $kodeBarang = 0;
+    private $id = 0;
     private $namaBarang = '';
     private $deskripsi = '';
     private $jumlahStok = 0;
@@ -27,12 +27,12 @@ class Barang extends Connection2{
     }
 
     public function addBarang(){
-        $sql = "INSERT INTO tblbarang(kodeBarang, namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
-                values ('$this->kodeBarang', '$this->namaBarang', '$this->deskripsi', '$this->jumlahStok', '$this->harga', '$this->fotoBarang',
+        $sql = "INSERT INTO tblbarang(/*id,*/ namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
+                values (/*'$this->id',*/ '$this->namaBarang', '$this->deskripsi', '$this->jumlahStok', '$this->harga', '$this->fotoBarang',
                         '$this->nama_kategori'/*, '$this->id_penjual'*/)";
         $this->result = mysqli_query($this->connection, $sql);
         
-        //$this->kodeBarang = $this->connection->insert_kodeBarang;
+        $this->id = $this->connection->insert_id;
 
         if($this->result)
             $this->message ='Data berhasil ditambahkan!';					
@@ -43,7 +43,7 @@ class Barang extends Connection2{
    public function updateFoto(){
     $sql = "UPDATE tblBarang SET 
             fotoBarang = '$this->fotoBarang'
-            WHERE kodeBarang = $this->kodeBarang";
+            WHERE id = $this->id";
 
     $this->result = mysqli_query($this->connection, $sql);
     
@@ -53,7 +53,7 @@ class Barang extends Connection2{
        $this->message ='Foto gagal diubah!';	
 }
     
-    public function updateBarang(){
+    public function updateBarang($dataBarang){
         $sql = "UPDATE tblBarang SET 
                 namaBarang = '$this->namaBarang',
                 deskripsi = '$this->deskripsi',
@@ -62,7 +62,7 @@ class Barang extends Connection2{
                 fotoBarang = '$this->fotoBarang',
                 nama_kategori = $this->nama_kategori',
                 -- id_penjual = '$this->id_penjual'
-                WHERE kodeBarang = $this->kodeBarang";
+                WHERE id = $this->id";
 
         $this->result = mysqli_query($this->connection, $sql);
         
@@ -73,7 +73,7 @@ class Barang extends Connection2{
     }
 
     public function deleteBarang(){
-        $sql = "DELETE FROM tblBarang WHERE kodeBarang=$this->kodeBarang";
+        $sql = "DELETE FROM tblBarang WHERE id=$this->id";
         $this->result = mysqli_query($this->connection, $sql);
         
         if($this->result)
@@ -88,7 +88,7 @@ class Barang extends Connection2{
     
     public function UpdateFotoBarang(){
         $sql = "UPDATE tblBarang SET fotoBarang ='$this->fotoBarang'
-                WHERE kodeBarang = $this->kodeBarang";
+                WHERE id = $this->id";
         $this->result = mysqli_query($this->connection, $sql);
         
         if($this->result)
@@ -97,15 +97,27 @@ class Barang extends Connection2{
            $this->message ='Foto gagal diubah!';	
     }
 
+    public function editBarang($id){
+        $dataBarang ='';
+        $sql = "SELECT * FROM tblbarang WHERE id = '$id'";
+        $this->result = mysqli_query($this->connection, $sql);
+
+        while($row = $this->result->fetch_assoc()){
+            $dataBarang = $row;
+        }
+        return $dataBarang;
+
+    }
+
 
     public function selectOneBarang(){
-        $sql = "SELECT * FROM tblbarang WHERE kodeBarang='$this->kodeBarang'";
+        $sql = "SELECT * FROM tblbarang WHERE id='$this->id'";
 		$resultOne = mysqli_query($this->connection, $sql);	
 		if(mysqli_num_rows($resultOne) == 1){
 			$this->hasil = true;
 			$data = mysqli_fetch_assoc($resultOne);
 			$this->nama = $data['nama'];			
-            $this->kodeBarang = $data['kodeBarang'];
+            $this->id = $data['id'];
             $this->namaBarang = $data['namaBarang'];
 			$this->deskripsi = $data['deskripsi'];				
             $this->jumlahStok = $data['jumlahStok'];	
@@ -118,7 +130,7 @@ class Barang extends Connection2{
     
     public function selectAllBarang(/* w/parameter*/){
         $this->connect();
-        $sql = "SELECT * FROM tblbarang order by kodeBarang";
+        $sql = "SELECT * FROM tblbarang order by id";
         $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
         
         $arrResult = Array();
@@ -127,7 +139,7 @@ class Barang extends Connection2{
             while($data = mysqli_fetch_array($result))
             {
                 $objBarang = new Barang();
-                $objBarang->kodeBarang=$data['kodeBarang'];
+                $objBarang->id=$data['id'];
                 $objBarang->namaBarang=$data['namaBarang'];
                 $objBarang->deskripsi=$data['deskripsi'];
                 $objBarang->jumlahStok=$data['jumlahStok'];
@@ -148,7 +160,7 @@ class Barang extends Connection2{
     }
 
     public function autoCode(){
-        $auto = mysqli_query("SELECT MAX(kodeBarang) AS max_code FROM tblbarang");
+        $auto = mysqli_query("SELECT MAX(id) AS max_code FROM tblbarang");
         $data = mysqli_fetch_array($auto);
         $code = $data['max_code'];
         $urutan = (int)substr($code, 1, 3);
