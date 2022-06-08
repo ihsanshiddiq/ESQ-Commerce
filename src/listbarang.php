@@ -29,7 +29,7 @@
         <th>Action</th> -->
         </tr>	
         <?php
-            include 'inc.koneksi.php';
+            include 'inc.koneksisql.php';
             require_once('class/class.barang.php');		
             $objBarang = new Barang(); 
             $arrayResult = $objBarang->selectAllBarang();

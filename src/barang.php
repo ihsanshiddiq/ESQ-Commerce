@@ -3,7 +3,7 @@
 // include '../init.class.php';
 //     $objBarang = new Barang();
     if(isset($_POST['submit'])){
-        require_once( 'inc.koneksi.php');
+        require_once( 'inc.koneksisql.php');
         require_once('./init.class.php');
         $objBarang = new Barang();
         $objBarang->kodeBarang = $_POST['kodeBarang'];
@@ -30,6 +30,7 @@
         $max_size = 2000000;
         $isErrorFile =false;
         $isSuccessUpload = true;
+        $message = '';
 
         if(!empty($_FILES['fotoBarang']['name'])){
             $file_name  = $_FILES['fotoBarang']['name'];

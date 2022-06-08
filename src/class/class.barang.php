@@ -28,7 +28,7 @@ class Barang extends Connection{
                 
 
     public function addBarang(){
-        $sql = "INSERT INTO tblbarang(kodeBarang, namaBarang, deskripsi, jumlahStok, harga, fotoBarang/*, 'nama_kategori', 'id_penjual'*/) 
+        $sql = "INSERT INTO barang(kodeBarang, namaBarang, deskripsi, jumlahStok, harga, fotoBarang/*, 'nama_kategori', 'id_penjual'*/) 
                 values ('$this->kodeBarang', '$this->namaBarang', '$this->deskripsi', '$this->jumlahStok', '$this->harga', '$this->fotoBarang'
                         /*'$this->nama_kategori', '$this->id_penjual'*/)";
         $this->result = mysqli_query($this->connection, $sql);
@@ -42,9 +42,9 @@ class Barang extends Connection{
    }
 
    public function updateFoto(){
-    $sql = "UPDATE tblBarang SET 
+    $sql = "UPDATE Barang SET 
             fotoBarang = '$this->fotoBarang'
-            WHERE kodeBarang = $this->kodeBarang";
+            WHERE kodeBarang = '$this->kodeBarang'";
 
     $this->result = mysqli_query($this->connection, $sql);
     
@@ -55,7 +55,7 @@ class Barang extends Connection{
 }
     
     public function updateBarang(){
-        $sql = "UPDATE tblBarang SET 
+        $sql = "UPDATE Barang SET 
                 namaBarang = '$this->namaBarang',
                 deskripsi = '$this->deskripsi',
                 jumlahStok = '$this->jumlahStok',
@@ -74,7 +74,7 @@ class Barang extends Connection{
     }
 
     public function deleteBarang(){
-        $sql = "DELETE FROM tblBarang WHERE kodeBarang=$this->kodeBarang";
+        $sql = "DELETE FROM Barang WHERE kodeBarang=$this->kodeBarang";
         $this->result = mysqli_query($this->connection, $sql);
         
         if($this->result)
@@ -88,7 +88,7 @@ class Barang extends Connection{
     }
     
     public function UpdateFotoBarang(){
-        $sql = "UPDATE tblBarang SET fotoBarang ='$this->fotoBarang'
+        $sql = "UPDATE Barang SET fotoBarang ='$this->fotoBarang'
                 WHERE kodeBarang = $this->kodeBarang";
         $this->result = mysqli_query($this->connection, $sql);
         
@@ -100,7 +100,7 @@ class Barang extends Connection{
 
 
     public function selectOneBarang(){
-        $sql = "SELECT * FROM tblbarang WHERE kodeBarang='$this->kodeBarang'";
+        $sql = "SELECT * FROM barang WHERE kodeBarang='$this->kodeBarang'";
 		$resultOne = mysqli_query($this->connection, $sql);	
 		if(mysqli_num_rows($resultOne) == 1){
 			$this->hasil = true;
@@ -119,7 +119,7 @@ class Barang extends Connection{
     
     public function selectAllBarang(/* w/parameter*/){
         $this->connect();
-        $sql = "SELECT * FROM tblbarang order by kodeBarang";
+        $sql = "SELECT * FROM barang order by kodeBarang";
         $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
         
         $arrResult = Array();
@@ -148,7 +148,7 @@ class Barang extends Connection{
     }
 
     public function autoCode(){
-        $auto = mysqli_query("SELECT MAX(kodeBarang) AS max_code FROM tblbarang");
+        $auto = mysqli_query("SELECT MAX(kodeBarang) AS max_code FROM barang");
         $data = mysqli_fetch_array($auto);
         $code = $data['max_code'];
         $urutan = (int)substr($code, 1, 3);

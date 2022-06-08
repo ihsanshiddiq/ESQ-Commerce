@@ -122,7 +122,7 @@
         <div class="col-md-3">
           <div class="col">
 
-            <button type="submit" class="btn btnblack" style="width: 100%;" name="submit"><b>Validate Name</b></button>
+            <button type="submit" class="btn btnblack" style="width: 100%;" name="validate"><b>Validate Name</b></button>
           </div>
         </div>
       </div>

@@ -13,8 +13,29 @@
               
             </ul>
             <form class="d-flex search">
-              <input class="form-control me-2 searchinput" type="search" placeholder="" aria-label="Search">
-              <button class="btn" type="submit"><b>SEARCH</b></button>
+              
+
+              <?php
+              if(isset($_SESSION["id_role"])){
+                if(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "0") {
+                 
+                } else if ($_SESSION["id_role"] == "B"){
+              ?>
+              <input class="form-control me-2 searchinput" type="search" placeholder="" name = "searchbar" aria-label="Search">
+              <button class="btn" type="submit" name="btnsearch"><b>SEARCH</b></button>
+              <?php
+                } 
+  
+              } else {
+                ?>
+                <input class="form-control me-2 searchinput" type="search" placeholder="" name = "searchbar" aria-label="Search">
+                <button class="btn" type="submit" name="btnsearch"><b>SEARCH</b></button>
+                <?php
+              }
+                ?>
+
+
+              
             </form>
             <a class="nav-link" href="cart.html">
               <img src="../assets/cart.png" alt="cart">
@@ -71,11 +92,44 @@
       <!---->
       <div id="mySidenav" class="sidenav" style="z-index: 10000;">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">HOT Items!! OMG!!1!!11!</a>
-        <a href="#">Available Items</a>
-        <a href="#">Category</a>
-        <a href="#">Info+</a>
-        <a href="#" style="border-bottom: 4px white solid">Contact</a>
+        
+        <?php
+          if(isset($_SESSION["id_role"])){
+            if(($_SESSION["id_role"]) == "B") {
+
+            ?>
+            <a class="nav-link active blacken" aria-current="page" href="">See Profile</a>
+            <?php
+              } 
+              else if(($_SESSION["id_role"]) == "0" OR ($_SESSION["id_role"]) == "A")
+              {
+            ?>
+            <h2 style="padding-left:30px; color: white"><u>ADMIN</u></h2>
+            <a class="nav-link active blacken" aria-current="page" href="userlist.php">See All Users</a>
+            <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
+            <?php
+              }
+              else if(($_SESSION["id_role"]) == "S")
+              {
+            ?>
+            <h2 style="padding-left:30px; color: white"><u>SELLER</u></h2>
+            <a class="nav-link active blacken" aria-current="page" href="userlist.php">Check My Shop Items</a>
+            <a class="nav-link active blacken" aria-current="page" href="#">See Profile</a>
+            <?php
+              }
+            } else {
+              ?>
+            } else {
+              ?>
+              <a href="#">HOT Items!! OMG!!1!!11!</a>
+              <a href="#">Available Items</a>
+              <a href="#">Category</a>
+              <a href="#">Info+</a>
+              <a href="#" style="border-bottom: 4px white solid">Contact</a>
+              <?php
+            }
+        ?>
+       
         
         
         
@@ -88,7 +142,7 @@
       <script>
       
       function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.width = "300px";
       }
       
       function closeNav() {
