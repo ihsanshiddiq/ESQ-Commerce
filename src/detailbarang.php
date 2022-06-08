@@ -105,7 +105,7 @@ if (isset($_POST['openbarang'])) {
                             $objMenu = new Barang(); 		
                             $objMenu->kodeBarang = $_SESSION['kodebarang'];
                     
-                            $arrayResult = $objMenu->selectOneBarang();
+                            $arrayResult = $objMenu->selectOneBarangRedirect();
                             echo $arrayResult->namaBarang;
                         }
 

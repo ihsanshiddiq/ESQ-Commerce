@@ -115,11 +115,60 @@ class Barang extends Connection{
 
 		}	
     }
+
+    public function selectOneBarangRedirect(){
+        $sql = "SELECT * FROM barang WHERE kodeBarang='$this->kodeBarang'";
+		$resultOne = mysqli_query($this->connection, $sql);	
+
+        $item;
+
+		if(mysqli_num_rows($resultOne) == 1){
+            
+			$this->hasil = true;
+			$data = mysqli_fetch_assoc($resultOne);
+			$objBarang = new Barang();
+            $objBarang->kodeBarang=$data['kodeBarang'];
+            $objBarang->namaBarang=$data['namaBarang'];
+            $objBarang->deskripsi=$data['deskripsi'];
+            $objBarang->jumlahStok=$data['jumlahStok'];
+            $objBarang->harga=$data['harga'];
+            $objBarang->fotoBarang=$data['fotoBarang'];
+            $item = $objBarang;
+            //$i++;
+
+		}	
+    }
     
     
     public function selectAllBarang(/* w/parameter*/){
         $this->connect();
         $sql = "SELECT * FROM barang order by kodeBarang";
+        $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
+        
+        $arrResult = Array();
+        $i=0;
+        if(mysqli_num_rows($result)>0){
+            while($data = mysqli_fetch_array($result))
+            {
+                $objBarang = new Barang();
+                $objBarang->kodeBarang=$data['kodeBarang'];
+                $objBarang->namaBarang=$data['namaBarang'];
+                $objBarang->deskripsi=$data['deskripsi'];
+                $objBarang->jumlahStok=$data['jumlahStok'];
+                $objBarang->harga=$data['harga'];
+                $objBarang->fotoBarang=$data['fotoBarang'];
+                $arrResult[$i] = $objBarang;
+                $i++;
+            }
+        }
+        return $arrResult;
+
+                
+    }
+
+    public function selectAllBarangName($input){
+        $this->connect();
+        $sql = "SELECT * FROM barang WHERE namaBarang LIKE '%$input%'";
         $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
         
         $arrResult = Array();
