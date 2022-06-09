@@ -39,8 +39,8 @@ class Connection{
         try {
             $username = "root";
             $password = "";
-            $dbh = new PDO('mysql:host=localhost;dbname=backupcommerce', $username, $password);
-            //$dbh = new PDO('mysql:host=localhost;dbname=ebs-commerce', $username, $password);
+            //$dbh = new PDO('mysql:host=localhost;dbname=backupcommerce', $username, $password);
+            $dbh = new PDO('mysql:host=localhost;dbname=ebs-commerce', $username, $password);
             return $dbh;
         }  
         catch (PDOException $e) {

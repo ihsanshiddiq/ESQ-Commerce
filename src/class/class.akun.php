@@ -103,7 +103,40 @@
             */
         }
 
+        public function SelectOneAccount(){
+            $query = "SELECT *, FROM akun WHERE username='$this->username'"; 
+            $resultOne = mysqli_query($this->connection, $query);
+            if(mysqli_num_rows($resultOne) == 1){
+                $this->hasil = true;
+                $data = mysqli_fetch_assoc($resultOne);
+                $this->username=$data['username'];
+                $this->namaDepan=$data['namaDepan'];
+                $this->namaBelakang=$data['namaBelakang'];
+                $this->email=$data['email'];
+                $this->noHp=$data['noHp'];
+                $this->jalan=$data['jalan'];
+                $this->kodePos=$this['kodePos'];
+            }
 
+        }
+
+        public function ValidateEmail($email){
+            $query = "SELECT a.*, p.id_penjual as idpenjual FROM akun a LEFT JOIN penjual p ON a.username = p.username INNER JOIN role r ON a.id_role = r.id_role WHERE email='$email'";
+            $resultOne = mysqli_query($this->connection, $query);
+            if(mysqli_num_rows($resultOne) ==1){
+                $this->hasil = true;
+                $data = mysqli_fetch_assoc($resultOne);
+                $this->username=$data['username'];
+                $this->namaDepan=$data['namaDepan'];
+                $this->namaBelakang=$data['namaBelakang'];
+                $this->email=$data['email'];
+                $this->noHp=$data['noHp'];
+                $this->kodePos=$data['kodePos'];
+                $this->jalan=$data['jalan'];
+                $this->id_role=$this['id_role'];
+                return true;
+            }
+        }
 
 
 
