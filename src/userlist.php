@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (!(isset($_SESSION["username"]))) {
-    header("location: index.php?error=unauthorizeduser");
+    header("location: index.php?error=unauthorizednouser");
 } else {
-    if (!($_SESSION["id_role"] == "0")) {
-        header("location: index.php?error=unauthorizeduser");
+    if (!($_SESSION["id_role"] == "A")) {
+        header("location: index.php?error=unauthorizedaccount");
     }
 }
 ?>
@@ -37,47 +37,7 @@ if (!(isset($_SESSION["username"]))) {
     </nav>
 
       <!---->
-      <div id="mySidenav" class="sidenav" style="z-index: 10000;">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">HOT Items!! OMG!!1!!11!</a>
-        <a href="#">Available Items</a>
-        <a href="#">Category</a>
-        <a href="#">Info+</a>
-        <a href="#">Contact</a>
 
-        <!-- TESTING AREA: DROPDOWN-->
-        
-        <!-- END OF TESTING AREA-->
-      </div>
-      
-      <script>
-      
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-      }
-      
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-      }
-
-      var absoluted = false;
-      function expandNav() {
-
-        if (absoluted == true){
-          document.getElementById("navbar").style.opacity = "70%";
-          absoluted = false;
-        } else {
-          document.getElementById("navbar").style.backgroundColor = "white";
-          document.getElementById("navbar").style.opacity = "100%";
-          absoluted = true;
-        }
-        
-      }
-      
-      function unexpandNav() {
-        document.getElementById("navbar").style.opacity = "70%";
-      }
-      </script>
       <!---->
 
       <section> 

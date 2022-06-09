@@ -137,6 +137,31 @@ class Barang extends Connection{
             //$i++;
 
 		}	
+        //return $item;
+    }
+
+    public function selectOneBarangParam($kode){
+        $sql = "SELECT * FROM barang WHERE kodeBarang='$kode'";
+		$resultOne = mysqli_query($this->connection, $sql);	
+
+        $item = Array();
+
+		if(mysqli_num_rows($resultOne) == 1){
+            
+			$this->hasil = true;
+			$data = mysqli_fetch_assoc($resultOne);
+			$objBarang = new Barang();
+            $objBarang->kodeBarang=$data['kodeBarang'];
+            $objBarang->namaBarang=$data['namaBarang'];
+            $objBarang->deskripsi=$data['deskripsi'];
+            $objBarang->jumlahStok=$data['jumlahStok'];
+            $objBarang->harga=$data['harga'];
+            $objBarang->fotoBarang=$data['fotoBarang'];
+            $item = $objBarang;
+            //$i++;
+
+		}	
+        return $item;
     }
     
     

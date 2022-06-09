@@ -12,7 +12,7 @@ session_start();
 
     <!-- CSS -->
     <link rel="stylesheet" href="../lib/css/style.css">
-    <link rel="stylesheet" href="../lib/customskin.css">
+   
     <!--CDN-->
     <?php
     require 'head-conf.html';
@@ -131,21 +131,22 @@ session_start();
 					$arrayResult = $objMenu->selectAllBarang(0, '');
 
 					foreach ($arrayResult as $dataMenu) {
-                        $_SESSION['kodeBarang'] = $dataMenu->kodeBarang;
+                        //$_SESSION['kodeBarang'] = $dataMenu->kodeBarang;
                        
 						echo '
 
-                            <div class="col">
+                            <form class="col" action="detailbarang.php" method="get">
                                 <a href="detailbarang.php?item='.$dataMenu->kodeBarang.'">
                                     <div class="card">
                                         <img height="150" width="200" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
                                             <div class="card-body">
                                                 <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
                                                 <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                                <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->kodeBarang .'"><b>Details</b></button>
                                             </div>
                                     </div>
                                 </a>
-                            </div>
+                            </form>
 							  
 							  ';
 

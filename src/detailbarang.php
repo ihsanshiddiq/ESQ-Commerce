@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!isset($_GET['openbarang'])) {
+    header("location: index.php?error=noitem");
+    echo '<script>alert("Error: no item");</script>';
+    exit();
+}
 /*
 if (isset($_POST['openbarang'])) {
 
@@ -94,27 +100,28 @@ if (isset($_POST['openbarang'])) {
                         <?php
                         //require_once('../init.class.php');
 
+                        require_once('inc.koneksisql.php'); 
+                        require_once('class/class.barang.php');
+                        //$objMenu = new Menu(); 
+                        //$objMenu->id = $_GET['id'];	
+                        //$objMenu->SelectOneMenu();
+                        $objMenu = new Barang(); 		
+                        $objMenu->kodeBarang = $_GET['openbarang'];
+                
+                        $arrayResult = $objMenu->selectOneBarangParam($_GET['openbarang']);
+                        echo $arrayResult->namaBarang;
                         
-
-                        if(isset($_GET['kodeBarang'])){	
-                            require_once('inc.koneksisql.php'); 
-                            require_once('class/class.barang.php');
-                            //$objMenu = new Menu(); 
-                            //$objMenu->id = $_GET['id'];	
-                            //$objMenu->SelectOneMenu();
-                            $objMenu = new Barang(); 		
-                            $objMenu->kodeBarang = $_SESSION['kodebarang'];
-                    
-                            $arrayResult = $objMenu->selectOneBarangRedirect();
-                            echo $arrayResult->namaBarang;
-                        }
-
+                       
                             
                         ?>    
                         </h1>
                     </div>
                     <div class="col-md-10">
-                        <p class="price">Rp. 100.000.-</p>
+                        <p class="price">
+                        <?php
+                        echo 'Rp ' . number_format($arrayResult->harga,2,',','.') ;
+                        ?>    
+                        .-</p>
 
                     </div>
                     <div class="col-md-2">
@@ -128,12 +135,18 @@ if (isset($_POST['openbarang'])) {
                 <div class="row">
                     <h2>Deskripsi :</h2>
                     <br>
-                    <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius,
-                        laudantium magnam porro deserunt fuga esse sed molestiae ab nihil laboriosam.</p>
+                    <p style="text-align: justify;">
+                        <?php
+                        echo $arrayResult->deskripsi;
+                        ?>
+                    </p>
+
+                    <!--
                     <p>xs : lenght 110cm <br>
                         s : lenght 120cm <br>
                         m : lenght 130cm
                     </p>
+                    -->
 
                 </div>
                 <br>

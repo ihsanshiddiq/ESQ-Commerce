@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])){
+    header("location: index.php?error=notloggedin");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +103,7 @@ session_start();
             </div>
             <br>
             <div class="row">
-                <a href="#">
+                <a href="info.php">
                     <h1>Personal Info</h1>
                     <p>You can access and change your personal details to expedite future purchases and notify us of
                         changes to your contact details.</p>

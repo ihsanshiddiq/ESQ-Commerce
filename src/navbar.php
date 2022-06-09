@@ -64,14 +64,13 @@
               if(($_SESSION["id_role"]) == "B") {
 
               ?>
-              <a class="nav-link active blacken" aria-current="page" href="user/pembeli/my.php">See Profile</a>
+              
               <?php
                 } 
                 else if(($_SESSION["id_role"]) == "0")
                 {
               ?>
-              <a class="nav-link active blacken" aria-current="page" href="userlist.php">See All Users</a>
-              <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
+              
               <?php
                 }
               }
@@ -98,7 +97,7 @@
             if(($_SESSION["id_role"]) == "B") {
 
             ?>
-            <a class="nav-link active blacken" aria-current="page" href="">See Profile</a>
+            <a class="nav-link active blacken" aria-current="page" href="user/pembeli/my.php">See Profile</a>
             <?php
               } 
               else if(($_SESSION["id_role"]) == "0" OR ($_SESSION["id_role"]) == "A")
