@@ -19,6 +19,7 @@
         private $kodePos = " ";
         private $jalan = " ";
         private $hasil = false;
+        private $message = " ";
         
 
         public function __get($atribute) {
@@ -46,6 +47,24 @@
             $this->message ='Data gagal ditambahkan!';
         }
 
+        public function addAkunPDO(){
+
+            $stmt = $this->connect()->prepare('INSERT INTO `akun`(`username`, `password`, `namaDepan`, `namaBelakang`, `email`, `noHp`, `kodePos`, `jalan`, `id_role`) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
+
+            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
+            {
+                $stmt = null;
+                $this->message ='Data gagal ditambahkan (stmt error)';
+                //header("location: ../index.php?error=stmtfailedcheckuser");  
+            } else {
+                $this->message ='Data gagal ditambahkan!';
+            }
+
+        }
+
+        //how PDO works is that, in the SQL query it uses '?' as PLACEHOLDERS that will then be replaced inside the execute(array(?,?,?)) according to the varname. Urutan harus sesuai dalam execute(array())
+
         public function UpdateAccount(){
             $query = "UPDATE akun 
                     SET username = '$this->username',
@@ -66,6 +85,31 @@
             $this->message ='Data gagal diubah!';
         }
 
+        public function UpdateAccountPDO(){
+            $stmt = $this->connect()->prepare('UPDATE akun 
+                    SET username = ?,
+                    password = ?,
+                    namaDepan = ?,
+                    namaBelakang = ?,
+                    email = ?,
+                    noHp = ?,
+                    kodePos = ?,
+                    jalan = ?,
+                    id_role = ?					
+                    WHERE id = ?;');
+            //$this->hasil = mysqli_query($this->connection, $query);
+           
+            
+            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
+            {				
+                $this->message ='Data gagal diubah!';
+            }
+            else
+            {
+                $this->message ='Data berhasil diubah!';					
+            }
+        }
+
         public function DeleteAccount(){
             $query = "DELETE FROM akun WHERE username=$this->username";
             $this->hasil = mysqli_query($this->connection, $query);
@@ -76,9 +120,23 @@
             $this->message ='Data gagal dihapus!';				
         }
 
-        public function cek_akun($uname){
+
+        public function DeleteAccountPDO(){
+            $stmt = $this->connect()->prepare('DELETE FROM akun WHERE username = ? ');
+           
+            if(!$stmt->execute(array($username)))
+            {
+                $this->message ='Data gagal dihapus!';				
+            }
+            else
+            {
+                $this->message ='Data berhasil dihapus!';					
+            }
+        }
+
+        public function cek_akun(){
             //$nama = mysqli_real_escape_string($con, $username);
-            $query = "SELECT * FROM user.data WHERE username = '$uname'";
+            $query = "SELECT * FROM akun WHERE username = '$this->username'";
             
             $res = mysqli_query($this->connection, $query);
            
@@ -86,6 +144,28 @@
                 $this->hasil = true;
                 return mysqli_num_rows($res);
             }
+        }
+
+        public function cek_akunPDO($uname){        //i actually dont know if this works
+            //$nama = mysqli_real_escape_string($con, $username);
+            $stmt = $this->connect()->prepare('SELECT * FROM akun WHERE username = ?;');
+            
+            if(!$stmt->execute(array($uname)))
+            {
+                $this->message ='Data tidak ditemukan! (stmt error)';				
+            }
+
+            //$resultCheck;
+            if($stmt->rowCount() > 0) {
+                $this->hasil = TRUE;
+                $akun = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $this->username = $akun[0]["username"];
+                $this->email = $akun[0]["email"];
+                $this->password = $akun[0]["password"];
+                return $stmt->rowCount();       //i dont know what kinda value this shit returns
+            }
+        }
+
            /*
             if($res){
 				$this->hasil = true;
@@ -101,7 +181,18 @@
 				return true;		
 			}
             */
+
+        public function reset_pass(){
+                $stmt = $this->connect()->prepare('UPDATE akun SET password = ? WHERE username = ?');
+
+                if (!$stmt->execute(array($this->password, $this->username))) {
+                    $this->hasil = false;
+                }else {
+                    $this->hasil = true;
+                    
+                }
         }
+
 
         public function SelectOneAccount(){
             $query = "SELECT *, FROM akun WHERE username='$this->username'"; 
@@ -144,6 +235,11 @@
 
 
 
+
     }
+
+
+
+
 
 ?>
