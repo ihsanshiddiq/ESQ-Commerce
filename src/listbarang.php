@@ -40,20 +40,20 @@
             } else{	
                 $no = 1;	
                 foreach ($arrayResult as $dataBarang) {
-                    echo '<tr>';
-                    echo '<td>'.$no.'</td>';	
-                    echo '<td>'.$dataBarang->id.'</td>';	
-                    echo '<td>'.$dataBarang->namaBarang.'</td>';
-                    echo '<td>'.$dataBarang->deskripsi.'</td>';
-                    echo '<td>'.$dataBarang->jumlahStok.'</td>';
-                    echo '<td>'.$dataBarang->harga.'</td>';
-                    echo '<td>'.$dataBarang->nama_kategori.'</td>';
-                    echo "<td><img src='../assets/produk/".$dataBarang->fotoBarang."' width='100px' height='100px'/></td>";
-                    echo '<td>
-                          <a href="barang&id='.$dataBarang->id.'" class="btn btn-warning" role="button">Update</a>
-                          <a class="btn btn-danger"  href="barang&id=='.$dataBarang->id.'" 
-							            onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')">Delete</a></td>';
-                    echo '</tr>';	
+                  echo '<tr>';
+                  echo '<td>'.$no.'</td>';	
+                  echo '<td>'.$dataBarang->id.'</td>';	
+                  echo '<td>'.$dataBarang->namaBarang.'</td>';
+                  echo '<td>'.$dataBarang->deskripsi.'</td>';
+                  echo '<td>'.$dataBarang->jumlahStok.'</td>';
+                  echo '<td>'.$dataBarang->harga.'</td>';
+                  echo '<td>'.$dataBarang->nama_kategori.'</td>';
+                  echo "<td><img src='../assets/produk/".$dataBarang->fotoBarang."' width='100px' height='100px'/></td>";
+                  echo '<td>
+                        <a href="barangupdate.php?updateid='.$dataBarang->id.'" class="btn btn-warning" role="button">Update</a>
+                        <a class="btn btn-danger"  href="barangdelete.php?deleteid='.$dataBarang->id.'" 
+                        onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')">Delete</a></td>';
+                  echo '</tr>';	
                     
                         // <a class="btn btn-warning"  href="">Update</a> |
                         // <a class="btn btn-danger" href="listbarang.php?p=deletebarang&id='.$dataBarang->deleteBarang().'" 

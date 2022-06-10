@@ -1,19 +1,19 @@
 <?php
-if(isset($_GET['id'])){	
-	require_once('class/class.barang.php'); 		
-	$objBarang = new Barang(); 
-	$objBarang->id = $_GET['id'];
-	
-	$objBarang->selectOneBarang();
-	if($objBarang->hasil == false){		
-		echo '<script>window.history.back()</script>';	
-	}else{
-		$objBarang->deleteBarang();
+require_once( 'inc.koneksi2.php');
+require_once('./init.class.php');
+$objBarang = new Barang(); 
+if(isset($_GET['deleteid'])){	
+	$objBarang->id = $_GET['deleteid'];
+	$objBarang->deleteBarang();
+
+	if($objBarang->result){		
 		echo "<script> alert('".$objBarang->message."'); </script>";
-		echo "<script>window.location = 'listbarang.php'</script>";			
-	}	
-}
-else{		
-	echo '<script>window.history.back()</script>';	
+		echo "<script>window.location = 'listbarang.php'</script>";		
+		
+	}else{
+		echo "<script> alert('Data gagal dihapus!');</script>";
+		echo '<script>window.history.back()</script>';
+	}		
+		
 }
 ?>
