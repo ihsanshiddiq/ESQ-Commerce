@@ -87,26 +87,27 @@
 
         public function UpdateAccountPDO(){
             $stmt = $this->connect()->prepare('UPDATE akun 
-                    SET username = ?,
-                    password = ?,
+                    SET 
+                    
                     namaDepan = ?,
                     namaBelakang = ?,
                     email = ?,
                     noHp = ?,
                     kodePos = ?,
-                    jalan = ?,
-                    id_role = ?					
-                    WHERE id = ?;');
+                    jalan = ?
+                    				
+                    WHERE username = ?;');
             //$this->hasil = mysqli_query($this->connection, $query);
            
             
-            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
+            if(!$stmt->execute(array($this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->username)))
             {				
                 $this->message ='Data gagal diubah!';
             }
             else
             {
                 $this->message ='Data berhasil diubah!';					
+                echo '<script>alert(" ' . $this->message . ' ");</script>';
             }
         }
 
@@ -124,7 +125,7 @@
         public function DeleteAccountPDO(){
             $stmt = $this->connect()->prepare('DELETE FROM akun WHERE username = ? ');
            
-            if(!$stmt->execute(array($username)))
+            if(!$stmt->execute(array($this->username)))
             {
                 $this->message ='Data gagal dihapus!';				
             }
@@ -193,9 +194,46 @@
                 }
         }
 
+        public function SelectOneAkunPDO($uname){    
+        
+            $stmt = $this->connect()->prepare('SELECT * FROM akun WHERE username = ?');
+            //$stmt = "SELECT * FROM akun";            
+            $result = $stmt->execute(array($uname));
+    
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute SelectAllEmployee() function, fail to execute: SELECT * FROM akun";
+                exit();
+            }
+                    
+            $arrResult;
+            //$count=0;
+            if($stmt->rowCount() > 0){                
+            while ($data= $stmt->fetch(PDO::FETCH_OBJ))
+            {
+                $objakun = new Akun(); 
+                $objakun ->username = $data->username;
+                $objakun ->namaDepan = $data->namaDepan;
+                $objakun ->namaBelakang = $data->namaBelakang;
+                $objakun ->email = $data->email;
+                $objakun ->id_role = $data->id_role;
+                $objakun ->noHp = $data->noHp;
+                $objakun ->jalan = $data->jalan;
+                $objakun ->kodePos = $data->kodePos;
+    
+                $arrResult = $objakun;
+                //$count++;
+                }
+            } else {
+                echo "Ain't got any user innit";
+            }
+            return $arrResult;          
+        }
+
+
 
         public function SelectOneAccount(){
-            $query = "SELECT *, FROM akun WHERE username='$this->username'"; 
+            $query = "SELECT * FROM akun WHERE username='$this->username'"; 
             $resultOne = mysqli_query($this->connection, $query);
             if(mysqli_num_rows($resultOne) == 1){
                 $this->hasil = true;

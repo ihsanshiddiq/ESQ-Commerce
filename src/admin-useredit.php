@@ -10,41 +10,25 @@ if (!(isset($_SESSION["username"]))) {
 
 include 'inc.koneksi.php';
 require_once 'class/class.akun.php';
-$objAccount = new Akun();
+$objAkun = new Akun();
+$objAkun->username=$_GET['edituser'];
 
-if(isset($_POST['btnSubmit'])){
+$objAccount = $objAkun->SelectOneAkunPDO($_GET['edituser']);
+
+if(isset($_POST['save'])){
     $objAccount->namaDepan = $_POST['namaDepan'];
     $objAccount->namaBelakang = $_POST['namaBelakang'];
     $objAccount->email = $_POST['email'];
     $objAccount->noHp = $_POST['noHp'];
     $objAccount->jalan = $_POST['jalan'];
     $objAccount->kodePos = $_POST['kodePos'];
+    $objAccount->UpdateAccountPDO();
 
-    if(isset($_GET['username'])){
-        $objAccount->username = $_GET['username'];
-        $objAccount->UpdateAccount();
-    } else {
-        $cekEmail = $objAccount->ValidateEmail($_POST['email']); //belum berfungsi shidman
-
-        if($cekEmail){
-          echo "<script> alert('Email sudah terdaftar'); </script>";
-        } else {
-          $objAccount->addAkun();
-        }
-        
-        //nda tau ji fungsi ini buat apa belum ada urlna juga :v
-        if($objAccount->hasil){
-          echo "<script> alert('".$objAccount->message."') </script>";
-          //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=#">';
-        } else {
-          echo "<script> alert('Proses gagal. Silahkan ulangi'); </script>";
-        }
-    }
-
-} else if(isset($_GET['username'])){
+} /*else if(isset($_GET['username'])){
     $objAccount->username = $_GET['username'];
     $objAccount->SelectOneAccount();
-}
+}*/
+
 ?>
 
 <!DOCTYPE html>
@@ -114,34 +98,40 @@ if(isset($_POST['btnSubmit'])){
             <form action="" method="POST">
                 <table class="table">
                     <tr>
-                        <td>Nama Depan</td>
-                        <td>:</td>
-                        <td><input type="text" class="form-control textinput" name="namadepan" id="namadepan" value="<?php echo $objAccount->namaDepan; ?>"></td>
+                        <td>Nama Depan : <?php echo $objAccount->namaDepan; ?></td>
+                        <td>|</td>
+                        <td><p>Nama Depan Baru</p></td>
+                        <td><input type="text" class="form-control textinput" name="namadepan" id="namadepan" ></td>
                     </tr>
                     <tr>
-                        <td>Nama Belakang</td>
-                        <td>:</td>
-                        <td><input type="text" class="form-control textinput" name="namabelakang" id="namabelakang" value="<?php echo $objAccount->namaBelakang; ?>"></td>
+                        <td>Nama Belakang : <?php echo $objAccount->namaBelakang; ?></td>
+                        <td>|</td>
+                        <td><p>Nama Belakang Baru</p></td>
+                        <td><input type="text" class="form-control textinput" name="namabelakang" id="namabelakang" ></td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>:</td>
-                        <td><input type="email" class="form-control textinput" name="email" id="email" value="<?php echo $objAccount->email; ?>"></td>
+                        <td>Email : <?php echo $objAccount->email; ?></td>
+                        <td>|</td>
+                        <td><p>Email Baru</p></td>
+                        <td><input type="email" class="form-control textinput" name="email" id="email" ></td>
                     </tr>
                     <tr>
-                        <td>No.Handphone</td>
-                        <td>:</td>
-                        <td><input type="number" class="form-control nohp textinput" name="nohp" id="nohp" value="<?php echo $objAccount->noHp; ?>"></td>
+                        <td>No.Handphone : <?php echo $objAccount->noHp; ?></td>
+                        <td>|</td>
+                        <td><p>No.Handphone Baru</p></td>
+                        <td><input type="number" class="form-control nohp textinput" name="nohp" id="nohp" ></td>
                     </tr>
                     <tr>
-                        <td>Alamat</td>
-                        <td>:</td>
-                        <td><input type="textarea" class="form-control textinput" name="alamat" id="alamat" value="<?php echo $objAccount->jalan; ?>"></td>
+                        <td>Alamat : <?php echo $objAccount->jalan; ?></td>
+                        <td>|</td>
+                        <td><p>Alamat Baru</p></td>
+                        <td><input type="textarea" class="form-control textinput" name="alamat" id="alamat" ></td>
                     </tr>
                     <tr>
-                        <td>Kode Pos</td>
-                        <td>:</td>
-                        <td><input type="number" class="form-control textinput" name="kodepos" id="kodepos" value="<?php echo $objAccount->kodePos; ?>"></td>
+                        <td>Kode Pos : <?php echo $objAccount->kodePos; ?></td>
+                        <td>|</td>
+                        <td><p>Kode Pos Baru</p></td>
+                        <td><input type="number" class="form-control textinput" name="kodepos" id="kodepos" ></td>
                     </tr>
                     <tr>
                         <td></td>

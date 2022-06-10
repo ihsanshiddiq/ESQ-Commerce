@@ -111,7 +111,7 @@ if (!(isset($_SESSION["username"]))) {
             } else{	
                 $no = 1;	
                 foreach ($arrayResult as $dataAkun) {
-                    echo '<tr>';
+                    echo '<tr> <form action="admin-useredit.php" method="GET">';
                     echo '<td>'.$no.'</td>';	
                     echo '<td>'.$dataAkun->username.'</td>';	
                     echo '<td>'.$dataAkun->namaDepan.'</td>';
@@ -124,14 +124,14 @@ if (!(isset($_SESSION["username"]))) {
                     //echo '<td>'. <a class="btn btn-warning"  href="index.php?p=employee&ssn='. $dataEmployee->ssn.'"> Edit </a> | <a class="btn btn-danger" href="index.php?p=deleteemployee&ssn='. $dataEmployee->ssn.'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> '</td>';	
                     
                     echo '<td>';
-                    echo '<a class="btn btn-warning"  href="index.php?p=employee&ssn='.$dataAkun->username.'"> Edit </a>'; 
+                    echo '<button type="submit" class="btn btn-warning" style="width: 100%;" name="edituser" value="'. $dataAkun->username .'"><b>Edit</b></button>'; 
                     echo ' | ';
                     echo '<a class="btn btn-danger" href="employeelist.php?p=deleteemployee&ssn='./*$dataEmployee->DeleteEmployee().*/'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';
                     /*echo '<td>
                     <a class="btn btn-warning"  href="index.php?p=employee&ssn='.$dataAkun->username.'"> Edit </a> |
                     <a class="btn btn-danger" href="employeelist.php?p=deleteemployee&ssn='.$dataEmployee->DeleteEmployee().'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';	
                     */
-                    echo '</tr>';				
+                    echo '</form> </tr>';				
                     $no++;	
                 }
             }
