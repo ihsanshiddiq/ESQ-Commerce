@@ -16,13 +16,22 @@ $objAkun->username=$_GET['edituser'];
 $objAccount = $objAkun->SelectOneAkunPDO($_GET['edituser']);
 
 if(isset($_POST['save'])){
-    $objAccount->namaDepan = $_POST['namaDepan'];
-    $objAccount->namaBelakang = $_POST['namaBelakang'];
+
+  if(empty($_POST['namadepan']) OR empty($_POST['namabelakang']) OR empty($_POST['email']) OR empty($_POST['nohp']) OR empty($_POST['alamat']) OR empty($_POST['kodepos']))
+  {
+    echo '<script>alert("Mohon isi semua form data");</script>';
+    //header('location: admin-useredit.php');
+    
+  } else {
+
+    $objAccount->namaDepan = $_POST['namadepan'];
+    $objAccount->namaBelakang = $_POST['namabelakang'];
     $objAccount->email = $_POST['email'];
-    $objAccount->noHp = $_POST['noHp'];
-    $objAccount->jalan = $_POST['jalan'];
-    $objAccount->kodePos = $_POST['kodePos'];
+    $objAccount->noHp = $_POST['nohp'];
+    $objAccount->jalan = $_POST['alamat'];
+    $objAccount->kodePos = $_POST['kodepos'];
     $objAccount->UpdateAccountPDO();
+  }
 
 } /*else if(isset($_GET['username'])){
     $objAccount->username = $_GET['username'];
@@ -135,7 +144,7 @@ if(isset($_POST['save'])){
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" class="btn btn-primary" value="save" name="btnSubmit">
+                        <td><input type="submit" class="btn btn-primary" name="save">
                         <a href="admin-listuser.php" class="btn btn-primary">Cancel</a></td>
                     </tr>
                 </table>
