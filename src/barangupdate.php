@@ -1,30 +1,25 @@
 <?php
 
-// include '../init.class.php';
-//     $objBarang = new Barang();
-    if(isset($_POST['submit'])){
-        require_once( 'inc.koneksisql.php');
-        require_once('./init.class.php');
-        $objBarang = new Barang();
-        $objBarang->kodeBarang = $_POST['kodeBarang'];
+    require_once( 'inc.koneksi2.php');
+    require_once('./init.class.php');
+    $objBarang = new Barang();
+    $objBarang->id=$_GET['updateid'];
+
+    $objBarang->viewOneBarang();
+    
+    if (isset($_POST['submit'])) {
         $objBarang->namaBarang = $_POST['namaBarang'];
         $objBarang->deskripsi = $_POST['deskripsi'];
         $objBarang->jumlahStok = $_POST['jumlahStok'];
         $objBarang->harga = $_POST['harga'];
         $objBarang->nama_kategori = $_POST['nama_kategori'];
+        //$objBarang->fotoBarang = $_POST['fotoBarang'];
 
-        $objBarang->addBarang();
-        if($objBarang->result){
-            echo"<script> alert('Data berhasil ditambakan!'); </script>";
-        }
-
-        // get ready to upload image
         $folder = '../assets/produk/';
         $file_type = array('jpg','jpeg', 'png', 'gif', 'bmp');
         $max_size = 2000000;
         $isErrorFile =false;
         $isSuccessUpload = true;
-        $message = '';
 
         if(!empty($_FILES['fotoBarang']['name'])){
             $file_name  = $_FILES['fotoBarang']['name'];
@@ -57,28 +52,20 @@
             }
         }
         if($isSuccessUpload){					 
+            $objBarang->updateBarangg();
             $objBarang->updateFoto();
             if($objBarang->result){			
-                echo "<script> alert('$objBarang->message'); </script>";
-                echo "$objBarang->fotoBarang";
-                echo "$objBarang->id";
+                echo "<script> alert('Data berhasil di update'); </script>";
                 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=listbarang.php">'; 	
         
-            }
-            else
-                echo "<script> alert('$objBarang->message'); </script>";			
-        }
-        else
+            }else
+                echo "<script> alert('Proses update gagal wei'); </script>";			
+        }else
             echo "<script> alert('Proses upload gagal. Silakan ulangi'); </script>";
-
-
     }
-    elseif(isset($_GET['id'])){
-        $objBarang->id = $_GET['id'];
-        $objBarang->viewOneBarang();
-    }
+      
 
-
+        
 ?>
 
 <!doctype html>
@@ -109,30 +96,30 @@
   <body>
     
   
-  <form method= "post" action="barang.php" enctype="multipart/form-data">
+  <form method= "post" action="" enctype="multipart/form-data">
   <div class="form">
-  <div class="form-group">
+  <!-- <div class="form-group">
         <label for="formGroupExampleInput">Kode Barang</label>
-        <input type="text" class="form-control" id="kodeBarang" name="kodeBarang" value="" placeholder="Nama Barang" >
-    </div>
+        <input type="text" class="form-control" id="id" name="id" value="" placeholder="Kode Barang" >
+    </div> -->
     <div class="form-group">
         <label for="formGroupExampleInput2">Nama Barang</label>
-        <input type="text" class="form-control" id="namaBarang" name="namaBarang" placeholder="Nama Barang">
+        <input type="text" class="form-control" id="namaBarang" name="namaBarang" value="<?php echo $objBarang->namaBarang; ?>" placeholder="Nama Barang">
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Deskripsi</label>
-        <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi">
+        <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="<?php echo $objBarang->deskripsi; ?>" placeholder="Deskripsi">
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Jumlah Stok</label>
-        <input type="text" class="form-control" id="jumlahStok" name="jumlahStok" placeholder="Jumlah Stok">
+        <input type="text" class="form-control" id="jumlahStok" name="jumlahStok" value="<?php echo $objBarang->jumlahStok; ?>" placeholder="Jumlah Stok">
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Harga</label>
-        <input type="text" class="form-control" id="harga" name="harga" placeholder="Harga Barang">
+        <input type="text" class="form-control" id="harga" name="harga" value="<?php echo $objBarang->harga; ?>" placeholder="Harga Barang">
     </div>
     <div>
-        <select name="nama_kategori" id="nama_kategori" class="form-select form-select-sm" aria-label=".form-select-sm example">  
+        <select name="nama_kategori" id="nama_kategori" value="<?php echo $objBarang->nama_kategori; ?>" class="form-select form-select-sm" aria-label=".form-select-sm example">  
         <option selected>Pilih Kategori</option>
         <option value="Food">Food</option>
         <option value="Drink">Drink</option>
@@ -147,14 +134,14 @@
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Upload gambar</label>
-        <input type="file" class="form-control" id="fotoBarang" name="fotoBarang" placeholder="Harga Barang">
+        <input type="file" class="form-control" id="fotoBarang" name="fotoBarang" value="<?php echo $objBarang->fotoBarang; ?>" placeholder="Harga Barang">
     </div>
     <div class="form-group">
-        <button class="btn btn-primary" name="submit" value="add Food" type="Submit">Tambah</button>
+        <button class="btn btn-primary" name="submit" value="update" type="Submit">Update</button>
         <button class="btn btn-danger" type="batal">Batal</button>
     </div>
   </div>
     
 </form>
 
-</html>
+</html> 

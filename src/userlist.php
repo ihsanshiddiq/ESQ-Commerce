@@ -3,8 +3,12 @@ session_start();
 if (!(isset($_SESSION["username"]))) {
     header("location: index.php?error=unauthorizednouser");
 } else {
+  /*
     if (!($_SESSION["id_role"] == "A")) {
         header("location: index.php?error=unauthorizedaccount");
+        */
+    if (!($_SESSION["id_role"] == "0")) {
+        header("location: index.php?error=unauthorizeduser");
     }
 }
 ?>
