@@ -6,6 +6,7 @@ if(!isset($_GET['openbarang'])) {
     echo '<script>alert("Error: no item");</script>';
     exit();
 }
+echo $_GET['openbarang'];
 /*
 if (isset($_POST['openbarang'])) {
 
@@ -15,10 +16,10 @@ if (isset($_POST['openbarang'])) {
 	require_once('class/class.barang.php');
 
     $objMenu = new Barang(); 		
-    $kodeBarang1 = $_SESSION['kodebarang'];
+    $id1 = $_SESSION['id'];
 
 	$arrayResult = $objMenu->selectOneBarang(0, '');
-    echo "<h1>kode barang from session: " . $_SESSION['kodebarang'] . "'</h1>";
+    echo "<h1>kode barang from session: " . $_SESSION['id'] . "'</h1>";
     //$objAkun = new Akun();
   /*
     $username = $_POST['username'];
@@ -106,7 +107,7 @@ if (isset($_POST['openbarang'])) {
                         //$objMenu->id = $_GET['id'];	
                         //$objMenu->SelectOneMenu();
                         $objMenu = new Barang(); 		
-                        $objMenu->kodeBarang = $_GET['openbarang'];
+                        $objMenu->id = $_GET['openbarang'];
                 
                         $arrayResult = $objMenu->selectOneBarangParam($_GET['openbarang']);
                         echo $arrayResult->namaBarang;

@@ -2,7 +2,7 @@
 
 
 
-class Barang extends Connection2{
+class Barang extends Connection{
     private $id = 0;
 
     private $namaBarang = '';
