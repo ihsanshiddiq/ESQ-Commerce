@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
 
             
 
-            <a href="">Forget your password?</a>
+            <a href="./forgot-pass.php">Forget your password?</a>
             <br><br>
 
             <button type="submit" name="submit" href="" class="btn btnblack" style="width: 100%;"><b>Login</b></button>
