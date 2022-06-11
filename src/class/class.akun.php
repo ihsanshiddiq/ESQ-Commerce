@@ -124,7 +124,7 @@
         public function DeleteAccountPDO(){
             $stmt = $this->connect()->prepare('DELETE FROM akun WHERE username = ? ');
            
-            if(!$stmt->execute(array($username)))
+            if(!$stmt->execute(array($this->username)))
             {
                 $this->message ='Data gagal dihapus!';				
             }
