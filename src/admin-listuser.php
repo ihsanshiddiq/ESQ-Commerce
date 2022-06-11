@@ -21,6 +21,7 @@ if(isset($_GET['deleteuser'])){
     $objakun->DeleteAccountPDO();
 		//echo "<script>window.location = 'listbarang.php'</script>";		
 		
+		echo "<script> alert('Data berhasi dihapus!');</script>";
 	}else{
 		echo "<script> alert('Data gagal dihapus!');</script>";
 		//echo '<script>window.history.back()</script>';
@@ -147,7 +148,7 @@ if(isset($_GET['deleteuser'])){
                     echo '<td>';
                     echo '<button type="submit" class="btn btn-warning" style="width: 40%;" name="edituser" value="'. $dataAkun->username .'"><b>Edit</b></button>'; 
                     echo ' | ';
-                    echo '<a class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataAkun->username .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';
+                    echo '<button class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataAkun->username .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </button> </td>';
                     /*echo '<td>
                     <a class="btn btn-warning"  href="index.php?p=employee&ssn='.$dataAkun->username.'"> Edit </a> |
                     <a class="btn btn-danger" href="employeelist.php?p=deleteemployee&ssn='.$dataEmployee->DeleteEmployee().'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </a> </td>';	

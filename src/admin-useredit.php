@@ -11,6 +11,19 @@ if (!(isset($_SESSION["username"]))) {
 include 'inc.koneksi.php';
 require_once 'class/class.akun.php';
 $objAkun = new Akun();
+
+if(isset($_GET['deleteuser'])){
+
+  $objAkun->username=$_GET['edituser'];
+  $objAccount = $objAkun->SelectOneAkunPDO($_GET['deleteuser']);
+
+  $objAccount->DeleteAccountPDO();
+  header("location: admin-listuser.php?=".$objAccount->message);
+  echo '<script>alert("'.$objAccount->message.'");</script>';
+  exit();
+
+}
+
 $objAkun->username=$_GET['edituser'];
 
 $objAccount = $objAkun->SelectOneAkunPDO($_GET['edituser']);
