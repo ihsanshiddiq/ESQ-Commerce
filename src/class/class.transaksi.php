@@ -2,25 +2,29 @@
 
     //include '../inc.koneksi.php';
 
-    class Akun extends Connection{
-        //private $id = 0;
-        private $id_admin = 0;
-        private $id_penjual = 0;
-        private $id_pembeli = 0;
-        private $namaDepan = " ";
-        private $namaBelakang = " ";
-        private $username = " ";
-        private $password = " ";
-        private $email = " ";
-        //private $pwd_hashed = " ";
-        //private $role = " ";
-        private $id_role = 0;
-        private $noHp = 0;
-        private $kodePos = " ";
-        private $jalan = " ";
+    class Transaksi extends Connection{
+        private $id = 0;
+        //private $id_admin = 0;
+        private $penjual = "";
+        private $pembeli = "";
+        
+        private $id_status = "";
+        private $id_barang = " ";
+        private $quantity = 0;
+        private $total = 0;
+        //private $email = " ";
+
         private $hasil = false;
         private $message = " ";
-        
+
+        //---------------------- below is for view transaksi detail
+
+        private $usernamepb = "";   //specific to fetch transaksi satu user
+        private $usernamepj = "";   //specific to fetch transaksi satu user
+        private $keterangan = "";   //specific to fetch transaksi satu user
+        private $namaBarang = "";
+
+
 
         public function __get($atribute) {
             if (property_exists($this, $atribute)) {
@@ -34,93 +38,116 @@
             }
         }
 
-        public function addAkun(){
-                
-            $query = "INSERT INTO `akun`(`username`, `password`, `namaDepan`, `namaBelakang`, `email`, `noHp`, `kodePos`, `jalan`, `id_role`) 
-                    VALUES ('$this->username', '$this->password', '$this->namaDepan', '$this->namaBelakang', '$this->email', '$this->noHp', '$this->kodePos', '$this->jalan', '$this->id_role')";
-            $this->hasil = mysqli_query($this->connection, $query);
-            //$this->id = $this->connection->insert_id; //tak paham nay ini gunanya buat apa :v	
-            
-            if($this->hasil)
-            $this->message ='Data berhasil ditambahkan!';					
-            else
-            $this->message ='Data gagal ditambahkan!';
-        }
+        
 
-        public function addAkunPDO(){
+        public function addTransaksiPDO(){
 
-            $stmt = $this->connect()->prepare('INSERT INTO `akun`(`username`, `password`, `namaDepan`, `namaBelakang`, `email`, `noHp`, `kodePos`, `jalan`, `id_role`) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
+            $stmt = $this->connect()->prepare('INSERT INTO `transaksi`(`id_status`, `tanggal`, `pembeli`, `id_barang`, `penjual`, `quantity`, `total`) 
+            VALUES (?, ?, ?, ?, ?, ?, ?);');
 
-            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
+            if(!$stmt->execute(array($this->id_status, $this->tanggal, $this->pembeli, $this->id_barang, $this->penjual, $this->quantity, $this->total)))
             {
                 $stmt = null;
                 $this->message ='Data gagal ditambahkan (stmt error)';
                 //header("location: ../index.php?error=stmtfailedcheckuser");  
             } else {
-                $this->message ='Data gagal ditambahkan!';
+                $this->message ='Transaksi sukses ditambahkan!';
             }
 
         }
 
-        //how PDO works is that, in the SQL query it uses '?' as PLACEHOLDERS that will then be replaced inside the execute(array(?,?,?)) according to the varname. Urutan harus sesuai dalam execute(array())
-
-        public function UpdateAccount(){
-            $query = "UPDATE akun 
-                    SET username = '$this->username',
-                    password = '$this->password',
-                    namaDepan = '$this->namaDepan',
-                    namaBelakang = '$this->namaBelakang',
-                    email = '$this->email',
-                    noHp = '$this->noHp',
-                    kodePos = '$this->kodePos',
-                    jalan = '$this->jalan',
-                    id_role = '$this->id_role'					
-                    WHERE id = $this->id";
-            $this->hasil = mysqli_query($this->connection, $query);
-            
-            if($this->hasil)
-            $this->message ='Data berhasil diubah!';					
-            else
-            $this->message ='Data gagal diubah!';
-        }
-
-        public function UpdateAccountPDO(){
-            $stmt = $this->connect()->prepare('UPDATE akun 
+        public function UpdateTransaksiStatusPDO(){
+            $stmt = $this->connect()->prepare('UPDATE transaksi
                     SET 
-                    
-                    namaDepan = ?,
-                    namaBelakang = ?,
-                    email = ?,
-                    noHp = ?,
-                    kodePos = ?,
-                    jalan = ?
-                    				
-                    WHERE username = ?;');
+                    id_status = ?,			
+                    WHERE id = ?;');
             //$this->hasil = mysqli_query($this->connection, $query);
            
             
-            if(!$stmt->execute(array($this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->username)))
+            if(!$stmt->execute(array($this->id_status, $this->id)))
             {				
-                $this->message ='Data gagal diubah!';
+                $this->message ='Data transaksi gagal diubah!';
             }
             else
             {
-                $this->message ='Data berhasil diubah!';					
+                $this->message ='Data berhasil berhasil diubah!';					
                 echo '<script>alert(" ' . $this->message . ' ");</script>';
             }
         }
 
-        public function DeleteAccount(){
-            $query = "DELETE FROM akun WHERE username=$this->username";
-            $this->hasil = mysqli_query($this->connection, $query);
-            
-            if($this->hasil)
-            $this->message ='Data berhasil dihapus!';					
-            else
-            $this->message ='Data gagal dihapus!';				
+        public function SelectAllTransaksiPembeli(){    
+        
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksidetail WHERE username=?');
+            //$stmt = "SELECT * FROM akun";            
+            $result = $stmt->execute(array($usernamepb));
+    
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute SelectAllTransaksiPembeli() function";
+                exit();
+            }
+                    
+            $arrResult = Array();
+            $count=0;
+            if($stmt->rowCount() > 0){                
+            while ($data= $stmt->fetch(PDO::FETCH_OBJ))
+            {
+                $objakun = new Transaksi(); 
+                $objakun ->id = $data->id;
+                //$objakun ->username = $data->namaDepan;
+                $objakun ->keterangan = $data->keterangan;
+                $objakun ->tanggal = $data->tanggal;
+                $objakun ->namaBarang = $data->namaBarang;
+                $objakun ->namaToko = $data->namaToko;
+                $objakun ->quantity = $data->quantity;
+                $objakun ->total = $data->total;
+    
+                $arrResult[$count] = $objakun;
+                $count++;
+                }
+            } else {
+                echo "Ain't got any transaction innit";
+            }
+            return $arrResult;          
         }
 
+        public function SelectAllTransaksiPenjual(){    
+        
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksidetail WHERE penjual=?');
+            //$stmt = "SELECT * FROM akun";            
+            $result = $stmt->execute(array($usernamepj));
+    
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute SelectAllTransaksiPembeli() function";
+                exit();
+            }
+                    
+            $arrResult = Array();
+            $count=0;
+            if($stmt->rowCount() > 0){                
+            while ($data= $stmt->fetch(PDO::FETCH_OBJ))
+            {
+                $objakun = new Transaksi(); 
+                $objakun ->id = $data->id;
+                //$objakun ->username = $data->namaDepan;
+                $objakun ->keterangan = $data->keterangan;
+                $objakun ->tanggal = $data->tanggal;
+                $objakun ->namaBarang = $data->namaBarang;
+                $objakun ->namaToko = $data->namaToko;
+                $objakun ->quantity = $data->quantity;
+                $objakun ->total = $data->total;
+    
+                $arrResult[$count] = $objakun;
+                $count++;
+                }
+            } else {
+                echo "Ain't got any transaction innit";
+            }
+            return $arrResult;          
+        }
+
+        //how PDO works is that, in the SQL query it uses '?' as PLACEHOLDERS that will then be replaced inside the execute(array(?,?,?)) according to the varname. Urutan harus sesuai dalam execute(array())
 
         public function DeleteAccountPDO(){
             $stmt = $this->connect()->prepare('DELETE FROM akun WHERE username = ? ');
