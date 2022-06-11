@@ -87,20 +87,20 @@
 
         public function UpdateAccountPDO(){
             $stmt = $this->connect()->prepare('UPDATE akun 
-                    SET 
-                    
+                    SET username = ?,
+                    password = ?,
                     namaDepan = ?,
                     namaBelakang = ?,
                     email = ?,
                     noHp = ?,
                     kodePos = ?,
-                    jalan = ?
-                    				
-                    WHERE username = ?;');
+                    jalan = ?,
+                    id_role = ?					
+                    WHERE id = ?;');
             //$this->hasil = mysqli_query($this->connection, $query);
            
             
-            if(!$stmt->execute(array($this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->username)))
+            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
             {				
                 $this->message ='Data gagal diubah!';
             }

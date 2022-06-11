@@ -1,4 +1,5 @@
 <?php
+require_once ('class.mail.php');
 
 class register extends Connection {
     
@@ -12,6 +13,14 @@ class register extends Connection {
             $stmt = null;
             header("location: ../index.php?error=stmtfailedcheckuser");
             exit();
+        }else{
+            $objEmail = new Mail;
+            $subject = "AKUN BERHASIL TERDAFTAR";
+            $message = "Akun anda berhasil terdaftar dengan username = <strong> $username </strong>";
+            $objEmail->sendMail($email, $username, $subject, $message);
+            
+            #echo"<script>alert('anda berhasil terdaftar')</script>";
+
         }
 
         $stmt = null;
