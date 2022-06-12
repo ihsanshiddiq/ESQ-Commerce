@@ -1,4 +1,5 @@
 <?php
+/*
   if (isset($_POST['validate'])) {
 
     //require_once('../init.class.php');
@@ -11,7 +12,8 @@
     
     $valid = new valider($namaToko);
     $valid -> validateToko($namaToko);
-  }   
+  }  
+  */ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

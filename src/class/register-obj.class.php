@@ -82,10 +82,12 @@ class register extends Connection {
         if($stmt->rowCount() > 0) {
             header("location: ../registerseller.php?error=nametaken");
             echo "<script>alert('Nama Toko sudah terdaftar');</script>";     //happens if there's already username registered/taken
+            exit();
         }
         else {
-            header("location: ../registerseller.php?");
+            header("location: ../registerseller.php?available");
             echo "<script>alert('valid');</script>";     //happens if username is available for register(not taken)
+            exit();
         }
     }
 
