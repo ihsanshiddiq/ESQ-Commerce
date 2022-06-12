@@ -1,6 +1,24 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])){
+    header("location: index.php?error=notloggedin");
+    exit();
+}
+
+    require_once '../../inc.koneksi.php';
+    //require_once '../../inc.koneksisql.php';
+    require_once '../../class/class.akun.php';
+
+
+    $objAkun= new Akun(); 		
+    $objAkun->username = $_SESSION['username'];
+
+    $arrayResult = $objAkun->SelectOneAkunPDO($_SESSION['username']);
+
+    //echo $arrayResult->username;          //dah jalan
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,17 +107,35 @@ session_start();
         <!--Panel Kanan-->
         <div class="col-md-8 px-5">
 
-        <div class="row">
+        <div class="row">                  
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control name textinput" id="name" placeholder="Name"><br>
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Username: ' . $arrayResult->username;
+                            ?>
+                        </p><br>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control birthdate textinput" id="birthdate"
-                            placeholder="birthdate"><br>
+                    <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Email: ' . $arrayResult->email;
+                            ?>
+                        </p><br>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control email textinput" id="email" placeholder="Email"><br>
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Nomor HP: ' . $arrayResult->noHp;
+                            ?>
+                        </p><br>
+                    </div>
+                    <div class="form-group">
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Alamat: ' . $arrayResult->jalan;
+                            ?>
+                        </p><br>
                     </div>
                     <div class="form-group">
                         <!--<input type="text" class="form-control instagram textinput" id="instagram"
@@ -110,17 +146,70 @@ session_start();
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control password textinput" id="password"
-                            placeholder="Password"><br>
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Nama Depan: ' . $arrayResult->namaDepan;
+                            ?>
+                        </p><br>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control profesi textinput" id="profesi"
-                            placeholder="Profesi"><br>
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Nama Belakang: ' . $arrayResult->namaBelakang;
+                            ?>
+                        </p><br>
                     </div>
+                    <div class="form-group">
+                        <p type="text" class="form-control name" id="name">
+                            <?php 
+                                echo  'Kode Pos: ' . $arrayResult->kodePos;
+                            ?>
+                        </p><br>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        <!-- DIVIDER BETWEEN DATA AND UPDATE FORM-->
+
+        <form action="info.php" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control nameDepan textinput" id="name" name="newnamadepan" placeholder="Nama Depan Baru"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control nohpbaru textinput" id="nohpbaru" name="newnohp"
+                            placeholder="Nomor HP Baru"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control email textinput" id="alamat" name="newjalan" placeholder="Alamat Baru"><br>
+                    </div>
+                    <div class="form-group">
+                        <!--<input type="text" class="form-control instagram textinput" id="instagram"
+                            placeholder="instagram"><br>-->
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control textinput" id="password" name="newnamabelakang"
+                            placeholder="Nama Belakang Baru"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control profesi textinput" id="kodePos" name="newkodepos"
+                            placeholder="Kode Pos Baru"><br>
+                    </div>
+
+                    <!--
                     <div class="form-group">
                         <input type="text" class="form-control phone textinput" id="phone"
                             placeholder="Phone Number"><br>
                     </div>
+                    -->
 
 
 
@@ -130,13 +219,13 @@ session_start();
                 <div class="col-md-6">
 
                     <div class="form-group">
-                        <button type="submit" class="btn btnblack"
+                        <button type="submit" class="btn btnblack" name="updateakun"
                             style="color: #ffffff; background-color: black; width: 100%;"><b>EDIT PERSONAL
                                 INFO</b></button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
 
@@ -145,3 +234,29 @@ session_start();
 </body>
 
 </html>
+
+<?php
+
+if(isset($_POST['updateakun'])){
+
+    $newnamadepan = $_POST['newnamadepan'];
+    $newnamabelakang = $_POST['newnamabelakang'];
+    $newnohp = $_POST['newnamabelakang'];
+    $newjalan = $_POST['newjalan'];
+    $newkodepos = $_POST['newkodepos'];
+
+
+    $arrayResult->namaDepan = $_POST['newnamadepan'];
+    $arrayResult->namaBelakang = $_POST['newnamabelakang'];
+    $arrayResult->noHp = $_POST['newnohp'];
+    $arrayResult->jalan = $_POST['newjalan'];
+    $arrayResult->kodePos = $_POST['newkodepos'];
+
+
+    $arrayResult->UpdateAccountPDO();
+
+    
+
+}
+
+?>
