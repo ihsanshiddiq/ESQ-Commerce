@@ -62,7 +62,7 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
-            <a href="transactionb.php">
+            <a href="listtransaksi.php">
                 <h2>Transaction History</h2>
             </a>
             <br>
@@ -97,7 +97,7 @@ if (!isset($_SESSION['username'])){
             <h1><strong>MY ACCOUNT</strong></h1>
             <br>
             <div class="row">
-                <a href="#">
+                <a href="listtransaksi.php">
                     <h1>Purchase History</h1>
                     <p>Check the status and information regarding online orders. You can also cancel your order or
                         request a refund.</p>

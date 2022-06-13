@@ -113,7 +113,7 @@ if (!isset($_SESSION['username'])){
                 <th>Quantity</th>
                 <th>Subtotal</th>
                 <th>Status</th>
-                <th>Action</th>
+                <!--<th>Action</th>-->
                 </tr>	
 
 
@@ -142,10 +142,10 @@ if (!isset($_SESSION['username'])){
                     //echo '<td>'.$dataBarang->.'</td>';
                     //echo '<td>'.$dataBarang->kodePos.'</td>';
                     
-                    echo '<td>';
-                    echo '<button type="submit" class="btn btn-warning" style="width: 40%;" name="edituser" value="'. $dataTransaksi->id .'"><b>Edit</b></button>'; 
-                    echo ' | ';
-                    echo '<button class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataTransaksi->id .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Del </button> </td>';
+                   // echo '<td>';
+                    //echo '<button type="submit" class="btn btn-warning" style="width: 40%;" name="edituser" value="'. $dataTransaksi->id .'"><b>Edit</b></button>'; 
+                   // echo ' | ';
+                    //echo '<button class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataTransaksi->id .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Del </button> </td>';
                     
                     echo '</form> </tr>';				
                     $no++;	
