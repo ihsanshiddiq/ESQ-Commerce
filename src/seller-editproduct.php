@@ -78,28 +78,28 @@ if (!(isset($_SESSION["username"]))) {
             <form action="" method="POST">
                 <table class="table">
                     <tr>
-                        <td>Item Name : <?php echo $objitm->namaBarang; ?></td>
+                        <td>Item Name : <?php //echo $objBarang->namaBarang; ?></td>
                         <td>|</td>
                         <td><p>New Item Name</p></td>
-                        <td><input type="text" class="form-control textinput" name="namadepan" id="namadepan" ></td>
+                        <td><input type="text" class="form-control textinput" name="namabarang" id="namabarang" ></td>
                     </tr>
                     <tr>
-                        <td>Stock : <?php echo $objAccount->namaBelakang; ?></td>
+                        <td>Stock : <?php //echo $objBarang->jumlahStok; ?></td>
                         <td>|</td>
                         <td><p>New Stock</p></td>
-                        <td><input type="text" class="form-control textinput" name="namabelakang" id="namabelakang" ></td>
+                        <td><input type="text" class="form-control textinput" name="jumlahstok" id="jumlahstok" ></td>
                     </tr>
                     <tr>
-                        <td>Category : <?php echo $objAccount->email; ?></td>
+                        <td>Category : <?php //echo $objBarang->nama_Kategori; ?></td>
                         <td>|</td>
                         <td><p>Chose Category</p></td>
-                        <td><input type="email" class="form-control textinput" name="email" id="email" ></td>
+                        <td><input type="email" class="form-control textinput" name="namakategori" id="namakategori" ></td>
                     </tr>
                     <tr>
-                        <td>Price : <?php echo $objAccount->noHp; ?></td>
+                        <td>Price : <?php //echo $objBarang->harga; ?></td>
                         <td>|</td>
                         <td><p>New Price</p></td>
-                        <td><input type="number" class="form-control nohp textinput" name="nohp" id="nohp" ></td>
+                        <td><input type="number" class="form-control nohp textinput" name="harga" id="harga" ></td>
                     </tr>
                         <td></td>
                         <td><input type="submit" class="btn btn-primary" name="save">
