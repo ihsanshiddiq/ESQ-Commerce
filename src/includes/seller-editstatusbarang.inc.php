@@ -11,8 +11,8 @@ $objtr->usernamepj = $_SESSION['username'];
 
 
 if (isset($_POST['diproses'])) {
-    $objtr->id = $_POST['ditolak'];
-    $arrayResult = $objtr->SelectOneTransaksiPDO($idtr);
+    $objtr->id = $_POST['diproses'];
+    $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 2;
     $arrayResult->UpdateTransaksiStatusPDO();
     header("../location: seller-transaction.php?statusupdated");
