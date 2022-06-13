@@ -3,7 +3,7 @@ session_start();
 if (!(isset($_SESSION["username"]))) {
     header("location: index.php?error=unauthorizeduser");
 } else {
-    if (!($_SESSION["id_role"] == "A")) {
+    if (!($_SESSION["id_role"] == "1" OR $_SESSION["id_role"] == "A")) {
         header("location: index.php?error=unauthorizeduser");
     }
 }
@@ -126,7 +126,7 @@ if (!(isset($_SESSION["username"]))) {
                     echo '<td>';
                     echo '<button type="submit" class="btn btn-warning" style="width: 40%;" name="edituser" value="'. $dataAkun->username .'"><b>Edit</b></button>'; 
                     echo ' | ';
-                    echo '<button class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataAkun->username .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Delete </button> </td>';
+                    echo '<button class="btn btn-danger" style="width: 40%;" name="deleteuser" value="'. $dataAkun->username .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Del </button> </td>';
                     
                     echo '</form> </tr>';				
                     $no++;	

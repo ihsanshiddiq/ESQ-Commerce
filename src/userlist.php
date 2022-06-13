@@ -7,7 +7,7 @@ if (!(isset($_SESSION["username"]))) {
     if (!($_SESSION["id_role"] == "A")) {
         header("location: index.php?error=unauthorizedaccount");
         */
-    if (!($_SESSION["id_role"] == "0" OR $_SESSION["id_role"] == "A")) 
+    if (!($_SESSION["id_role"] == "1" OR $_SESSION["id_role"] == "A")) 
       {
         header("location: index.php?error=unauthorizeduser");
       }

@@ -126,7 +126,7 @@
               {
             ?>
             <h2 style="padding-left:30px; color: white"><u>ADMIN</u></h2>
-            <a class="nav-link active blacken" aria-current="page" href="userlist.php">See All Users</a>
+            <a class="nav-link active blacken" aria-current="page" href="admin-listuser.php">See All Users</a>
             <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
             <?php
               }
@@ -134,7 +134,7 @@
               {
             ?>
             <h2 style="padding-left:30px; color: white"><u>SELLER</u></h2>
-            <a class="nav-link active blacken" aria-current="page" href="userlist.php">Check My Shop Items</a>
+            <a class="nav-link active blacken" aria-current="page" href="seller-listproduct.php">My Shop Items</a>
             <a class="nav-link active blacken" aria-current="page" href="myshop.php">See Profile</a>
             <?php
               }
