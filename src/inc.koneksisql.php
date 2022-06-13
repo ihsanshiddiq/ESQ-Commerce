@@ -15,7 +15,7 @@ class Connection2{
     private $host = "localhost";
     private $struser = "root";
     private $strpassword = "";
-    private $strdbname = "ebs-commerce";
+    private $strdbname = "bckpcmrc";
     
     public $connection;
        
