@@ -76,7 +76,7 @@ if(isset($_POST['submit'])){
         $objBarang->updateFoto();
         if($objBarang->result){			
             echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">'; 	
-    
+            header("location: seller-listproduct.php");
         }
         else
             echo "<script> alert('Proses update gagal wei'); </script>";			
