@@ -6,7 +6,7 @@ if(!isset($_GET['openbarang'])) {
     echo '<script>alert("Error: no item");</script>';
     exit();
 }
-echo $_GET['openbarang'];
+//echo $_GET['openbarang'];
 /*
 if (isset($_POST['openbarang'])) {
 
@@ -110,7 +110,8 @@ if (isset($_POST['openbarang'])) {
                         $objMenu->id = $_GET['openbarang'];
                 
                         $arrayResult = $objMenu->selectOneBarangParam($_GET['openbarang']);
-                        echo $arrayResult->namaBarang;
+                        echo $arrayResult->namaBarang ;
+                       // echo 'Kategori: ' . $arrayResult->nama_kategori;
                         
                        
                             
@@ -139,6 +140,7 @@ if (isset($_POST['openbarang'])) {
                     <p style="text-align: justify;">
                         <?php
                         echo $arrayResult->deskripsi;
+                        echo '<br><br>Kategori: ' . $arrayResult->nama_kategori;
                         ?>
                     </p>
 
@@ -168,10 +170,15 @@ if (isset($_POST['openbarang'])) {
                     </fieldset>
                 </div>
                 <br>
-                <div class="row">
-                    <button type="submit" value="check out" style="background-color: black; color: white;"> Add To Cart
+                <form class="row" action="includes/buynow.inc.php" method="GET" target="_blank">
+                    <?php
+                        echo '<button class="col-md-5 mx-1" type="submit" value="' . $arrayResult->id . '" name="buynow" style="background-color: black; color: white;"> Buy Now
+                        </button>';
+                    ?>
+                    
+                    <button class="col-md-5 mx-1" type="submit" value="check out" style="background-color: black; color: white;"> Add To Cart
                     </button>
-                </div>
+                </form>
 
             </div>
         </div>

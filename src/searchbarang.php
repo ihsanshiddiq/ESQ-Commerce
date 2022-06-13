@@ -65,12 +65,12 @@ if ((isset($_GET["searchbar"]))) {
 					$arrayResult = $objMenu->selectAllBarangName($input);
 
 					foreach ($arrayResult as $dataMenu) {
-                        //$_SESSION['kodeBarang'] = $dataMenu->kodeBarang;
-                       
+                        //$_SESSION['id'] = $dataMenu->id;
+                       /*
 						echo '
 
                             <div class="col">
-                                <a href="detailbarang.php?item='.$dataMenu->kodeBarang.'">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
                                     <div class="card">
                                         <img height="150" width="200" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
                                             <div class="card-body">
@@ -82,15 +82,31 @@ if ((isset($_GET["searchbar"]))) {
                             </div>
 							  
 							  ';
+                              */
+
+                        echo '
+                            <form class="col" action="detailbarang.php" method="get">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                    <div class="card">
+                                        <img height="300" width="100%" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
+                                            <div class="card-body">
+                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
+                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                                <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->id .'"><b>Details</b></button>
+                                            </div>
+                                    </div>
+                                </a>
+                            </form>
+                        ';
 
                         /*
                         echo '
                         <li class="span3">
 								<div class="card">
 									<span class="card-body"></span>
-									<p><a href="index.php?p=productdetail&id='.$dataMenu->kodeBarang.'">
+									<p><a href="index.php?p=productdetail&id='.$dataMenu->id.'">
                                        <img height="150" width="200" src="upload/menu/'.$dataMenu->fotoBarang.'" alt="" /></a></p>
-									   <a href="index.php?p=productdetail&id='.$dataMenu->kodeBarang.'" class="title">'.$dataMenu->namaBarang.'</a><br/>
+									   <a href="index.php?p=productdetail&id='.$dataMenu->id.'" class="title">'.$dataMenu->namaBarang.'</a><br/>
 									   <a href="index.php?p=products&id='.$dataMenu->idcategory.'" class="category">'.'</a>
 									<p class="price">Rp '.number_format($dataMenu->harga,2,',','.').'</p>
 								</div>

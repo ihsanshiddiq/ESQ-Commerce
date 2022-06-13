@@ -11,7 +11,7 @@ class Connection{
 }
 */
 
-class Connection{
+class Connection2{
     private $host = "localhost";
     private $struser = "root";
     private $strpassword = "";

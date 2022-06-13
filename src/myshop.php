@@ -3,6 +3,11 @@ session_start();
 if (!isset($_SESSION['username'])){
     header("location: index.php?error=notloggedin");
 }
+
+if (!(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "3")){
+    header("location: index.php?error=falseaccounttype");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

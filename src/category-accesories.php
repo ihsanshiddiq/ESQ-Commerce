@@ -133,6 +133,53 @@
                 </a>
                     
             </div>
+<?php
+            if ((isset($_GET["searchbar"]))){
+					require_once('inc.koneksisql.php'); 
+					require_once('class/class.barang.php'); 
+
+                    $input = $_GET["category"];
+
+					$objMenu = new Barang(); 		
+					$arrayResult = $objMenu->selectAllBarangCategory($input);
+
+					foreach ($arrayResult as $dataMenu) {
+                        //$_SESSION['id'] = $dataMenu->id;
+                       /*
+						echo '
+
+                            <div class="col">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                    <div class="card">
+                                        <img height="150" width="200" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
+                                            <div class="card-body">
+                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
+                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                            </div>
+                                    </div>
+                                </a>
+                            </div>
+							  
+							  ';
+                              */
+
+                        echo '
+                            <form class="col" action="detailbarang.php" method="get">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                    <div class="card">
+                                        <img height="300" width="100%" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
+                                            <div class="card-body">
+                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
+                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                                <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->id .'"><b>Details</b></button>
+                                            </div>
+                                    </div>
+                                </a>
+                            </form>
+                        ';
+                    }
+                }
+                        ?>
 
         </div>
 

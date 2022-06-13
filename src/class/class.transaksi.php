@@ -9,9 +9,12 @@
         private $pembeli = "";
         
         private $id_status = "";
-        private $id_barang = " ";
+        private $id_barang = 0;
         private $quantity = 0;
+        private $price = 0;
         private $total = 0;
+        private $today;
+
         //private $email = " ";
 
         private $hasil = false;
@@ -45,7 +48,30 @@
             $stmt = $this->connect()->prepare('INSERT INTO `transaksi`(`id_status`, `tanggal`, `pembeli`, `id_barang`, `penjual`, `quantity`, `total`) 
             VALUES (?, ?, ?, ?, ?, ?, ?);');
 
-            if(!$stmt->execute(array($this->id_status, $this->tanggal, $this->pembeli, $this->id_barang, $this->penjual, $this->quantity, $this->total)))
+            $newstatus = 1;
+            //$today = date("Y/m/d");
+
+            if(!$stmt->execute(array($newstatus, $this->today, $this->pembeli, $this->id_barang, $this->penjual, $this->quantity, $this->total)))
+            {
+                $stmt = null;
+                $this->message ='Data gagal ditambahkan (stmt error)';
+                //header("location: ../index.php?error=stmtfailedcheckuser");  
+            } else {
+                $this->message ='Transaksi sukses ditambahkan!';
+            }
+
+        }
+
+        public function addTransaksiPDOTemporary(){
+
+            $stmt = $this->connect()->prepare('INSERT INTO `transaksi`(`id_status`, `tanggal`, `pembeli`, `id_barang`, `penjual`, `quantity`, `total`) 
+            VALUES (?, ?, ?, ?, ?, ?, ?);');
+
+            $newstatus = 1;
+            //$today = date("YYYY-mm-dd");
+            $total = $this->price * $this->quantity;
+
+            if(!$stmt->execute(array($newstatus, $this->today, $this->pembeli, $this->id_barang, $this->penjual, $this->quantity, $total)))
             {
                 $stmt = null;
                 $this->message ='Data gagal ditambahkan (stmt error)';

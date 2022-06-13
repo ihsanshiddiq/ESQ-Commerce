@@ -48,7 +48,7 @@
                   echo '<td>'.$dataBarang->deskripsi.'</td>';
                   echo '<td>'.$dataBarang->jumlahStok.'</td>';
                   echo '<td>'.$dataBarang->harga.'</td>';
-                  echo '<td>'.$dataBarang->nama_kategori.'</td>';
+                  echo '<td><h5>'.$dataBarang->nama_kategori.'</h5></td>';
                   echo "<td><img src='../assets/produk/".$dataBarang->fotoBarang."' width='100px' height='100px'/></td>";
                   echo '<td>
                         <a href="barangupdate.php?updateid='.$dataBarang->id.'" class="btn btn-warning" role="button">Update</a>

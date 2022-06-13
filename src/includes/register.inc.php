@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
   $noHp = stripslashes($_POST['no_hp']);
   $kodePos = stripslashes($_POST['kode_pos']);
   $jalan = stripslashes($_POST['alamat']);
-  $id_role = 'A'; // nanti ganti ke int biar sesuai dengan database
+  $id_role = 2; // nanti ganti ke int biar sesuai dengan database
 
   //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
   //include "inc.koneksi.php";

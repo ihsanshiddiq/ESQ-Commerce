@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
   $kodePos = $_POST['kode_pos'];
 
   $jalan = $_POST['alamat'];
-  $id_role = 'S';
+  $id_role = 3;
 
   //unique trait/variable for seller
   $namaToko = $_POST['namaToko'];;

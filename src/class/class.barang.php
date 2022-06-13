@@ -2,7 +2,7 @@
 
 
 
-class Barang extends Connection{
+class Barang extends Connection2{
     private $id = 0;
 
     private $namaBarang = '';
@@ -96,6 +96,9 @@ class Barang extends Connection{
     public function selectOneBarang(){
         $sql = "SELECT * FROM barang WHERE id='$this->id'";
 		$resultOne = mysqli_query($this->connection, $sql);	
+
+        $item = Array();
+
 		if(mysqli_num_rows($resultOne) == 1){
 			$this->hasil = true;
 			$data = mysqli_fetch_assoc($resultOne);
@@ -106,8 +109,9 @@ class Barang extends Connection{
             $this->jumlahStok = $data['jumlahStok'];	
             $this->harga = $data['harga'];	
             $this->fotoBarang = $data['fotoBarang'];	
-
+            $item = $objBarang;
 		}	
+        return $item;
     }
 
     public function selectOneBarangRedirect(){
@@ -150,6 +154,7 @@ class Barang extends Connection{
             $objBarang->deskripsi=$data['deskripsi'];
             $objBarang->jumlahStok=$data['jumlahStok'];
             $objBarang->harga=$data['harga'];
+            $objBarang->nama_kategori=$data['nama_kategori'];
             $objBarang->fotoBarang=$data['fotoBarang'];
             $item = $objBarang;
             //$i++;
@@ -188,6 +193,7 @@ class Barang extends Connection{
                 $objBarang->deskripsi=$data['deskripsi'];
                 $objBarang->jumlahStok=$data['jumlahStok'];
                 $objBarang->harga=$data['harga'];
+                $objBarang->nama_kategori=$data['nama_kategori'];
                 $objBarang->fotoBarang=$data['fotoBarang'];
                 $arrResult[$i] = $objBarang;
                 $i++;
@@ -201,6 +207,33 @@ class Barang extends Connection{
     public function selectAllBarangName($input){
         $this->connect();
         $sql = "SELECT * FROM barang WHERE namaBarang LIKE '%$input%'";
+        $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
+        
+        $arrResult = Array();
+        $i=0;
+        if(mysqli_num_rows($result)>0){
+            while($data = mysqli_fetch_array($result))
+            {
+                $objBarang = new Barang();
+                $objBarang->id=$data['id'];
+                $objBarang->namaBarang=$data['namaBarang'];
+                $objBarang->deskripsi=$data['deskripsi'];
+                $objBarang->jumlahStok=$data['jumlahStok'];
+                $objBarang->harga=$data['harga'];
+                $objBarang->nama_kategori=$data['nama_kategori'];
+                $objBarang->fotoBarang=$data['fotoBarang'];
+                $arrResult[$i] = $objBarang;
+                $i++;
+            }
+        }
+        return $arrResult;
+
+                
+    }
+
+    public function selectAllBarangCategory($input){
+        $this->connect();
+        $sql = "SELECT * FROM barang WHERE nama_kategori LIKE '%$input%'";
         $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
         
         $arrResult = Array();

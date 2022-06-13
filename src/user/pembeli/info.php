@@ -16,7 +16,12 @@ if (!isset($_SESSION['username'])){
     $arrayResult = $objAkun->SelectOneAkunPDO($_SESSION['username']);
 
     //echo $arrayResult->username;          //dah jalan
-
+    /*
+    if (isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+    }
+    */
+    
 ?>
 
 <!DOCTYPE html>
@@ -174,7 +179,7 @@ if (!isset($_SESSION['username'])){
 
         <!-- DIVIDER BETWEEN DATA AND UPDATE FORM-->
 
-        <form action="info.php" method="post">
+        <form action="../../includes/updateprofile.inc.php" method="post">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -236,15 +241,21 @@ if (!isset($_SESSION['username'])){
 </html>
 
 <?php
-
+/*
 if(isset($_POST['updateakun'])){
 
     $newnamadepan = $_POST['newnamadepan'];
     $newnamabelakang = $_POST['newnamabelakang'];
-    $newnohp = $_POST['newnamabelakang'];
+    $newnohp = $_POST['newnohp'];
     $newjalan = $_POST['newjalan'];
     $newkodepos = $_POST['newkodepos'];
 
+
+    if(empty($_POST['newnamadepan']) OR empty($_POST['newnamabelakang']) OR empty($_POST['newjalan']) OR empty($_POST['newkodepos'])){
+        
+        echo '<script>alert("Mohon isi semua form data");</script>';
+        
+    } else{
 
     $arrayResult->namaDepan = $_POST['newnamadepan'];
     $arrayResult->namaBelakang = $_POST['newnamabelakang'];
@@ -254,9 +265,11 @@ if(isset($_POST['updateakun'])){
 
 
     $arrayResult->UpdateAccountPDO();
-
     
-
+    //header("Refresh:0");
+    }    
+    
 }
+*/
 
 ?>

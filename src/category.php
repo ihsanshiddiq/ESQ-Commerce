@@ -12,7 +12,7 @@ session_start();
 
     <!-- CSS -->
     <link rel="stylesheet" href="../lib/css/style.css">
-   
+    <link rel="stylesheet" href="../lib/customskin.css">
     <!--CDN-->
     <?php
     require 'head-conf.html';
@@ -122,52 +122,6 @@ session_start();
                 </a>
 
             </div>
-
-            <?php
-
-					require_once('inc.koneksisql.php'); 
-					require_once('class/class.barang.php'); 
-					$objMenu = new Barang(); 		
-					$arrayResult = $objMenu->selectAllBarang(0, '');
-
-					foreach ($arrayResult as $dataMenu) {
-                        //$_SESSION['id'] = $dataMenu->id;
-                       
-						echo '
-
-                            <form class="col" action="detailbarang.php" method="get">
-                                <a href="detailbarang.php?item='.$dataMenu->id.'">
-                                    <div class="card">
-                                        <img height="300" width="100%" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
-                                            <div class="card-body">
-                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
-                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
-                                                <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->id .'"><b>Details</b></button>
-                                            </div>
-                                    </div>
-                                </a>
-                            </form>
-							  
-							  ';
-
-                        /*
-                        echo '
-                        <li class="span3">
-								<div class="card">
-									<span class="card-body"></span>
-									<p><a href="index.php?p=productdetail&id='.$dataMenu->id.'">
-                                       <img height="150" width="200" src="upload/menu/'.$dataMenu->fotoBarang.'" alt="" /></a></p>
-									   <a href="index.php?p=productdetail&id='.$dataMenu->id.'" class="title">'.$dataMenu->namaBarang.'</a><br/>
-									   <a href="index.php?p=products&id='.$dataMenu->idcategory.'" class="category">'.'</a>
-									<p class="price">Rp '.number_format($dataMenu->harga,2,',','.').'</p>
-								</div>
-							  </li>
-                              ';
-                        */
-                              
-					}
-					?>
-
             <div class="col">
                 <a href="./produk-belt5.php">
 
@@ -182,6 +136,54 @@ session_start();
                 </a>
                     
             </div>
+<?php
+            if ((isset($_GET["category"]))){
+					require_once('inc.koneksisql.php'); 
+					require_once('class/class.barang.php'); 
+
+                    $input = $_GET["category"];
+                    echo 'kategori: ' . $input;
+
+					$objMenu = new Barang(); 		
+					$arrayResult = $objMenu->selectAllBarangCategory($input);
+
+					foreach ($arrayResult as $dataMenu) {
+                        //$_SESSION['id'] = $dataMenu->id;
+                       /*
+						echo '
+
+                            <div class="col">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                    <div class="card">
+                                        <img height="150" width="200" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
+                                            <div class="card-body">
+                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
+                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                            </div>
+                                    </div>
+                                </a>
+                            </div>
+							  
+							  ';
+                              */
+
+                        echo '
+                            <form class="col" action="detailbarang.php" method="get">
+                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                    <div class="card">
+                                        <img height="300" width="100%" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
+                                            <div class="card-body">
+                                                <h3 class="card-title">'.$dataMenu->namaBarang.'</h3>
+                                                <p class="card-text price">Rp'.number_format($dataMenu->harga,2,',','.').'</p>
+                                                <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->id .'"><b>Details</b></button>
+                                            </div>
+                                    </div>
+                                </a>
+                            </form>
+                        ';
+                    }
+                }
+                        ?>
 
         </div>
 

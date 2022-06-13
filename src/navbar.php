@@ -17,9 +17,9 @@
 
               <?php
               if(isset($_SESSION["id_role"])){
-                if(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "0") {
+                if(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "3") {
                  
-                } else if ($_SESSION["id_role"] == "B"){
+                } else if ($_SESSION["id_role"] == "B"  OR ($_SESSION["id_role"]) == "2"){
               ?>
               <input class="form-control me-2 searchinput" type="search" placeholder="" name = "searchbar" aria-label="Search">
               <button class="btn" type="submit" name="btnsearch"><b>SEARCH</b></button>
@@ -94,13 +94,28 @@
         
         <?php
           if(isset($_SESSION["id_role"])){
-            if(($_SESSION["id_role"]) == "B") {
-
+            if(($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "2") {
+              
             ?>
             <a class="nav-link active blacken" aria-current="page" href="user/pembeli/my.php">See Profile</a>
+           
+              <a href="#">Available Items</a>
+              <a href="#">Info+</a>
+              <a href="#">Contact</a>
+              <a href="#">Category</a>
+              <ul class="mx-4">
+                <form action="category.php" method="GET">
+                <?php
+                  echo '<li><button class="sidebarbtn" type="submit" name="category" value="Food"><h5>Food</h5></button></li>';
+                  echo '<li><button class="sidebarbtn" type="submit" name="category" value="Drink"><h5>Drink</h5></button></li>';
+                  echo '<li><button class="sidebarbtn" type="submit" name="category" value="Accessories"><h5>Accessories</h5></button></li>';
+                  echo '<li><button class="sidebarbtn" type="submit" name="category" value="Fashion"><h5>Fashion</h5></button></li>';
+                  ?>
+                </form>
+              <ul>
             <?php
               } 
-              else if(($_SESSION["id_role"]) == "0" OR ($_SESSION["id_role"]) == "A")
+              else if(($_SESSION["id_role"]) == "1" OR ($_SESSION["id_role"]) == "A")
               {
             ?>
             <h2 style="padding-left:30px; color: white"><u>ADMIN</u></h2>
@@ -108,7 +123,7 @@
             <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
             <?php
               }
-              else if(($_SESSION["id_role"]) == "S")
+              else if(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "3")
               {
             ?>
             <h2 style="padding-left:30px; color: white"><u>SELLER</u></h2>
@@ -120,11 +135,10 @@
               ?>
             } else {
               ?>
-              <a href="#">HOT Items!! OMG!!1!!11!</a>
               <a href="#">Available Items</a>
               <a href="#">Category</a>
               <a href="#">Info+</a>
-              <a href="#" style="border-bottom: 4px white solid">Contact</a>
+              <a href="#">Contact</a>
               <?php
             }
         ?>

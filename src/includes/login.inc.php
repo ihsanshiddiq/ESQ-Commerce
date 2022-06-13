@@ -21,17 +21,23 @@ if (isset($_POST['submit'])) {
 
  //Balik ke Index
 
- if ($_SESSION["id_role"] == 0){
+ if ($_SESSION["id_role"] == 1 OR $_SESSION["id_role"]== "A"){
 
     header("location: ../index.php?error=none-login=admin");
- }
+    
+ } else if($_SESSION["id_role"] == "B" OR $_SESSION["id_role"] == "2"){
 
- if ($_SESSION["id_role"] == "B"){
-    header("location: ../index.php?error=none");
+   header("location: ../index.php?error=none");
+
+ } else if ($_SESSION["id_role"] == "S" OR $_SESSION["id_role"] == "3"){
+
+   header("location: ../myshop.php?error=none");
+
  } else {
-    header("location: ../index.php?error=none");
+   
+   header("location: ../index.php?error=none");
+   
  }
- echo "lol";
 }
 
 ?>
