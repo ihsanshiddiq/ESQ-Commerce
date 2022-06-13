@@ -75,7 +75,8 @@ if(isset($_POST['submit'])){
     if($isSuccessUpload){					 
         $objBarang->updateFoto();
         if($objBarang->result){			
-            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">'; 	
+            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">'; 
+            header("location: seller-listproduct.php");	
     
         }
         else

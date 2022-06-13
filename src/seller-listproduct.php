@@ -92,8 +92,8 @@ if (!(isset($_SESSION["username"]))) {
             }
             ?>
             </table>
-            <a class="btn btn-primary" href="seller-addproduct.php" target= "_Blank">Add Item</a>
-            <a class="btn btn-primary" href="./includes/print-user.inc.php" target= "_Blank">cetak user</a>
+            <a class="btn btn-primary" href="seller-addproduct.php">Add Item</a>
+            <a class="btn btn-primary" href="./includes/print-reportUser.inc.php" target= "_Blank">cetak user</a>
       </section>
 
 </body>
