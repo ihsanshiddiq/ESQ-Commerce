@@ -140,12 +140,20 @@
               }
             } else {
               ?>
-            } else {
-              ?>
+            
               <a href="#">Available Items</a>
-              <a href="#">Category</a>
               <a href="#">Info+</a>
               <a href="#">Contact</a>
+              <a href="#">Category</a>
+              <ul class="mx-4">
+              <form action="category.php" method="GET">
+                <li><button class="sidebarbtn" type="submit" name="category" value="Food"><h5>Food</h5></button></li>
+                <li><button class="sidebarbtn" type="submit" name="category" value="Drink"><h5>Drink</h5></button></li>
+                <li><button class="sidebarbtn" type="submit" name="category" value="Accessories"><h5>Accessories</h5></button></li>
+                <li><button class="sidebarbtn" type="submit" name="category" value="Fashion"><h5>Fashion</h5></button></li>
+            </form>
+              </ul>
+
               <?php
             }
         ?>

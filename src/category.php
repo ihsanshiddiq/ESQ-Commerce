@@ -28,7 +28,7 @@ session_start();
     </nav>
 
     <!--Content-->
-    <div class="container py-5">
+    <div class="container my-5 py-4">
         <!--butuh revisi ngab-->
         <div class="row">
             <div class="col-md-12">
@@ -142,7 +142,7 @@ session_start();
 					require_once('class/class.barang.php'); 
 
                     $input = $_GET["category"];
-                    echo 'kategori: ' . $input;
+                    //echo 'kategori: ' . $input;
 
 					$objMenu = new Barang(); 		
 					$arrayResult = $objMenu->selectAllBarangCategory($input);
@@ -169,7 +169,7 @@ session_start();
 
                         echo '
                             <form class="col" action="detailbarang.php" method="get">
-                                <a href="detailbarang.php?item='.$dataMenu->id.'">
+                                <div href="detailbarang.php?item='.$dataMenu->id.'">
                                     <div class="card">
                                         <img height="300" width="100%" src="../assets/produk/'.$dataMenu->fotoBarang.'" alt="'.$dataMenu->fotoBarang.'" />
                                             <div class="card-body">
@@ -178,7 +178,7 @@ session_start();
                                                 <button type="submit" class="btn btnblack" style="width: 100%;" name="openbarang" value="'. $dataMenu->id .'"><b>Details</b></button>
                                             </div>
                                     </div>
-                                </a>
+                                </div>
                             </form>
                         ';
                     }

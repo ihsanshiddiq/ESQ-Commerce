@@ -16,7 +16,7 @@ if(isset($_GET['buynow']) AND isset($_SESSION['username'])){
     $newtr = new Transaksi();
     $newtr->id_barang = $_GET['buynow'];
     $newtr->pembeli = $_SESSION['username'];
-    $newtr->penjual = "testament";
+    $newtr->penjual = $barResult->id_penjual;
     $newtr->price = $barResult->harga;
     $newtr->quantity = 1;
     $today = date("h:i:s Y/m/d");

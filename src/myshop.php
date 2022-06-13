@@ -72,7 +72,7 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
             </a>
             <br>
 
-            <a href="#">
+            <a href="seller-listproduct.php">
                 <h2>List Product</h2>
             </a>
             <br>
@@ -101,7 +101,7 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
             </div>
             <br>
             <div class="row">
-                <a href="#">
+                <a href="seller-listproduct.php">
                     <h1>List Product</h1>
                     <p>Check product status and information. You can also add and remove your products.</p>
                 </a>

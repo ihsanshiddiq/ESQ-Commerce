@@ -3,7 +3,7 @@ session_start();
 if (!(isset($_SESSION["username"]))) {
     header("location: index.php?error=unauthorizeduser");
 } else {
-    if (!($_SESSION["id_role"] == "A")) {
+    if (!($_SESSION["id_role"] == "S" OR $_SESSION["id_role"]==3)) {
         header("location: index.php?error=unauthorizeduser");
     }
 }
@@ -12,15 +12,19 @@ require_once( 'inc.koneksisql.php');
 require_once('./init.class.php');
 $objBarang = new Barang();
 if(isset($_POST['submit'])){
+
+    if(isset($_POST['namaBarang']) || isset($_POST['deskripsi']) || isset($_POST['jumlahStok']) || isset($_POST['harga']) || isset($_POST['nama_kategori']))
     
     //catch user input
     $objBarang->namaBarang = $_POST['namaBarang'];
-    $objBarang->deskripsi = $_POST['deskripsi'];
+    $objBarang->deskripsi = stripslashes($_POST['deskripsi']);
     $objBarang->jumlahStok = $_POST['jumlahStok'];
     $objBarang->harga = $_POST['harga'];
     $objBarang->nama_kategori = $_POST['nama_kategori'];
+    $objBarang->id_penjual = $_SESSION['username'];
 
     $objBarang->addBarang();
+
     if($objBarang->result){
         echo"<script> alert('Data berhasil ditambakan!'); </script>";
     }
@@ -65,7 +69,7 @@ if(isset($_POST['submit'])){
     if($isSuccessUpload){					 
         $objBarang->updateFoto();
         if($objBarang->result){			
-            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=listbarang.php">'; 	
+            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">'; 	
     
         }
         else
@@ -153,7 +157,7 @@ elseif(isset($_GET['id'])){
                 <table class="table">
                     <tr>
                         <td><p>Nama Barang</p></td>
-                        <td><input type="text" class="form-control textinput" name="namaBarang" id="namaBarang" ></td>
+                        <td><input type="text" class="form-control textinput"  name="namaBarang" id="namaBarang" ></td>
                     </tr>
                     <tr>
                         <td><p>Deskripsi</p></td>
@@ -183,7 +187,7 @@ elseif(isset($_GET['id'])){
                     <tr>
                         <td></td>
                         <td><input type="submit" class="btn btn-primary" name="submit">
-                        <a href="admin-listuser.php" class="btn btn-danger">Cancel</a></td>
+                        <a href="seller-listproduct.php" class="btn btn-danger">Cancel</a></td>
                     </tr>
                 </table>
             </form>

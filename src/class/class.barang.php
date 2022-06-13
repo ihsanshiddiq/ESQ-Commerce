@@ -13,7 +13,7 @@ class Barang extends Connection2{
     //private $currentfoto = '';
     private $jumlahTerjual = 0;
     private $nama_kategori = '';
-    private $id_penjual = 0;
+    private $id_penjual = "";
     private $result = false;
     private $message ='';
 
@@ -30,9 +30,9 @@ class Barang extends Connection2{
     }
 
     public function addBarang(){
-        $sql = "INSERT INTO barang(namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
+        $sql = "INSERT INTO barang(namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori, id_penjual) 
                 values ('$this->namaBarang', '$this->deskripsi', $this->jumlahStok, $this->harga, '$this->fotoBarang',
-                        '$this->nama_kategori'/*, '$this->id_penjual'*/)";
+                        '$this->nama_kategori', '$this->id_penjual');";
         $this->result = mysqli_query($this->connection, $sql);
         
         $this->id = $this->connection->insert_id;
@@ -156,6 +156,7 @@ class Barang extends Connection2{
             $objBarang->harga=$data['harga'];
             $objBarang->nama_kategori=$data['nama_kategori'];
             $objBarang->fotoBarang=$data['fotoBarang'];
+            $objBarang->id_penjual=$data['id_penjual'];
             $item = $objBarang;
             //$i++;
 
@@ -219,6 +220,34 @@ class Barang extends Connection2{
                 $objBarang->namaBarang=$data['namaBarang'];
                 $objBarang->deskripsi=$data['deskripsi'];
                 $objBarang->jumlahStok=$data['jumlahStok'];
+                $objBarang->harga=$data['harga'];
+                $objBarang->nama_kategori=$data['nama_kategori'];
+                $objBarang->fotoBarang=$data['fotoBarang'];
+                $arrResult[$i] = $objBarang;
+                $i++;
+            }
+        }
+        return $arrResult;
+
+                
+    }
+
+    public function selectAllBarangPenjual($input){
+        $this->connect();
+        $sql = "SELECT * FROM barang WHERE id_penjual LIKE '$input'";
+        $result = mysqli_query($this->connection, $sql) or die(mysqli_error($this->connection));	
+        
+        $arrResult = Array();
+        $i=0;
+        if(mysqli_num_rows($result)>0){
+            while($data = mysqli_fetch_array($result))
+            {
+                $objBarang = new Barang();
+                $objBarang->id=$data['id'];
+                $objBarang->namaBarang=$data['namaBarang'];
+                $objBarang->deskripsi=$data['deskripsi'];
+                $objBarang->jumlahStok=$data['jumlahStok'];
+                $objBarang->jumlahTerjual=$data['jumlahTerjual'];
                 $objBarang->harga=$data['harga'];
                 $objBarang->nama_kategori=$data['nama_kategori'];
                 $objBarang->fotoBarang=$data['fotoBarang'];
