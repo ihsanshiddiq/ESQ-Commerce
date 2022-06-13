@@ -30,8 +30,8 @@ class Barang extends Connection2{
     }
 
     public function addBarang(){
-        $sql = "INSERT INTO barang(/*id,*/ namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
-                values (/*'$this->id',*/ '$this->namaBarang', '$this->deskripsi', $this->jumlahStok, $this->harga, '$this->fotoBarang',
+        $sql = "INSERT INTO barang(namaBarang, deskripsi, jumlahStok, harga, fotoBarang, nama_kategori/*, 'id_penjual'*/) 
+                values ('$this->namaBarang', '$this->deskripsi', $this->jumlahStok, $this->harga, '$this->fotoBarang',
                         '$this->nama_kategori'/*, '$this->id_penjual'*/)";
         $this->result = mysqli_query($this->connection, $sql);
         
