@@ -87,26 +87,29 @@
 
         public function UpdateAccountPDO(){
             $stmt = $this->connect()->prepare('UPDATE akun 
-                    SET username = ?,
-                    password = ?,
+                    SET                
                     namaDepan = ?,
                     namaBelakang = ?,
                     email = ?,
                     noHp = ?,
                     kodePos = ?,
-                    jalan = ?,
-                    id_role = ?					
-                    WHERE id = ?;');
+
+                    jalan = ?
+                    				
+                    WHERE username = ?;');
             //$this->hasil = mysqli_query($this->connection, $query);
            
             
-            if(!$stmt->execute(array($this->username, $this->password, $this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->id_role)))
+            if(!$stmt->execute(array($this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->username)))
+
             {				
                 $this->message ='Data gagal diubah!';
             }
             else
             {
                 $this->message ='Data berhasil diubah!';					
+                echo '<script>alert(" ' . $this->message . ' ");</script>';
+
             }
         }
 
@@ -192,7 +195,98 @@
                     
                 }
         }
+
+        public function SelectOneAkunPDO($uname){    
+        
+            $stmt = $this->connect()->prepare('SELECT * FROM akun WHERE username = ?');
+            //$stmt = "SELECT * FROM akun";            
+            $result = $stmt->execute(array($uname));
+    
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute SelectAllEmployee() function, fail to execute: SELECT * FROM akun";
+                exit();
+            }
+                    
+            $arrResult;
+            //$count=0;
+            if($stmt->rowCount() > 0){                
+            while ($data= $stmt->fetch(PDO::FETCH_OBJ))
+            {
+                $objakun = new Akun(); 
+                $objakun ->username = $data->username;
+                $objakun ->namaDepan = $data->namaDepan;
+                $objakun ->namaBelakang = $data->namaBelakang;
+                $objakun ->email = $data->email;
+                $objakun ->id_role = $data->id_role;
+                $objakun ->noHp = $data->noHp;
+                $objakun ->jalan = $data->jalan;
+                $objakun ->kodePos = $data->kodePos;
+    
+                $arrResult = $objakun;
+                //$count++;
+                }
+            } else {
+                echo "Ain't got any user innit";
+            }
+            return $arrResult;          
+        }
+
+
+
+        public function SelectOneAccount(){
+            $query = "SELECT * FROM akun WHERE username='$this->username'"; 
+            $resultOne = mysqli_query($this->connection, $query);
+            if(mysqli_num_rows($resultOne) == 1){
+                $this->hasil = true;
+                $data = mysqli_fetch_assoc($resultOne);
+                $this->username=$data['username'];
+                $this->namaDepan=$data['namaDepan'];
+                $this->namaBelakang=$data['namaBelakang'];
+                $this->email=$data['email'];
+                $this->noHp=$data['noHp'];
+                $this->jalan=$data['jalan'];
+                $this->kodePos=$this['kodePos'];
+            }
+
+        }
+
+        public function ValidateEmail($email){
+            $query = "SELECT a.*, p.id_penjual as idpenjual FROM akun a LEFT JOIN penjual p ON a.username = p.username INNER JOIN role r ON a.id_role = r.id_role WHERE email='$email'";
+            $resultOne = mysqli_query($this->connection, $query);
+            if(mysqli_num_rows($resultOne) ==1){
+                $this->hasil = true;
+                $data = mysqli_fetch_assoc($resultOne);
+                $this->username=$data['username'];
+                $this->namaDepan=$data['namaDepan'];
+                $this->namaBelakang=$data['namaBelakang'];
+                $this->email=$data['email'];
+                $this->noHp=$data['noHp'];
+                $this->kodePos=$data['kodePos'];
+                $this->jalan=$data['jalan'];
+                $this->id_role=$this['id_role'];
+                return true;
+            }
+        }
+
+
+
+
+        public function reset_pass(){
+                $stmt = $this->connect()->prepare('UPDATE akun SET password = ? WHERE username = ?');
+
+                if (!$stmt->execute(array($this->password, $this->username))) {
+                    $this->hasil = false;
+                }else {
+                    $this->hasil = true;
+                    
+                }
+        }
     }
+
+
+
+
 
 
 
