@@ -62,7 +62,7 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
     <div class="row py-5 my-5">
         <div class="col-md-4 px-5" styel="color: black;">
 
-            <a href="#">
+            <a href="myshop.php">
                 <h2>My Shop Account</h2>
             </a>
             <br>
@@ -74,6 +74,11 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
 
             <a href="seller-listproduct.php">
                 <h2>List Product</h2>
+            </a>
+            <br>
+
+            <a href="seller-transaction.php">
+                <h2>Transactions</h2>
             </a>
             <br>
 
@@ -91,6 +96,14 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
         <div class="col-md-8 px-5">
 
             <h1><strong>MY SHOP ACCOUNT</strong></h1>
+            <br>
+            <div class="row">
+                <a href="seller-transaction.php">
+                    <h1>Purchase History</h1>
+                    <p>Check the status and information regarding online orders. You can also cancel your order or
+                        request a refund.</p>
+                </a>
+            </div>
             <br>
             <div class="row">
                 <a href="info.php">

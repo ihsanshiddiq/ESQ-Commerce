@@ -16,14 +16,20 @@ if(isset($_POST['submit'])){
     
     if(!(isset($_POST['namaBarang']) || isset($_POST['deskripsi']) || isset($_POST['jumlahStok']) || isset($_POST['harga']))){
         echo '<script>alert("mohon isi semua form");</script>';
-        
+        header("seller-addproduct.php");
         exit();
     }
+
+    echo 'nama barang: ' . $_POST['namaBarang'];
+    echo 'desc: ' . $_POST['deskripsi'];
+    echo 'stok: ' . $_POST['jumlahStok'];
+    echo 'harga: ' . $_POST['harga'];
+    
     
     
     //catch user input
     $objBarang->namaBarang = $_POST['namaBarang'];
-    $objBarang->deskripsi = stripslashes($_POST['deskripsi']);
+    $objBarang->deskripsi = $_POST['deskripsi'];
     $objBarang->jumlahStok = $_POST['jumlahStok'];
     $objBarang->harga = $_POST['harga'];
     $objBarang->nama_kategori = $_POST['nama_kategori'];
@@ -75,8 +81,9 @@ if(isset($_POST['submit'])){
     if($isSuccessUpload){					 
         $objBarang->updateFoto();
         if($objBarang->result){			
-            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">'; 	
-            header("location: seller-listproduct.php");
+            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=seller-listproduct.php">';
+            header("location: seller-listproduct.php"); 	
+    
         }
         else
             echo "<script> alert('Proses update gagal wei'); </script>";			
@@ -86,10 +93,12 @@ if(isset($_POST['submit'])){
 
 
 }
+/*
 elseif(isset($_GET['id'])){
     $objBarang->id = $_GET['id'];
     $objBarang->viewOneBarang();
 }
+*/
 
 
 
@@ -121,36 +130,6 @@ elseif(isset($_GET['id'])){
             require 'navbar.php';
         ?>
     </nav>
-    <!---->
-      
-      <script>
-      
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-      }
-      
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-      }
-
-      var absoluted = false;
-      function expandNav() {
-
-        if (absoluted == true){
-          document.getElementById("navbar").style.opacity = "70%";
-          absoluted = false;
-        } else {
-          document.getElementById("navbar").style.backgroundColor = "white";
-          document.getElementById("navbar").style.opacity = "100%";
-          absoluted = true;
-        }
-        
-      }
-      
-      function unexpandNav() {
-        document.getElementById("navbar").style.opacity = "70%";
-      }
-      </script>
       <!---->
 
     <section class="container my-5 py-5">
@@ -170,7 +149,7 @@ elseif(isset($_GET['id'])){
                         <td><input type="text" class="form-control textinput" name="deskripsi" id="deskripsi" ></td>
                     </tr>
                         <td><p>Jumlah Stok</p></td>
-                        <td><input type="text" class="form-control textinput" name="jumlahStok" id="jumlahStok" ></td>
+                        <td><input type="number" class="form-control textinput" name="jumlahStok" id="jumlahStok" ></td>
                     </tr>
                     <tr>
                         <td><p>Harga</p></td>

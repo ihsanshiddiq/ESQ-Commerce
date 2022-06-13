@@ -37,10 +37,41 @@ if (!(isset($_SESSION["username"]))) {
         ?>
     </nav>
 
-      
+    <div class="row py-5 my-5">
+        <div class="col-md-4 px-5" styel="color: black;">
+
+            <a href="myshop.php">
+                <h2>My Shop Account</h2>
+            </a>
+            <br>
+
+            <a href="info.php">
+                <h2>Personal Info</h2>
+            </a>
+            <br>
+
+            <a href="seller-listproduct.php">
+                <h2>List Product</h2>
+            </a>
+            <br>
+
+            <a href="seller-transaction.php">
+                <h2>Transactions</h2>
+            </a>
+            <br>
+
+            <a href="#">
+                <h2>Access Data</h2>
+            </a>
+            <br>
+
+            <a href="#">
+                <h3 style="color: rgb(213, 5, 5);">logout</h3>
+            </a>
+        </div>
       <!---->
 
-      <section class="container-fluid my-5 py-5">
+      <section class="col-md px-5">
             <h4 class="title">
             <span class="text">
             <strong>My Shop Item List</strong>

@@ -18,9 +18,9 @@ if (isset($_POST['submit'])) {
   $id_role = 3;
 
   //unique trait/variable for seller
-  $namaToko = $_POST['namaToko'];;
-  $instagram = $_POST['instagram'];;
-  $facebook = $_POST['facebook'];;
+  $namaToko = $_POST['namaToko'];
+  $instagram = $_POST['instagram'];
+  $facebook = $_POST['facebook'];
 
   //Register-Controller class. These classes below, including ORDER has to be like this and cannot be mixed up in the urutan.
   //include "inc.koneksi.php";
@@ -48,5 +48,4 @@ if (isset($_POST['validate'])) {
 
   //header("location: ../registerseller.php");
 }   
-
 ?>

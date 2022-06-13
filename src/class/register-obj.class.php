@@ -15,7 +15,9 @@ class register extends Connection {
             $stmt = null;
             header("location: ../index.php?error=stmtfailedcheckuser");
             exit();
-        }else{
+        }
+        
+        else{
             $objEmail = new Mail;
             $subject = "AKUN BERHASIL TERDAFTAR";
             $message = "Akun anda berhasil terdaftar dengan username = <strong> $username </strong>";
@@ -24,6 +26,7 @@ class register extends Connection {
             #echo"<script>alert('anda berhasil terdaftar')</script>";
 
         }
+        
 
         $stmt = null;
 

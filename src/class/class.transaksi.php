@@ -89,7 +89,7 @@
         public function UpdateTransaksiStatusPDO(){
             $stmt = $this->connect()->prepare('UPDATE transaksi
                     SET 
-                    id_status = ?,			
+                    id_status = ?			
                     WHERE id = ?;');
             //$this->hasil = mysqli_query($this->connection, $query);
            
@@ -101,8 +101,12 @@
             else
             {
                 $this->message ='Data berhasil berhasil diubah!';					
-                echo '<script>alert(" ' . $this->message . ' ");</script>';
+                //echo '<script>alert(" ' . $this->message . ' ");</script>';
+                header("../location: seller-transaction.php?statusupdated");
+                exit();
             }
+            header("../location: seller-transaction.php?fail");
+
         }
 
         public function SelectAllTransaksiPembeli(){    
@@ -126,6 +130,8 @@
                 $objakun ->id = $data->id;
                 //$objakun ->username = $data->namaDepan;
                 $objakun ->tanggal = $data->tanggal;
+                $objakun ->pembeli = $data->pembeli;
+                $objakun ->penjual = $data->penjual;
                 $objakun ->namaBarang = $data->namaBarang;
                 $objakun ->namaToko = $data->namaToko;
                 $objakun ->quantity = $data->quantity;
@@ -143,7 +149,7 @@
 
         public function SelectAllTransaksiPenjual(){    
         
-            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksidetail WHERE penjual=?');
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE penjual=?');
             //$stmt = "SELECT * FROM akun";            
             $result = $stmt->execute(array($this->usernamepj));
     
@@ -162,11 +168,14 @@
                 $objakun ->id = $data->id;
                 //$objakun ->username = $data->namaDepan;
                 $objakun ->tanggal = $data->tanggal;
+                $objakun ->pembeli = $data->pembeli;
+                $objakun ->penjual = $data->penjual;
                 $objakun ->namaBarang = $data->namaBarang;
                 $objakun ->namaToko = $data->namaToko;
                 $objakun ->quantity = $data->quantity;
                 $objakun ->total = $data->total;
                 $objakun ->keterangan = $data->keterangan;
+                $objakun ->id_status = $data->id_status;
     
                 $arrResult[$count] = $objakun;
                 $count++;
@@ -251,11 +260,11 @@
                 }
         }
 
-        public function SelectOneAkunPDO($uname){    
+        public function SelectOneTransaksiPDO(){    
         
-            $stmt = $this->connect()->prepare('SELECT * FROM akun WHERE username = ?');
+            $stmt = $this->connect()->prepare('SELECT * FROM transaksi WHERE id = ?');
             //$stmt = "SELECT * FROM akun";            
-            $result = $stmt->execute(array($uname));
+            $result = $stmt->execute(array($this->id));
     
             if ($result == false) {
                 $stmt = null;
@@ -268,17 +277,63 @@
             if($stmt->rowCount() > 0){                
             while ($data= $stmt->fetch(PDO::FETCH_OBJ))
             {
-                $objakun = new Akun(); 
-                $objakun ->username = $data->username;
-                $objakun ->namaDepan = $data->namaDepan;
-                $objakun ->namaBelakang = $data->namaBelakang;
-                $objakun ->email = $data->email;
-                $objakun ->id_role = $data->id_role;
-                $objakun ->noHp = $data->noHp;
-                $objakun ->jalan = $data->jalan;
-                $objakun ->kodePos = $data->kodePos;
+                $objtr = new Transaksi(); 
+                $objtr ->id = $data->id;
+                //$objakun ->username = $data->namaDepan;
+                $objtr ->tanggal = $data->tanggal;
+                $objtr ->pembeli = $data->pembeli;
+                $objtr ->penjual = $data->penjual;
+                $objtr ->id_barang = $data->id_barang;
+                //$objtr ->namaToko = $data->namaToko;
+                $objtr ->quantity = $data->quantity;
+                $objtr ->total = $data->total;
+                //$objtr ->keterangan = $data->keterangan;
+                $objtr ->id_status = $data->id_status;
     
-                $arrResult = $objakun;
+               // $arrResult[$count] = $objtr;
+    
+                $arrResult = $objtr;
+                //$count++;
+                }
+            } else {
+                echo "Ain't got any user innit";
+            }
+            return $arrResult;          
+        }
+
+        public function SelectOneTransaksiPDOparam($input){    
+        
+            $stmt = $this->connect()->prepare('SELECT * FROM transaksi WHERE id = ?');
+            //$stmt = "SELECT * FROM akun";            
+            $result = $stmt->execute(array($input));
+    
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute SelectAllEmployee() function, fail to execute: SELECT * FROM akun";
+                exit();
+            }
+                    
+            $arrResult;
+            //$count=0;
+            if($stmt->rowCount() > 0){                
+            while ($data= $stmt->fetch(PDO::FETCH_OBJ))
+            {
+                $objtr = new Transaksi(); 
+                $objtr ->id = $data->id;
+                //$objakun ->username = $data->namaDepan;
+                $objtr ->tanggal = $data->tanggal;
+                $objtr ->pembeli = $data->pembeli;
+                $objtr ->penjual = $data->penjual;
+                $objtr ->id_barang = $data->id_barang;
+                //$objtr ->namaToko = $data->namaToko;
+                $objtr ->quantity = $data->quantity;
+                $objtr ->total = $data->total;
+                //$objtr ->keterangan = $data->keterangan;
+                $objtr ->id_status = $data->id_status;
+    
+               // $arrResult[$count] = $objtr;
+    
+                $arrResult = $objtr;
                 //$count++;
                 }
             } else {
@@ -305,30 +360,6 @@
             }
 
         }
-
-        public function ValidateEmail($email){
-            $query = "SELECT a.*, p.id_penjual as idpenjual FROM akun a LEFT JOIN penjual p ON a.username = p.username INNER JOIN role r ON a.id_role = r.id_role WHERE email='$email'";
-            $resultOne = mysqli_query($this->connection, $query);
-            if(mysqli_num_rows($resultOne) ==1){
-                $this->hasil = true;
-                $data = mysqli_fetch_assoc($resultOne);
-                $this->username=$data['username'];
-                $this->namaDepan=$data['namaDepan'];
-                $this->namaBelakang=$data['namaBelakang'];
-                $this->email=$data['email'];
-                $this->noHp=$data['noHp'];
-                $this->kodePos=$data['kodePos'];
-                $this->jalan=$data['jalan'];
-                $this->id_role=$this['id_role'];
-                return true;
-            }
-        }
-
-
-
-
-
-
 
 
     }
