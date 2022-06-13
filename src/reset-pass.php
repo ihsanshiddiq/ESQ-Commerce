@@ -8,7 +8,8 @@
 
         $objAkun->cek_akunPDO($username);
         if ($objAkun->hasil == TRUE) {
-            if (strcmp($objAkun->password, $password) == 0) {
+
+            if ($objAkun->password = $password) {
                 ?>
                 <!DOCTYPE html>
                     <html lang="en">

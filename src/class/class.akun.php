@@ -87,13 +87,13 @@
 
         public function UpdateAccountPDO(){
             $stmt = $this->connect()->prepare('UPDATE akun 
-                    SET 
-                    
+                    SET                
                     namaDepan = ?,
                     namaBelakang = ?,
                     email = ?,
                     noHp = ?,
                     kodePos = ?,
+
                     jalan = ?
                     				
                     WHERE username = ?;');
@@ -101,6 +101,7 @@
            
             
             if(!$stmt->execute(array($this->namaDepan, $this->namaBelakang, $this->email, $this->noHp, $this->kodePos, $this->jalan, $this->username)))
+
             {				
                 $this->message ='Data gagal diubah!';
             }
@@ -108,6 +109,7 @@
             {
                 $this->message ='Data berhasil diubah!';					
                 echo '<script>alert(" ' . $this->message . ' ");</script>';
+
             }
         }
 
@@ -270,11 +272,21 @@
 
 
 
+        public function reset_pass(){
+                $stmt = $this->connect()->prepare('UPDATE akun SET password = ? WHERE username = ?');
 
-
-
-
+                if (!$stmt->execute(array($this->password, $this->username))) {
+                    $this->hasil = false;
+                }else {
+                    $this->hasil = true;
+                    
+                }
+        }
     }
+
+
+
+
 
 
 
