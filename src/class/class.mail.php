@@ -15,7 +15,7 @@ class Mail
 		$mail->Host = "tls://mail.bolt.masuk.web.id";
 		$mail->Port = 587;
 		$mail->Username = "esq-commerce@bolt.masuk.web.id";
-		$mail->Password = "HuQE,S2Ioyx1";
+		$mail->Password = "9FZJLu6UEEHX";
 		$mail->From = "esq-commerce@bolt.masuk.web.id";
 		$mail->FromName = "no-reply-esq-commerce-notification";
 		$mail->SMTPOptions = array(
@@ -33,7 +33,7 @@ class Mail
 		$mail->Body = $message;
 		$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
 
-		$mail->SMTPDebug = 0;
+		$mail->SMTPDebug = 3;
 
 		if(!$mail->Send()){
 			echo "Message could not be sent.<p>";
