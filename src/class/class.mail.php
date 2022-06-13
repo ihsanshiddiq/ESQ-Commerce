@@ -15,7 +15,7 @@ class Mail
 		$mail->Host = "tls://mail.bolt.masuk.web.id";
 		$mail->Port = 587;
 		$mail->Username = "esq-commerce@bolt.masuk.web.id";
-		$mail->Password = "HuQE,S2Ioyx1";
+		$mail->Password = "9FZJLu6UEEHX";
 		$mail->From = "esq-commerce@bolt.masuk.web.id";
 		$mail->FromName = "no-reply-esq-commerce-notification";
 		$mail->SMTPOptions = array(
