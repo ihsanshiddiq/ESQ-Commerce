@@ -37,10 +37,12 @@ class registerContr extends register {
     public function registerUser() {       //this registers the user and SENDS these variable values to the register-obj.class.php so that class can insert these values into the database
         if($this->usernameCheck() == false) {   //username taken
             header("location: ../register.php?error=usernametaken");
+            echo"<script>alert('username yang anda masukkan sudah terdaftar, anda dapat login untuk melajutkan atau mengganti username anda')</script>";
             exit();
         }
         if($this->emptyInput() == false){
             header("location: ../register.php?error=emptyinput");
+            echo"<script>alert('terdapat form kosong')</script>";
             exit();
         }
 

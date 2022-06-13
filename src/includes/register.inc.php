@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
   $register->registerUser();
 
   //Balik ke Index
+  #echo"<script>alert('anda berhasil terdaftar')</script>";
   header("location: ../index.php?error=none");
 }
 ?>
