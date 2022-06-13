@@ -14,19 +14,22 @@
         private $price = 0;
         private $total = 0;
         private $today;
-
+        //private $tanggal;
+        
         //private $email = " ";
-
+        
         private $hasil = false;
         private $message = " ";
-
+        
         //---------------------- below is for view transaksi detail
-
+        
         private $usernamepb = "";   //specific to fetch transaksi satu user
         private $usernamepj = "";   //specific to fetch transaksi satu user
         private $keterangan = "";   //specific to fetch transaksi satu user
         private $namaBarang = "";
-
+        private $tanggal;
+        private $namaToko = "";
+        
 
 
         public function __get($atribute) {
@@ -42,7 +45,7 @@
         }
 
         
-
+/*
         public function addTransaksiPDO(){
 
             $stmt = $this->connect()->prepare('INSERT INTO `transaksi`(`id_status`, `tanggal`, `pembeli`, `id_barang`, `penjual`, `quantity`, `total`) 
@@ -61,6 +64,7 @@
             }
 
         }
+        */
 
         public function addTransaksiPDOTemporary(){
 
@@ -103,9 +107,9 @@
 
         public function SelectAllTransaksiPembeli(){    
         
-            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksidetail WHERE username=?');
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE pembeli=?');
             //$stmt = "SELECT * FROM akun";            
-            $result = $stmt->execute(array($usernamepb));
+            $result = $stmt->execute(array($this->usernamepb));
     
             if ($result == false) {
                 $stmt = null;
@@ -121,12 +125,12 @@
                 $objakun = new Transaksi(); 
                 $objakun ->id = $data->id;
                 //$objakun ->username = $data->namaDepan;
-                $objakun ->keterangan = $data->keterangan;
                 $objakun ->tanggal = $data->tanggal;
                 $objakun ->namaBarang = $data->namaBarang;
                 $objakun ->namaToko = $data->namaToko;
                 $objakun ->quantity = $data->quantity;
                 $objakun ->total = $data->total;
+                $objakun ->keterangan = $data->keterangan;
     
                 $arrResult[$count] = $objakun;
                 $count++;
@@ -141,7 +145,7 @@
         
             $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksidetail WHERE penjual=?');
             //$stmt = "SELECT * FROM akun";            
-            $result = $stmt->execute(array($usernamepj));
+            $result = $stmt->execute(array($this->usernamepj));
     
             if ($result == false) {
                 $stmt = null;
@@ -157,12 +161,12 @@
                 $objakun = new Transaksi(); 
                 $objakun ->id = $data->id;
                 //$objakun ->username = $data->namaDepan;
-                $objakun ->keterangan = $data->keterangan;
                 $objakun ->tanggal = $data->tanggal;
                 $objakun ->namaBarang = $data->namaBarang;
                 $objakun ->namaToko = $data->namaToko;
                 $objakun ->quantity = $data->quantity;
                 $objakun ->total = $data->total;
+                $objakun ->keterangan = $data->keterangan;
     
                 $arrResult[$count] = $objakun;
                 $count++;
