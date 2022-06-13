@@ -33,6 +33,8 @@ if(isset($_POST['updateakun'])){
 
 
     $arrayResult->UpdateAccountPDO();
+
+    header("../info.php");
     
     //header("Refresh:0");
     }    

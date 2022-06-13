@@ -3,11 +3,6 @@ session_start();
 if (!isset($_SESSION['username'])){
     header("location: index.php?error=notloggedin");
 }
-
-if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION["id_role"]) == "1" OR ($_SESSION["id_role"]) == "2"){
-    header("location: index.php?error=falseaccounttype");
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +57,18 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
     <div class="row py-5 my-5">
         <div class="col-md-4 px-5" styel="color: black;">
 
-            <a href="#">
-                <h2>My Shop Account</h2>
+            <a href="my.php">
+                <h2>My Account</h2>
+            </a>
+            <br>
+
+            <a href="transactionb.php">
+                <h2>Transaction History</h2>
+            </a>
+            <br>
+
+            <a href="address.php">
+                <h2>Address Book</h2>
             </a>
             <br>
 
@@ -71,17 +76,16 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
                 <h2>Personal Info</h2>
             </a>
             <br>
-
-            <a href="#">
-                <h2>List Product</h2>
-            </a>
-            <br>
-
-            <a href="#">
+            <a href="accessdata.php">
                 <h2>Access Data</h2>
             </a>
             <br>
-
+            <!--
+            <a href="wishlist. php">
+                <h2>Wishlist</h2>
+            </a>
+            -->
+            <br>
             <a href="#">
                 <h3 style="color: rgb(213, 5, 5);">logout</h3>
             </a>
@@ -90,20 +94,21 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
         <!--Panel Kanan-->
         <div class="col-md-8 px-5">
 
-            <h1><strong>MY SHOP ACCOUNT</strong></h1>
+            <h1><strong>MY ACCOUNT</strong></h1>
+            <br>
+            <div class="row">
+                <a href="#">
+                    <h1>Purchase History</h1>
+                    <p>Check the status and information regarding online orders. You can also cancel your order or
+                        request a refund.</p>
+                </a>
+            </div>
             <br>
             <div class="row">
                 <a href="info.php">
                     <h1>Personal Info</h1>
                     <p>You can access and change your personal details to expedite future purchases and notify us of
                         changes to your contact details.</p>
-                </a>
-            </div>
-            <br>
-            <div class="row">
-                <a href="#">
-                    <h1>List Product</h1>
-                    <p>Check product status and information. You can also add and remove your products.</p>
                 </a>
             </div>
             <br>
@@ -116,6 +121,14 @@ if (($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "A" OR ($_SESSION
                 </a>
             </div>
             <br>
+            <div class="row">
+                <!--
+                <a href="#">
+                    <h1>Wishlist</h1>
+                    <p>My Wishlist</p>
+                </a>
+    -->
+            </div>
         </div>
     </div>
 

@@ -37,9 +37,16 @@
 
               
             </form>
-            <a class="nav-link" href="cart.html">
-              <img src="../assets/cart.png" alt="cart">
-            </a>
+            <?php
+              if (!isset($_SESSION['id_role']) OR $_SESSION['id_role'] == 'B' OR $_SESSION['id_role'] == 2) {
+                echo '
+                  <a class="nav-link" href="cart.html">
+                    <img src="../assets/cart.png" alt="cart">
+                  </a>
+                ';
+              }
+            ?>
+            
             <!--START OF LOGGED IN-->
             <?php
               if(isset($_SESSION["username"])) {
@@ -97,7 +104,7 @@
             if(($_SESSION["id_role"]) == "B" OR ($_SESSION["id_role"]) == "2") {
               
             ?>
-            <a class="nav-link active blacken" aria-current="page" href="user/pembeli/my.php">See Profile</a>
+            <a class="nav-link active blacken" aria-current="page" href="my.php">See Profile</a>
            
               <a href="#">Available Items</a>
               <a href="#">Info+</a>
@@ -128,7 +135,7 @@
             ?>
             <h2 style="padding-left:30px; color: white"><u>SELLER</u></h2>
             <a class="nav-link active blacken" aria-current="page" href="userlist.php">Check My Shop Items</a>
-            <a class="nav-link active blacken" aria-current="page" href="#">See Profile</a>
+            <a class="nav-link active blacken" aria-current="page" href="myshop.php">See Profile</a>
             <?php
               }
             } else {
