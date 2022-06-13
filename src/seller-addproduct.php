@@ -13,7 +13,13 @@ require_once('./init.class.php');
 $objBarang = new Barang();
 if(isset($_POST['submit'])){
 
-    if(isset($_POST['namaBarang']) || isset($_POST['deskripsi']) || isset($_POST['jumlahStok']) || isset($_POST['harga']) || isset($_POST['nama_kategori']))
+    
+    if(!(isset($_POST['namaBarang']) || isset($_POST['deskripsi']) || isset($_POST['jumlahStok']) || isset($_POST['harga']))){
+        echo '<script>alert("mohon isi semua form");</script>';
+        
+        exit();
+    }
+    
     
     //catch user input
     $objBarang->namaBarang = $_POST['namaBarang'];
@@ -26,7 +32,7 @@ if(isset($_POST['submit'])){
     $objBarang->addBarang();
 
     if($objBarang->result){
-        echo"<script> alert('Data berhasil ditambakan!'); </script>";
+        echo"<script> alert('Data berhasil ditambakan!'); </scrip>";
     }
 
     // get ready to upload image
