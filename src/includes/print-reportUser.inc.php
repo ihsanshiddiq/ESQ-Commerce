@@ -3,13 +3,6 @@ session_start();
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-//$mpdf = new \Mpdf\Mpdf();
-//$print_user = '';
-//$mpdf->WriteHTML('<h1>Hello world!</h1>');
-//$mpdf->Output();
-
-//function printUser(){
-
     $mpdf = new \Mpdf\Mpdf();
     require_once('../inc.koneksisql.php'); 		
     require_once('./../class/class.barang.php'); 		
@@ -17,7 +10,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
     $arrayResult = $objitem->SelectAllBarangPenjual($_SESSION['username']);
 
     #careful when u wanna use (') and (")
-    $print_user = '
+    $print_report = '
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -41,7 +34,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
             
         </head>
         <body>
-        <H1>Daftar User</H1>
+        <H1>Report Penjualan</H1>
         <br>
         <table>
             <tr>
@@ -54,11 +47,11 @@ require_once __DIR__ . '/../../vendor/autoload.php';
             </tr>';
 
             if(count($arrayResult) == 0){
-                $print_user.= '<tr><td colspan="5">Tidak ada data!</td></tr>';
+                $print_report.= '<tr><td colspan="5">Tidak ada data!</td></tr>';
             } else{	
                 $no = 1;	
                 foreach ($arrayResult as $dataBarang) {
-                    $print_user.='<tr>
+                    $print_report.='<tr>
                         <td>'.$no.'</td>	
                         <td>'.$dataBarang->namaBarang.'</td>
                         <td>'.$dataBarang->jumlahStok.'</td>
@@ -73,14 +66,14 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 
 
- $print_user.= '</table>
+ $print_report.= '</table>
             
         </body>
     </html>
     ';
 
     #fungsi untuk ngeprint bang
-    $mpdf->WriteHTML($print_user);
+    $mpdf->WriteHTML($print_report);
     $mpdf->Output('ReportPDF-SELLER-' .$_SESSION['username'] . '.pdf', \Mpdf\Output\Destination::INLINE);
     #u can also use Output('daftar-user.pdf', 'I'); 
     #note : read the documentation for more

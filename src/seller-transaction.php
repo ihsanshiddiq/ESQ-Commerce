@@ -119,7 +119,7 @@ if (!(isset($_SESSION["username"]))) {
                     echo '<td>';
 
                     if($dataTransaksi->id_status == 1){
-                    echo '<button type="submit" class="btn btn-warning"  name="diproses" value="'. $dataTransaksi->id .'"><b>Proses'. $dataTransaksi->id .'</b></button>'; 
+                    echo '<button type="submit" class="btn btn-warning"  name="diproses" value="'. $dataTransaksi->id .'"><b>Proses</b></button>'; 
                     echo ' | ';
                     echo '<button class="btn btn-danger" name="ditolak" value="'. $dataTransaksi->id .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Tolak </button> </td>';
                     //echo 'val btn diproses: ' . $_POST['diproses'];
