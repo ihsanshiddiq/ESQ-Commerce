@@ -119,24 +119,28 @@ if (!(isset($_SESSION["username"]))) {
                     echo '<td>';
 
                     if($dataTransaksi->id_status == 1){
-                    echo '<button type="submit" class="btn btn-warning"  name="diproses" value="'. $dataTransaksi->id .'"><b>Proses'. $dataTransaksi->id .'</b></button>'; 
+                    echo '<button type="submit" class="btn btn-warning"  name="diproses" value="'. $dataTransaksi->id .'"><b>Proses</b></button>'; 
                     echo ' | ';
                     echo '<button class="btn btn-danger" name="ditolak" value="'. $dataTransaksi->id .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> Tolak </button> </td>';
                     //echo 'val btn diproses: ' . $_POST['diproses'];
+                    #$objtr->sendNotif($dataTransaksi->id);
                     } else
 
                     if($dataTransaksi->id_status == 2){
                     echo '<button type="submit" class="btn btn-warning" name="dikirimkan" value="'. $dataTransaksi->id .'"><b>Dikirim</b></button>'; 
+                    #$objtr->sendNotif($dataTransaksi->id);
                     } else
 
                     if($dataTransaksi->id_status == 3){
                     //echo '<button type="submit" class="btn btn-success" style="width: 40%;" name="selesai" value="'. $dataTransaksi->id .'"><b>Selesai</b></button>'; 
                     echo 'Ditolak.';
+                    #$objtr->sendNotif($dataTransaksi->id);
                     //echo '<button class="btn btn-primary" style="width: 40%;" name="tenggelam" value="'. $dataTransaksi->id .'" onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')"> ;-; </button> </td>';
                     } else 
                     
                     if($dataTransaksi->id_status == 4){
                         echo '<button type="submit" class="btn btn-success"  name="selesai" value="'. $dataTransaksi->id .'"><b>Selesai</b></button>'; 
+                        #$objtr->sendNotif($dataTransaksi->id);
                     } else{
 
                     }

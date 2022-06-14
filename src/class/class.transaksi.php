@@ -29,6 +29,7 @@
         private $namaBarang = "";
         private $tanggal;
         private $namaToko = "";
+        //private $emailPembeli;
         
 
 
@@ -268,7 +269,7 @@
     
             if ($result == false) {
                 $stmt = null;
-                echo "fail to execute SelectAllEmployee() function, fail to execute: SELECT * FROM akun";
+                echo "fail to execute SelectOneTransaksiPDO() function";
                 exit();
             }
                     
@@ -358,6 +359,45 @@
                 $this->jalan=$data['jalan'];
                 $this->kodePos=$this['kodePos'];
             }
+
+        }
+
+
+        public function sendNotif($id){
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi where id = ?');
+            $result = $stmt->execute(array($id));
+
+            if ($result == false) {
+                $stmt = null;
+                echo "fail to execute sendNotif() function";
+                exit();
+            }
+
+            if ($stmt->rowCount() >0) {
+                $data= $stmt->fetch(PDO::FETCH_OBJ);
+                require_once ('class.mail.php');
+
+                $objMail = new Mail;
+                $email = $data->email;
+                $username = $data->pembeli;
+                $subject = "STATUS PESANAN ANDA";
+                $message = "Dear, $data->pembeli. 
+                <br>
+                Status pesanan anda dengan nomor transaksi : $data->id, 
+                <br>
+                saat ini adalah : $data->keterangan";
+                $objMail->sendMail($email, $username, $subject, $message);
+
+
+
+            }else {
+                echo "Ain't got any user innit";
+            }
+
+
+
+
+
 
         }
 
