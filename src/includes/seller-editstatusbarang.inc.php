@@ -15,7 +15,7 @@ if (isset($_POST['diproses'])) {
     $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 2;
     $arrayResult->UpdateTransaksiStatusPDO();
-    $arrayResult->sendNotif();
+    $objtr->sendNotif($arrayResult->id);
     header("../location: seller-transaction.php?statusupdated");
     echo 'lol';
     exit();
@@ -26,7 +26,7 @@ if (isset($_POST['ditolak'])) {
     $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 3;
     $arrayResult->UpdateTransaksiStatusPDO();
-    $arrayResult->sendNotif();
+    $objtr->sendNotif($arrayResult->id);
     header("../location: seller-transaction.php?statusupdated");
     exit();
 }
@@ -35,7 +35,7 @@ if (isset($_POST['dikirimkan'])) {
     $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 4;
     $arrayResult->UpdateTransaksiStatusPDO();
-    $arrayResult->sendNotif();
+    $objtr->sendNotif($arrayResult->id);
     header("../location: seller-transaction.php?statusupdated");
     exit();
 }
@@ -45,7 +45,7 @@ if (isset($_POST['selesai'])) {
     $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 5;
     $arrayResult->UpdateTransaksiStatusPDO();
-    $arrayResult->sendNotif();
+    $objtr->sendNotif($arrayResult->id);
     header("../location: seller-transaction.php?statusupdated");
     exit();
 }
@@ -55,7 +55,7 @@ if (isset($_POST['tenggelam'])) {
     $arrayResult = $objtr->SelectOneTransaksiPDO();
     $arrayResult->id_status = 6;
     $arrayResult->UpdateTransaksiStatusPDO();
-    $arrayResult->sendNotif();
+    $objtr->sendNotif($arrayResult->id);
     header("../location: seller-transaction.php?statusupdated");
     exit();
 }

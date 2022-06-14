@@ -363,9 +363,9 @@
         }
 
 
-        public function sendNotif(){
+        public function sendNotif($id){
             $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi where id = ?');
-            $result = $stmt->execute(array($this->id));
+            $result = $stmt->execute(array($id));
 
             if ($result == false) {
                 $stmt = null;
@@ -373,7 +373,7 @@
                 exit();
             }
 
-            if ($stmt->rowCount() == 1) {
+            if ($stmt->rowCount() >0) {
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
                 require_once ('class.mail.php');
 
@@ -386,7 +386,7 @@
                 Status pesanan anda dengan nomor transaksi : $data->id, 
                 <br>
                 saat ini adalah : $data->keterangan";
-                $objakun->sendMail($email, $username, $subject, $message);
+                $objMail->sendMail($email, $username, $subject, $message);
 
 
 
