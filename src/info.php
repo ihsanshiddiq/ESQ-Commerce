@@ -129,8 +129,12 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
-            
+            <a href="seller-transaction.php">
+                <h2>Transaction History</h2>
+            </a>
             <br>
+            
+            
 
             <a href="#">
                 <h3 style="color: rgb(213, 5, 5);">logout</h3>
