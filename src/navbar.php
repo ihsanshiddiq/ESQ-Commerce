@@ -141,7 +141,7 @@
             } else {
               ?>
             
-              <a href="#">Available Items</a>
+              
               <a href="#">Info+</a>
               <a href="#">Contact</a>
               <a href="#">Category</a>

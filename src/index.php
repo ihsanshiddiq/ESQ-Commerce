@@ -205,20 +205,23 @@ session_start();
             <h3 class="popularcategories">Popular Categories</h3>
 
             <section class="container my-5">
+              <form action="category.php" method="GET">
               <div class="row d-flex justify-content-center my-3 row-cols-1 row-cols-md-3 g-4 container">
                 
   
                 <div class="col justify-content-center">
+                <button  style="background-color: transparent;" href="category.php" type="submit" name="category" value="Fashion">
                   <div class="card bg-light text-white">
                     <img src="../assets/produk/categories/fashion.png" class="card-img-top" alt="...">
                     <div class="card-img-overlay">
                       <h5 class="card-title popular"><b>Fashion</b></h5>
                     </div>
                   </div>
+</button>
                 </div>
 
                 <div class="col justify-content-center">
-                  <a href="category-accesories.php">
+                  <button  style="background-color: transparent;" href="category.php" type="submit" name="category" value="Accessories">
 
                     <div class="card bg-light text-white">
                       <img src="../assets/produk/categories/accessories.png" class="card-img-top" alt="...">
@@ -226,19 +229,22 @@ session_start();
                         <h5 class="card-title popular"><b>Accessories</b></h5>
                       </div>
                     </div>
-                  </a>
+</button>
                 </div>
 
                 <div class="col justify-content-center">
+                <button  style="background-color: transparent;" href="category.php" type="submit" name="category" value="Drink">
                   <div class="card bg-light text-white">
                     <img src="../assets/produk/categories/beverages.png" class="card-img-top" alt="...">
                     <div class="card-img-overlay">
                       <h5 class="card-title popular"><b>Beverages</b></h5>
                     </div>
                   </div>
+</button>
                 </div>
   
                 <div class="col justify-content-center">
+                <button  style="background-color: transparent;" href="category.php" type="submit" name="category" value="Food">
                   <div class="card bg-light text-white">
                     <img src="../assets/produk/categories/food.png" class="card-img-top" alt="...">
                     <div class="card-img-overlay">
@@ -259,6 +265,7 @@ session_start();
                 
   
               </div>
+</form>
             </section>
 
             

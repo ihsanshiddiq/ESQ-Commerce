@@ -90,9 +90,11 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
+            <!--
             <a href="address.php">
                 <h2>Address Book</h2>
             </a>
+        -->
             <br>
 
             <a href="info.php">
@@ -122,14 +124,12 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
-            <a href="#">
+            <a href="seller-listproduct.php">
                 <h2>List Product</h2>
             </a>
             <br>
 
-            <a href="#">
-                <h2>Access Data</h2>
-            </a>
+            
             <br>
 
             <a href="#">

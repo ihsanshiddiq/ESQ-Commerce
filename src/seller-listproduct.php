@@ -60,10 +60,7 @@ if (!(isset($_SESSION["username"]))) {
             </a>
             <br>
 
-            <a href="#">
-                <h2>Access Data</h2>
-            </a>
-            <br>
+           
 
             <a href="#">
                 <h3 style="color: rgb(213, 5, 5);">logout</h3>

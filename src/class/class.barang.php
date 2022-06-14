@@ -80,6 +80,17 @@ class Barang extends Connection2{
            $this->message ='Data gagal dihapus!';	
     }
 
+    public function UpdateStock(){
+        $sql = "UPDATE barang SET jumlahStok = $this->jumlahStok - 1, jumlahTerjual = $this->jumlahTerjual + 1
+                WHERE id = $this->id";
+        $this->result = mysqli_query($this->connection, $sql);
+
+        if($this->result)
+           $this->message ='Stok berhasil diubah!';					
+        else
+           $this->message ='Stok gagal diubah!';
+    }
+
 
     public function UpdateFotoBarang(){
         $sql = "UPDATE barang SET fotoBarang ='$this->fotoBarang'
@@ -153,6 +164,7 @@ class Barang extends Connection2{
             $objBarang->namaBarang=$data['namaBarang'];
             $objBarang->deskripsi=$data['deskripsi'];
             $objBarang->jumlahStok=$data['jumlahStok'];
+            $objBarang->jumlahTerjual=$data['jumlahTerjual'];
             $objBarang->harga=$data['harga'];
             $objBarang->nama_kategori=$data['nama_kategori'];
             $objBarang->fotoBarang=$data['fotoBarang'];

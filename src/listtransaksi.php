@@ -67,24 +67,23 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
-            <a href="transactionb.php">
+            <a href="listtransaction.php">
                 <h2>Transaction History</h2>
             </a>
             <br>
 
+            <!--
             <a href="address.php">
                 <h2>Address Book</h2>
             </a>
             <br>
+    -->
 
             <a href="info.php">
                 <h2>Personal Info</h2>
             </a>
             <br>
-            <a href="accessdata.php">
-                <h2>Access Data</h2>
-            </a>
-            <br>
+            
             <!--
             <a href="wishlist. php">
                 <h2>Wishlist</h2>
@@ -154,7 +153,7 @@ if (!isset($_SESSION['username'])){
             ?>
             </table>
             <a class="btn btn-primary" href="seller-addproduct.php" target= "_Blank">Add Item</a>
-            <a class="btn btn-primary" href="./includes/print-user.inc.php" target= "_Blank">cetak user</a>
+            
     </div>
 
 
