@@ -8,6 +8,38 @@ if (!(isset($_SESSION["username"]))) {
     }
 }
 
+require_once( 'inc.koneksisql.php');
+require_once('./init.class.php');
+$objBarang = new Barang();
+if(isset($_POST['submit'])){
+
+    
+    if(!(isset($_POST['namaBarang']) || isset($_POST['deskripsi']) || isset($_POST['jumlahStok']) || isset($_POST['harga']))){
+        echo '<script>alert("mohon isi semua form");</script>';
+        header("seller-editproduct.php");
+        exit();
+    }
+
+    echo 'nama barang: ' . $_POST['namaBarang'];
+    echo 'desc: ' . $_POST['deskripsi'];
+    echo 'stok: ' . $_POST['jumlahStok'];
+    echo 'harga: ' . $_POST['harga'];
+    
+    
+    //catch user input
+    $objBarang->namaBarang = $_POST['namaBarang'];
+    $objBarang->deskripsi = $_POST['deskripsi'];
+    $objBarang->jumlahStok = $_POST['jumlahStok'];
+    $objBarang->harga = $_POST['harga'];
+    $objBarang->nama_kategori = $_POST['nama_kategori'];
+    $objBarang->id_penjual = $_SESSION['username'];
+
+    $objBarang->updateBarang();
+
+    if($objBarang->result){
+        echo"<script> alert('Data berhasil ditambakan!'); </scrip>";
+    }
+}
 
 ?>
 
@@ -78,28 +110,39 @@ if (!(isset($_SESSION["username"]))) {
             <form action="" method="POST">
                 <table class="table">
                     <tr>
-                        <td>Item Name : <?php //echo $objBarang->namaBarang; ?></td>
+                        <td>Nama Barang : <?php echo $objBarang->namaBarang; ?></td>
                         <td>|</td>
-                        <td><p>New Item Name</p></td>
-                        <td><input type="text" class="form-control textinput" name="namabarang" id="namabarang" ></td>
+                        <td><p>Nama Barang Baru</p></td>
+                        <td><input type="text" class="form-control textinput" name="namaBarang" id="namaBarang" ></td>
                     </tr>
                     <tr>
-                        <td>Stock : <?php //echo $objBarang->jumlahStok; ?></td>
+                        <td>Deskripsi : <?php echo $objBarang->jumlahStok; ?></td>
                         <td>|</td>
-                        <td><p>New Stock</p></td>
-                        <td><input type="text" class="form-control textinput" name="jumlahstok" id="jumlahstok" ></td>
+                        <td><p>Deskripsi Baru</p></td>
+                        <td><input type="text" class="form-control textinput" name="deskripsi" id="deskripsi" ></td>
                     </tr>
                     <tr>
-                        <td>Category : <?php //echo $objBarang->nama_Kategori; ?></td>
+                        <td>Jumlah Stok : <?php echo $objBarang->jumlahStok; ?></td>
                         <td>|</td>
-                        <td><p>Chose Category</p></td>
-                        <td><input type="email" class="form-control textinput" name="namakategori" id="namakategori" ></td>
+                        <td><p>Jumlah Stok Baru</p></td>
+                        <td><input type="number" class="form-control textinput" name="jumlahStok" id="jumlahStok" ></td>
                     </tr>
                     <tr>
-                        <td>Price : <?php //echo $objBarang->harga; ?></td>
+                        <td>Harga : <?php echo $objBarang->harga; ?></td>
                         <td>|</td>
-                        <td><p>New Price</p></td>
+                        <td><p>Harga Baru</p></td>
                         <td><input type="number" class="form-control nohp textinput" name="harga" id="harga" ></td>
+                    </tr>
+                    <tr>
+                        <td>Kategori : <?php echo $objBarang->nama_Kategori; ?></td>
+                        <td>|</td>
+                        <td><p>Pilih Kategori</p></td>
+                        <td><select name="nama_kategori" id="nama_kategori" class="form-select" placeholder="pilih kategori">  
+                            <option value="Food">Food</option>
+                            <option value="Drink">Drink</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Fashion">Fashion</option>
+                        </select><br><br></td>
                     </tr>
                         <td></td>
                         <td><input type="submit" class="btn btn-primary" name="save">
