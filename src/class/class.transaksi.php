@@ -112,7 +112,7 @@
 
         public function SelectAllTransaksiPembeli(){    
         
-            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE pembeli=?');
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE pembeli=? ORDER BY tanggal DESC');
             //$stmt = "SELECT * FROM akun";            
             $result = $stmt->execute(array($this->usernamepb));
     
@@ -132,7 +132,7 @@
                 //$objakun ->username = $data->namaDepan;
                 $objakun ->tanggal = $data->tanggal;
                 $objakun ->pembeli = $data->pembeli;
-                $objakun ->penjual = $data->penjual;
+                //$objakun ->penjual = $data->penjual;
                 $objakun ->namaBarang = $data->namaBarang;
                 $objakun ->namaToko = $data->namaToko;
                 $objakun ->quantity = $data->quantity;
@@ -150,7 +150,7 @@
 
         public function SelectAllTransaksiPenjual(){    
         
-            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE penjual=?');
+            $stmt = $this->connect()->prepare('SELECT * FROM vw_transaksi WHERE penjual=? ORDER BY tanggal');
             //$stmt = "SELECT * FROM akun";            
             $result = $stmt->execute(array($this->usernamepj));
     

@@ -12,9 +12,9 @@ class Mail
 		$mail->IsSMTP();
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = "tls";
-		$mail->Host = "tls://mail.bolt.masuk.web.id";
+		$mail->Host = "tls://mail.esq-commerce.masuk.id";
 		$mail->Port = 587;
-		$mail->Username = "esq-commerce@bolt.masuk.web.id";
+		$mail->Username = "no-reply@esq-commerce.masuk.id";
 		$mail->Password = "9FZJLu6UEEHX";
 		$mail->From = "esq-commerce@bolt.masuk.web.id";
 		$mail->FromName = "no-reply-esq-commerce-notification";
@@ -37,6 +37,44 @@ class Mail
 
 		if(!$mail->Send()){
 			echo "Message could not be sent.<p>";
+			echo "Mailer Error: " . $mail->ErrorInfo;
+			exit;
+		}
+	}	
+
+	public static function sendMail2($to, $name, $subject, $message)
+	{
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "tls";
+		$mail->Host = "tls://mail.esq-commerce.masuk.id";
+		$mail->Port = 587;
+		$mail->Username = "no-reply@esq-commerce.masuk.id";
+		$mail->Password = "9FZJLu6UEEHX";
+		$mail->From = "esq-commerce@bolt.masuk.web.id";
+		$mail->FromName = "no-reply-esq-commerce-notification";
+		$mail->SMTPOptions = array(
+				'ssl' => array(
+				'verify_peer' => false,
+				'verify_peer_name' => false,
+				'allow_self_signed' => true
+				));
+
+		$mail->WordWrap = 50;
+		$mail->IsHTML(true);
+
+		$mail->AddAddress($to, $name);
+		$mail->Subject = $subject;
+		$mail->Body = $message;
+		$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+		$mail->SMTPDebug = 0;
+
+		if(!$mail->Send()){
+			//echo "Message could not be sent.<p>";
+			echo "<script>alert('Message could not be sent, but account is created successfully. you can login now. <br>" . $mail->ErrorInfo . "'); window.location.href = '../index.php?error';</script>";
+			//echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
 			echo "Mailer Error: " . $mail->ErrorInfo;
 			exit;
 		}

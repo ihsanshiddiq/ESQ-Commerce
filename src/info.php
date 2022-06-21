@@ -80,7 +80,7 @@ if (!isset($_SESSION['username'])){
         <?php
         if ($_SESSION['id_role'] == 'B' OR $_SESSION['id_role'] == '2'){
         ?>
-            <a href="#">
+            <a href="my.php">
                 <h2>My Account</h2>
             </a>
             <br>
@@ -95,16 +95,13 @@ if (!isset($_SESSION['username'])){
                 <h2>Address Book</h2>
             </a>
         -->
-            <br>
+            
 
             <a href="info.php">
                 <h2>Personal Info</h2>
             </a>
             <br>
-            <a href="accessdata.php">
-                <h2>Access Data</h2>
-            </a>
-            <br>
+            
             
             <br>
             <a href="#">

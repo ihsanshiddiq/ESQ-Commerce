@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if (isset($_SESSION['id_role']) AND ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 'S')) {
+  header("location: myshop.php?visitoronly");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

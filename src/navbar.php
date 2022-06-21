@@ -127,7 +127,7 @@
             ?>
             <h2 style="padding-left:30px; color: white"><u>ADMIN</u></h2>
             <a class="nav-link active blacken" aria-current="page" href="admin-listuser.php">See All Users</a>
-            <a class="nav-link active blacken" aria-current="page" href="#">See All Items</a>
+            <a class="nav-link active blacken" aria-current="page" href="admin-listbarang.php">See All Items</a>
             <?php
               }
               else if(($_SESSION["id_role"]) == "S" OR ($_SESSION["id_role"]) == "3")

@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Barang extends Connection2{
     private $id = 0;
 
@@ -208,6 +206,7 @@ class Barang extends Connection2{
                 $objBarang->harga=$data['harga'];
                 $objBarang->nama_kategori=$data['nama_kategori'];
                 $objBarang->fotoBarang=$data['fotoBarang'];
+                $objBarang->id_penjual=$data['id_penjual'];
                 $arrResult[$i] = $objBarang;
                 $i++;
             }

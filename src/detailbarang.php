@@ -170,7 +170,7 @@ if (isset($_POST['openbarang'])) {
                     </fieldset>
                 </div>
                 <br>
-                <form class="row" action="includes/buynow.inc.php" method="GET" target="_blank">
+                <form class="row" action="includes/buynow.inc.php" method="GET">
                     <?php
                         echo '<button class="col-md-5 mx-1" type="submit" value="' . $arrayResult->id . '" name="buynow" style="background-color: black; color: white;"> Buy Now
                         </button>';

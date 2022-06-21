@@ -16,7 +16,8 @@ if (isset($_POST['diproses'])) {
     $arrayResult->id_status = 2;
     $arrayResult->UpdateTransaksiStatusPDO();
     $objtr->sendNotif($arrayResult->id);
-    header("../location: seller-transaction.php?statusupdated");
+    //header("../location: seller-transaction.php?statusupdated");
+    echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
     echo 'lol';
     exit();
 }
@@ -27,7 +28,8 @@ if (isset($_POST['ditolak'])) {
     $arrayResult->id_status = 3;
     $arrayResult->UpdateTransaksiStatusPDO();
     $objtr->sendNotif($arrayResult->id);
-    header("../location: seller-transaction.php?statusupdated");
+    //header("../location: seller-transaction.php?statusupdated");
+    echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
     exit();
 }
 if (isset($_POST['dikirimkan'])) {
@@ -36,7 +38,8 @@ if (isset($_POST['dikirimkan'])) {
     $arrayResult->id_status = 4;
     $arrayResult->UpdateTransaksiStatusPDO();
     $objtr->sendNotif($arrayResult->id);
-    header("../location: seller-transaction.php?statusupdated");
+    //header("location: ../seller-transaction.php?statusupdated");
+    echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
     exit();
 }
 
@@ -46,7 +49,8 @@ if (isset($_POST['selesai'])) {
     $arrayResult->id_status = 5;
     $arrayResult->UpdateTransaksiStatusPDO();
     $objtr->sendNotif($arrayResult->id);
-    header("../location: seller-transaction.php?statusupdated");
+    header("location: ../seller-transaction.php?statusupdated");
+    echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
     exit();
 }
 
@@ -56,8 +60,11 @@ if (isset($_POST['tenggelam'])) {
     $arrayResult->id_status = 6;
     $arrayResult->UpdateTransaksiStatusPDO();
     $objtr->sendNotif($arrayResult->id);
-    header("../location: seller-transaction.php?statusupdated");
+    //header("../location: seller-transaction.php?statusupdated");
+    echo "<script>alert('Status updated successfully'); window.location.href = '../seller-transaction.php?error';</script>";
     exit();
 }
+
+echo "<script>alert('Error, something went wrong...'); window.location.href = '../seller-transaction.php?error';</script>";
 
 ?>

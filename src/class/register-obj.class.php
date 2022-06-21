@@ -18,12 +18,17 @@ class register extends Connection {
         }
         
         else{
-            $objEmail = new Mail;
-            $subject = "AKUN BERHASIL TERDAFTAR";
-            $message = "Akun anda berhasil terdaftar dengan username = <strong> $username </strong>";
-            $objEmail->sendMail($email, $username, $subject, $message);
+
+            try {
+                $objEmail = new Mail;
+                $subject = "AKUN BERHASIL TERDAFTAR";
+                $message = "Akun anda berhasil terdaftar dengan username = <strong> $username </strong>";
+                $objEmail->sendMail2($email, $username, $subject, $message);
             
             #echo"<script>alert('anda berhasil terdaftar')</script>";
+            } catch (Exception $e ) {
+                echo "<script>alert('Could not send email. But account was created successfully (you can login now)'); window.location.href = '../index.php';</script>";
+            }
 
         }
         

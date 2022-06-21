@@ -20,8 +20,9 @@ if(isset($_POST['updateakun'])){
     if(empty($_POST['newnamadepan']) OR empty($_POST['newnamabelakang']) OR empty($_POST['newjalan']) OR empty($_POST['newkodepos'])){
         
         $_SESSION['message'] = "Mohon isi semua form data";
-        header("location: ../user/pembeli/info.php?emptyinput");
+        header("location: ../info.php?emptyinput");
         echo '<script>alert("Mohon isi semua form data");</script>';
+        exit();
 
     } else{
 
@@ -33,11 +34,11 @@ if(isset($_POST['updateakun'])){
 
 
     $arrayResult->UpdateAccountPDO();
-
-    header("../info.php");
+    
+    header("location: ../info.php?success");
     
     //header("Refresh:0");
     }    
-
+    //header("location: ../info.php??");
 }
 ?>

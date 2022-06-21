@@ -67,19 +67,13 @@ if (!isset($_SESSION['username'])){
             </a>
             <br>
 
-            <a href="address.php">
-                <h2>Address Book</h2>
-            </a>
-            <br>
+           
 
             <a href="info.php">
                 <h2>Personal Info</h2>
             </a>
             <br>
-            <a href="accessdata.php">
-                <h2>Access Data</h2>
-            </a>
-            <br>
+            
             <!--
             <a href="wishlist. php">
                 <h2>Wishlist</h2>

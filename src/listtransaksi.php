@@ -152,7 +152,7 @@ if (!isset($_SESSION['username'])){
             }
             ?>
             </table>
-            <a class="btn btn-primary" href="seller-addproduct.php" target= "_Blank">Add Item</a>
+            
             
     </div>
 

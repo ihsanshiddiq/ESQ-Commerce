@@ -3,6 +3,11 @@ session_start();
 if(isset($_GET['buynow']) AND isset($_SESSION['username'])){
     //echo $_GET['buynow'];
 
+    if($_SESSION['id_role'] == 3 OR $_SESSION['id_role'] == 'S') {
+        header("../myshop.php?notallowed");
+        exit();
+    }
+
     require_once '../inc.koneksi.php';
     require_once '../inc.koneksisql.php';
     require_once '../class/class.barang.php';
@@ -28,8 +33,11 @@ if(isset($_GET['buynow']) AND isset($_SESSION['username'])){
     
 
     $newtr->addTransaksiPDOTemporary();
-    echo $newtr->message;
-    echo '<br> if you see this message, it is safe to close this window.';
+    
+    echo "<script>alert('Success'); window.location.href = '../listtransaksi.php?success';</script>";
+
+    //echo $newtr->message;
+    //echo '<br> if you see this message, it is safe to close this window.';
     //header("location: user/pembeli/info.php");
 
     /*
